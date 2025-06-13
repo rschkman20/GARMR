@@ -109,6 +109,21 @@
     .cta {
       background: var(--gold);
       color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 4rem 1rem;
+    }
+    .cta img {
+      flex: 1;
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }
+    .cta-content {
+      flex: 2;
+      text-align: center;
     }
     footer {
       background: #000;
@@ -393,6 +408,14 @@
         text-align: center;
       }
     }
+    @media (max-width: 768px) {
+      .cta {
+        flex-direction: column;
+      }
+      .cta img {
+        max-width: 250px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -436,8 +459,12 @@
   </section>
 
   <section class="cta" data-aos="fade-up">
-    <h2>Only 300 pairs worldwide.</h2>
-    <a href="#" class="btn">JOIN THE MOVEMENT</a>
+    <img src="images/Model 1.png" alt="Model 1 glove" loading="lazy">
+    <div class="cta-content">
+      <h2>Only 300 pairs worldwide.</h2>
+      <a href="#" class="btn">JOIN THE MOVEMENT</a>
+    </div>
+    <img src="images/Model 3.png" alt="Model 3 glove" loading="lazy">
   </section>
 
   <section id="waitlist" data-aos="fade-up">
