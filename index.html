@@ -192,18 +192,10 @@
     }
 
     .hero-logo {
-      width: 140px;
+      width: 500px;
       position: relative;
       filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
       margin-bottom: 0.5rem;
-    }
-
-    .hero-divider {
-      width: 80px;
-      height: 2px;
-      background: var(--gold);
-      opacity: 0.7;
-      margin-bottom: 1.25rem;
     }
 
     .hero-title {
@@ -246,18 +238,9 @@
       transform: translateX(3px);
     }
 
-    .scroll-down {
-      position: absolute;
-      bottom: 1rem;
-      color: var(--gold);
-      font-size: 0.875rem;
-      letter-spacing: 1px;
-      animation: bounce 3s infinite;
-      z-index: 1;
-    }
     @media (max-width: 768px) {
       .hero-logo {
-        width: 100px;
+        width: 300px;
       }
     }
 
@@ -279,6 +262,12 @@
       max-width: 500px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transition: transform 0.4s;
+    }
+    .product-image img.product-logo {
+      width: 140px;
+      max-width: none;
+      margin: 0 auto;
+      display: block;
     }
     .product-image:hover img {
       transform: scale(1.05) rotate(-2deg);
@@ -459,18 +448,16 @@
 
   <section class="hero" data-aos="fade-up">
     <div class="hero-content">
-      <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy" data-aos="fade-up">
-      <div class="hero-divider"></div>
+      <img src="images/Chain%20Glove.png" alt="Chain Series Glove" class="hero-logo" loading="lazy" data-aos="fade-up">
       <h1 class="hero-title">Built for the ruthless. Forged in legacy.</h1>
       <p class="hero-subhead">Where heritage meets combat.</p>
       <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
     </div>
-    <a href="#product" class="scroll-down">SCROLL &#8595;</a>
   </section>
 
   <section id="product" class="product-highlight" data-aos="fade-up">
     <div class="product-image">
-      <img src="images/Chain%20Glove.png" alt="Chain Series Glove" loading="lazy">
+      <img src="images/Logo.png" alt="GARMR Logo" class="product-logo" loading="lazy">
     </div>
     <div class="product-info">
       <h2 class="product-title">Chain Series – Black &amp; Gold</h2>
