@@ -7,7 +7,7 @@
   <meta name="description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
   <meta property="og:title" content="GARMR Boxing Gloves">
   <meta property="og:description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
@@ -585,27 +585,63 @@
       opacity: 0.05;
       pointer-events: none;
     }
-    .quote-word {
+    .fade-in-up {
       opacity: 0;
-      display: inline-block;
-      animation: fadeWord 0.5s forwards;
+      transform: translateY(20px);
+      transition: all 0.8s ease-in-out;
     }
-    @keyframes fadeWord {
-      to { opacity: 1; }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .gold-underline {
+    .heading-underline {
       position: relative;
       display: inline-block;
       padding-bottom: 0.5rem;
+      letter-spacing: 0.05em;
     }
-    .gold-underline::after {
+    .heading-underline::after {
       content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      display: block;
+      height: 2px;
+      width: 0;
+      background-color: var(--gold);
+      transition: width 1s ease;
+    }
+    .heading-underline.visible::after {
       width: 100%;
-      height: 1px;
-      background: var(--gold);
+    }
+    .why-section {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .why-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .why-section p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #F0F0F0;
+      max-width: 700px;
+    }
+    .gold-text {
+      color: var(--gold);
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
   </style>
 </head>
@@ -655,9 +691,9 @@
     </div>
   </section>
 
-  <section data-aos="fade-up">
-    <h2 class="gold-underline">Why GARMR</h2>
-    <p>GARMR was born from blood, discipline, and legacy. We don’t do mass-produced. We do meaningful impact.</p>
+  <section id="why" class="why-section" data-aos="fade-up">
+    <h2 class="heading-underline fade-in-up">Why GARMR</h2>
+    <p class="fade-in-up">GARMR was born from blood, discipline, and <span class="gold-text">legacy</span>. We don’t do mass-produced. We do <span class="gold-text">meaningful impact</span>.</p>
   </section>
 
   <section class="gym-photo" data-aos="zoom-in">
@@ -665,17 +701,10 @@
   </section>
 
   <section class="quote-section" data-aos="fade-up">
-    <div class="quote">
+    <div class="quote fade-in-up">
       <img src="images/Logo.png" alt="" class="watermark">
-      <h2 class="gold-underline">
-        <span class="quote-word" style="animation-delay:0s">You</span>
-        <span class="quote-word" style="animation-delay:0.1s">don’t</span>
-        <span class="quote-word" style="animation-delay:0.2s">wear</span>
-        <span class="quote-word" style="animation-delay:0.3s">gloves.</span>
-        <span class="quote-word" style="animation-delay:0.4s">You</span>
-        <span class="quote-word" style="animation-delay:0.5s">wear</span>
-        <span class="quote-word" style="animation-delay:0.6s">a</span>
-        <span class="quote-word" style="animation-delay:0.7s">statement.</span>
+      <h2 class="quote-text heading-underline">
+        You don’t wear gloves. <span class="gold-text">You wear a statement.</span>
       </h2>
     </div>
   </section>
@@ -705,6 +734,15 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
+    const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    animatedEls.forEach(el => observer.observe(el));
     const waitlistForm = document.getElementById('waitlist-form');
     const feedback = document.getElementById('waitlist-feedback');
     waitlistForm.addEventListener('submit', async (e) => {
