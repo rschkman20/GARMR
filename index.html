@@ -76,15 +76,34 @@
       border-bottom: 4px solid var(--gold);
       box-shadow: 0 8px 16px rgba(0,0,0,0.5);
       position: relative;
+      overflow: hidden;
     }
 
-    .scroll-down {
+    .hero::before {
+      content: 'GARMR';
       position: absolute;
-      bottom: 1rem;
-      color: var(--gold);
-      font-size: 2rem;
-      animation: bounce 2s infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      font-size: 20vw;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2vw;
+      text-transform: uppercase;
+      pointer-events: none;
+      background: url('images/icm_fullxfull_760082756_ciw39ovf2pwgcw4c08kc684b6ce775033_png.png') center/cover;
+      -webkit-background-clip: text;
+      color: transparent;
+      opacity: 0.05;
+      animation: heroZoom 30s infinite alternate linear;
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.8), transparent);
+      z-index: 0;
     }
+
+    @keyframes heroZoom {
+      from { transform: translate(-50%, -50%) scale(1); }
+      to { transform: translate(-50%, -50%) scale(1.1); }
+    }
+
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -160,11 +179,74 @@
       gap: 0.5rem;
     }
     .hero-logo {
-      width: 250px;
+      width: 200px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1rem auto;
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 3px;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .hero-subhead {
+      margin-top: -0.5rem;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      font-family: 'Poppins', sans-serif;
+      color: var(--gold);
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .hero-btn {
+      padding: 0.75rem 3rem;
+      background: #000;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-btn:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 10px rgba(212,175,55,0.7);
+    }
+    .hero-btn .chev {
+      margin-left: 0.5rem;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+    .hero-btn:hover .chev {
+      transform: translateX(3px);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 1rem;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      animation: bounce 2s infinite;
+      z-index: 1;
     }
     @media (max-width: 768px) {
       .hero-logo {
-        width: 150px;
+        width: 120px;
       }
     }
 
@@ -365,10 +447,12 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
-    <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy">
-    <h1>Built for the ruthless. Forged in legacy.</h1>
-    <a href="https://example.com" class="btn">SHOP NOW</a>
-    <a href="#product" class="scroll-down">&#8595;</a>
+    <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy" data-aos="fade-up">
+    <div class="hero-divider"></div>
+    <h1 class="hero-title">Built for the ruthless. Forged in legacy.</h1>
+    <p class="hero-subhead">Where heritage meets combat.</p>
+    <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+    <a href="#product" class="scroll-down">SCROLL &#8595;</a>
   </section>
 
   <section id="product" class="product-highlight" data-aos="fade-up">
