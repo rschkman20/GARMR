@@ -134,6 +134,13 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
     .hero-content {
       max-width: 700px;
       margin: 0 auto;
@@ -143,6 +150,12 @@
       text-align: center;
       gap: 0.5rem;
       z-index: 1;
+    }
+
+    .hero-model {
+      max-height: 550px;
+      width: auto;
+      object-fit: contain;
     }
 
     .hero-logo {
@@ -196,6 +209,14 @@
     @media (max-width: 768px) {
       .hero-logo {
         width: 300px;
+      }
+      .hero {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-model {
+        max-height: none;
+        width: 80%;
       }
     }
 
@@ -402,6 +423,7 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
+    <img src="images/Model 1.png" alt="Model wearing gloves" class="hero-model" loading="lazy">
     <div class="hero-content">
       <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
       <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
