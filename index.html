@@ -134,6 +134,12 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .hero-wrapper {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+    }
     .hero-content {
       max-width: 700px;
       margin: 0 auto;
@@ -143,6 +149,21 @@
       text-align: center;
       gap: 0.5rem;
       z-index: 1;
+    }
+    .hero-side-img {
+      position: absolute;
+      top: 0;
+      width: 45%;
+      max-width: 500px;
+      height: auto;
+    }
+    .hero-side-left {
+      left: 0;
+      transform: translateX(-20%);
+    }
+    .hero-side-right {
+      right: 0;
+      transform: translateX(20%);
     }
 
     .hero-logo {
@@ -196,6 +217,17 @@
     @media (max-width: 768px) {
       .hero-logo {
         width: 300px;
+      }
+      .hero-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-side-img {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 250px;
+        margin: 0;
       }
     }
 
@@ -402,11 +434,15 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
-    <div class="hero-content">
-      <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
-      <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
-      <p class="hero-subhead">Where heritage meets combat.</p>
-      <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+    <div class="hero-wrapper">
+      <img src="images/Model 1.png" alt="Model 1 glove" class="hero-side-img hero-side-left" loading="lazy">
+      <div class="hero-content">
+        <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
+        <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
+        <p class="hero-subhead">Where heritage meets combat.</p>
+        <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+      </div>
+      <img src="images/Model 3.png" alt="Model 3 glove" class="hero-side-img hero-side-right" loading="lazy">
     </div>
   </section>
 
