@@ -242,6 +242,110 @@
       transform: translateY(-2px);
       box-shadow: 0 0 8px rgba(212,175,55,0.7);
     }
+
+    /* Waitlist styles */
+    #waitlist {
+      background: #000;
+      border-top: 2px solid var(--gold);
+      padding: 4rem 1rem;
+    }
+    #waitlist h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      letter-spacing: 2px;
+      position: relative;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+    #waitlist h2::before {
+      content: "\1F451";
+      position: absolute;
+      top: -1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+    #waitlist form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    #waitlist input[type="email"] {
+      background: #000;
+      border: 2px solid var(--gold);
+      color: #fff;
+      padding: 0.75rem;
+      width: 300px;
+      max-width: 100%;
+    }
+    #waitlist input::placeholder {
+      color: #ccc;
+    }
+    #waitlist button {
+      background: var(--gold);
+      color: #000;
+      border: 2px solid var(--gold);
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    #waitlist button:hover {
+      background: #000;
+      color: var(--gold);
+    }
+    #waitlist-feedback {
+      margin-top: 1rem;
+      color: var(--gold);
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Footer styles */
+    .site-footer {
+      background: #000;
+      color: var(--gold);
+      border-top: 1px solid var(--gold);
+      padding: 2rem 1rem;
+      font-size: 0.875rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+    }
+    .footer-links a {
+      margin: 0 0.5rem;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      #waitlist form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #waitlist button {
+        width: 100%;
+      }
+    }
     @media (max-width: 768px) {
       .product-highlight {
         flex-direction: column;
@@ -298,23 +402,44 @@
   </section>
 
   <section id="waitlist" data-aos="fade-up">
-    <h2>Join the Waitlist</h2>
-    <form action="https://formspree.io/f/mayvkryp" method="POST">
+    <h2>Limited Drops. Early Access.</h2>
+    <form id="waitlist-form" action="https://formspree.io/f/mayvkryp" method="POST">
       <input type="email" name="email" placeholder="Your email" required>
-      <button type="submit" class="btn">Notify Me</button>
+      <button type="submit">Notify Me</button>
     </form>
+    <div id="waitlist-feedback">You’re in. You’ll hear from us before the rest.</div>
   </section>
 
-  <footer>
-    <a href="#">Shop</a> |
-    <a href="#">Contact</a> |
-    <a href="#">Instagram</a>
-    <div>&copy; 2025 GARMR</div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
+        <a href="#">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
+    const waitlistForm = document.getElementById('waitlist-form');
+    const feedback = document.getElementById('waitlist-feedback');
+    waitlistForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(waitlistForm);
+      try {
+        await fetch(waitlistForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+      } catch (err) {}
+      waitlistForm.reset();
+      feedback.style.display = 'block';
+    });
   </script>
 </body>
 </html>
