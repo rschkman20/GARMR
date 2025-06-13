@@ -134,6 +134,17 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .hero {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
     .hero-content {
       max-width: 700px;
       margin: 0 auto;
@@ -143,6 +154,12 @@
       text-align: center;
       gap: 0.5rem;
       z-index: 1;
+    }
+
+    .hero-model {
+      max-height: 550px;
+      width: auto;
+      object-fit: contain;
     }
 
     .hero-logo {
@@ -196,6 +213,14 @@
     @media (max-width: 768px) {
       .hero-logo {
         width: 300px;
+      }
+      .hero-layout {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-model {
+        max-height: none;
+        width: 80%;
       }
     }
 
@@ -402,11 +427,14 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
-    <div class="hero-content">
-      <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
-      <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
-      <p class="hero-subhead">Where heritage meets combat.</p>
-      <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+    <div class="hero-layout">
+      <img src="images/Model 1.png" alt="Model wearing gloves" class="hero-model" loading="lazy">
+      <div class="hero-content">
+        <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
+        <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
+        <p class="hero-subhead">Where heritage meets combat.</p>
+        <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+      </div>
     </div>
   </section>
 
