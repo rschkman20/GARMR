@@ -132,6 +132,37 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 350px;
+      background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 120px;
+      background: radial-gradient(ellipse at bottom, rgba(212,175,55,0.3), rgba(212,175,55,0) 70%), linear-gradient(var(--gold), var(--gold));
+      background-repeat: no-repeat;
+      background-size: 100% 100%, 100% 2px;
+      background-position: bottom;
+      box-shadow: 0 0 15px 5px rgba(212,175,55,0.5);
+      pointer-events: none;
+    }
+
     .hero-wrapper {
       display: flex;
       justify-content: center;
