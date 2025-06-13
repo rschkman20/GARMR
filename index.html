@@ -1,25 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>GARMR Boxing Gloves</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GARMR Boxing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding: 50px;
+    :root {
+      --gold: #d4af37;
     }
-    img {
-      width: 300px;
-      margin-top: 20px;
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Work Sans', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 1rem;
+    }
+    a.btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--gold);
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    a.btn:hover {
+      background: #b58f2e;
+    }
+    section {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .hero {
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .product img {
+      flex: 1 1 400px;
+      max-width: 100%;
+      height: auto;
+    }
+    .product .details {
+      flex: 1 1 400px;
+      padding: 1rem 2rem;
+    }
+    .pattern {
+      background: url('https://via.placeholder.com/1200x400.png?text=Pattern') center/cover no-repeat fixed;
+      color: var(--gold);
+    }
+    .cta {
+      background: var(--gold);
+      color: #000;
+    }
+    footer {
+      background: #000;
+      color: var(--gold);
+      padding: 2rem 0;
+      font-size: 0.875rem;
+    }
+    footer a {
+      color: var(--gold);
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .product {
+        flex-direction: column;
+      }
+      .hero-logo {
+        width: 150px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>GARMR Boxing</h1>
-  <p>Precision. Power. Performance.</p>
-  <img src="https://via.placeholder.com/300x200.png?text=Boxing+Gloves" alt="Boxing Gloves">
+  <section class="hero" data-aos="fade-up">
+    <img src="https://via.placeholder.com/200x200.png?text=Logo" alt="GARMR Logo" class="hero-logo">
+    <h1>Built for the ruthless. Forged in legacy.</h1>
+    <a href="#" class="btn">SHOP NOW</a>
+  </section>
+
+  <section class="product" data-aos="fade-up">
+    <img src="https://via.placeholder.com/500x500.png?text=Glove+Render" alt="Chain Series Glove">
+    <div class="details">
+      <h2>Chain Series – Black &amp; Gold</h2>
+      <p>Genuine leather. Wrist lock tech. Limited edition.</p>
+      <p><strong>Coming Soon</strong></p>
+      <a href="#" class="btn">See More</a>
+    </div>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Why GARMR</h2>
+    <p>GARMR was born from blood, discipline, and legacy. We don’t do mass-produced. We do meaningful impact.</p>
+  </section>
+
+  <section class="pattern" data-aos="fade-up">
+    <h2>“You don’t wear gloves. You wear a statement.”</h2>
+  </section>
+
+  <section class="cta" data-aos="fade-up">
+    <h2>Only 300 pairs worldwide.</h2>
+    <a href="#" class="btn">JOIN THE MOVEMENT</a>
+  </section>
+
+  <footer>
+    <a href="#">Shop</a> |
+    <a href="#">Contact</a> |
+    <a href="#">Instagram</a>
+    <div>&copy; 2025 GARMR</div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
