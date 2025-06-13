@@ -306,11 +306,109 @@
       border: 2px solid var(--gold);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .btn-solid:hover,
-    .btn-outline:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 8px rgba(212,175,55,0.7);
-    }
+      .btn-solid:hover,
+      .btn-outline:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 8px rgba(212,175,55,0.7);
+      }
+
+      .product-highlight {
+        background: radial-gradient(circle at center, #111, #000);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-highlight::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(212,175,55,0.15) 1px, transparent 1px);
+        background-size: 3px 3px;
+        /* Static pattern */
+        animation: none;
+        pointer-events: none;
+      }
+
+      .image-wrapper {
+        position: relative;
+      }
+
+      .image-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        background: radial-gradient(circle, rgba(212,175,55,0.15), transparent 70%);
+        border-radius: 50%;
+        /* Static glow */
+        animation: none;
+        pointer-events: none;
+      }
+
+      .serial-overlay {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.7);
+        color: var(--gold);
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        font-family: 'Courier New', monospace;
+        border: 1px solid var(--gold);
+        text-transform: uppercase;
+      }
+
+      .trust-cues {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-top: 1rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.75rem;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+
+      .shimmer {
+        background: linear-gradient(90deg, var(--gold), #fff, var(--gold));
+        background-size: 200% auto;
+        color: transparent;
+        -webkit-background-clip: text;
+                background-clip: text;
+        animation: shine 3s linear infinite;
+      }
+
+      .drop-tagline,
+      .edition-tag {
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin: 0.5rem 0;
+        color: var(--gold);
+      }
+
+      .micro-note {
+        font-size: 0.75rem;
+        color: #ccc;
+        margin-top: 0.5rem;
+      }
+
+      .founders-info {
+        cursor: help;
+        color: var(--gold);
+        font-size: 0.875rem;
+        margin-left: 0.25rem;
+      }
+
+      @keyframes shine {
+        to { background-position: -200% center; }
+      }
+
+      /* No background animation needed */
 
     /* Waitlist styles */
     #waitlist {
@@ -448,17 +546,28 @@
 
   <section id="product" class="product-highlight" data-aos="fade-up">
     <div class="product-image">
-      <img src="images/Chain%20Glove.png" alt="Chain Series Glove" loading="lazy">
+      <div class="image-wrapper">
+        <img src="images/Chain%20Glove.png" alt="Chain Series Glove" loading="lazy">
+        <div class="serial-overlay">#031 / 300</div>
+      </div>
+      <div class="trust-cues">
+        <span>HANDCRAFTED</span>
+        <span>EST. MMXXV</span>
+        <span>SERIES 1 / DROP 1</span>
+      </div>
     </div>
     <div class="product-info">
-      <h2 class="product-title">Chain Series – Black &amp; Gold</h2>
+      <h2 class="product-title"><span class="shimmer">Founders Drop:</span> Chain Series – Black &amp; Gold <span class="founders-info" title="What is a Founders Drop? You’re holding history. The first ever run. Certified. Serialised. Unrepeatable.">ℹ️</span></h2>
+      <p class="drop-tagline">“First Edition. Never Repeated.”</p>
+      <p class="edition-tag">Edition 01 of 01<br>This drop will never restock.</p>
       <div class="tags"><span>#LIMITED</span><span>#LEATHER</span></div>
       <p class="short-desc">Elite leather. Wrist-lock system. No compromises.</p>
       <small class="sub-heading">Handcrafted. Limited to 300 pairs.</small>
       <div class="cta-buttons">
-        <a href="https://example.com" class="btn btn-solid">See More</a>
-        <a href="#waitlist" class="btn btn-outline">Join Waitlist</a>
+        <a href="https://example.com" class="btn btn-solid">🔎 View the Drop</a>
+        <a href="#waitlist" class="btn btn-outline">🔒 Secure My Pair</a>
       </div>
+      <p class="micro-note">Founders will be notified via email. No second chances.</p>
     </div>
   </section>
 
