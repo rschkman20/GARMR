@@ -109,21 +109,6 @@
     .cta {
       background: var(--gold);
       color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding: 4rem 1rem;
-    }
-    .cta img {
-      flex: 1;
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-    }
-    .cta-content {
-      flex: 2;
-      text-align: center;
     }
     footer {
       background: #000;
@@ -149,6 +134,12 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .hero-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
     .hero-content {
       max-width: 700px;
       margin: 0 auto;
@@ -158,6 +149,11 @@
       text-align: center;
       gap: 0.5rem;
       z-index: 1;
+    }
+    .hero-side-img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
     }
 
     .hero-logo {
@@ -211,6 +207,12 @@
     @media (max-width: 768px) {
       .hero-logo {
         width: 300px;
+      }
+      .hero-wrapper {
+        flex-direction: column;
+      }
+      .hero-side-img {
+        max-width: 250px;
       }
     }
 
@@ -408,14 +410,6 @@
         text-align: center;
       }
     }
-    @media (max-width: 768px) {
-      .cta {
-        flex-direction: column;
-      }
-      .cta img {
-        max-width: 250px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -425,11 +419,15 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
-    <div class="hero-content">
-      <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
-      <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
-      <p class="hero-subhead">Where heritage meets combat.</p>
-      <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+    <div class="hero-wrapper">
+      <img src="images/Model 1.png" alt="Model 1 glove" class="hero-side-img" loading="lazy">
+      <div class="hero-content">
+        <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
+        <h1 class="hero-title">Built for the Ruthless. Forged in Legacy.</h1>
+        <p class="hero-subhead">Where heritage meets combat.</p>
+        <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+      </div>
+      <img src="images/Model 3.png" alt="Model 3 glove" class="hero-side-img" loading="lazy">
     </div>
   </section>
 
@@ -459,12 +457,8 @@
   </section>
 
   <section class="cta" data-aos="fade-up">
-    <img src="images/Model 1.png" alt="Model 1 glove" loading="lazy">
-    <div class="cta-content">
-      <h2>Only 300 pairs worldwide.</h2>
-      <a href="#" class="btn">JOIN THE MOVEMENT</a>
-    </div>
-    <img src="images/Model 3.png" alt="Model 3 glove" loading="lazy">
+    <h2>Only 300 pairs worldwide.</h2>
+    <a href="#" class="btn">JOIN THE MOVEMENT</a>
   </section>
 
   <section id="waitlist" data-aos="fade-up">
