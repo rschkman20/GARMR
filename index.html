@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GARMR Boxing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>GARMR Boxing Gloves</title>
+  <meta name="description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
+  <meta property="og:title" content="GARMR Boxing Gloves">
+  <meta property="og:description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
@@ -13,16 +16,21 @@
     * {
       box-sizing: border-box;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: 'Work Sans', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: #000;
       color: #fff;
       line-height: 1.6;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="4" fill="%23d4af37"/></svg>'), auto;
     }
     h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'DM Serif Display', serif;
       margin: 0 0 1rem;
+      letter-spacing: 1px;
     }
     a.btn {
       display: inline-block;
@@ -40,29 +48,95 @@
       padding: 4rem 1rem;
       text-align: center;
     }
-    .hero {
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       background: #000;
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      padding: 0.5rem 1rem;
+      text-align: center;
+    }
+
+    .site-header a {
+      color: var(--gold);
+      margin: 0 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hero {
+      background: url('images/icm_fullxfull_760082756_ciw39ovf2pwgcw4c08kc684b6ce775033_png.png') center/cover no-repeat fixed;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      border-bottom: 4px solid var(--gold);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      position: relative;
     }
-    .product {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
+
+    .scroll-down {
+      position: absolute;
+      bottom: 1rem;
+      color: var(--gold);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
       max-width: 1000px;
       margin: 0 auto;
     }
-    .product img {
-      flex: 1 1 400px;
-      max-width: 100%;
-      height: auto;
+    .product-card {
+      position: relative;
+      overflow: hidden;
     }
-    .product .details {
-      flex: 1 1 400px;
-      padding: 1rem 2rem;
+    .product-card img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    .product-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .product-card:hover .overlay {
+      opacity: 1;
+    }
+    .tags {
+      margin: 0.5rem 0;
+    }
+    .tags span {
+      background: var(--gold);
+      color: #000;
+      padding: 0.25rem 0.5rem;
+      margin-right: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
     }
     .pattern {
       background: url('images/icm_fullxfull_760082756_ciw39ovf2pwgcw4c08kc684b6ce775033_png.png') center/cover no-repeat fixed;
@@ -83,10 +157,23 @@
       margin: 0 0.5rem;
       text-decoration: none;
     }
+    #waitlist input[type="email"] {
+      padding: 0.5rem;
+      max-width: 250px;
+      width: 80%;
+      margin-right: 0.5rem;
+    }
+    #waitlist form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hero-logo {
+      width: 250px;
+    }
     @media (max-width: 768px) {
-      .product {
-        flex-direction: column;
-      }
       .hero-logo {
         width: 150px;
       }
@@ -94,19 +181,29 @@
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <a href="#product">Product</a>
+    <a href="#waitlist">Waitlist</a>
+  </header>
+
   <section class="hero" data-aos="fade-up">
-    <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo">
+    <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy">
     <h1>Built for the ruthless. Forged in legacy.</h1>
-    <a href="#" class="btn">SHOP NOW</a>
+    <a href="https://example.com" class="btn">SHOP NOW</a>
+    <a href="#product" class="scroll-down">&#8595;</a>
   </section>
 
-  <section class="product" data-aos="fade-up">
-    <img src="images/Chain%20Glove.png" alt="Chain Series Glove">
-    <div class="details">
-      <h2>Chain Series – Black &amp; Gold</h2>
-      <p>Genuine leather. Wrist lock tech. Limited edition.</p>
-      <p><strong>Coming Soon</strong></p>
-      <a href="#" class="btn">See More</a>
+  <section id="product" class="product-grid" data-aos="fade-up">
+    <div class="product-card">
+      <img src="images/Chain%20Glove.png" alt="Chain Series Glove" loading="lazy">
+      <div class="overlay">Quick View</div>
+      <div class="details">
+        <h2>Chain Series – Black &amp; Gold</h2>
+        <div class="tags"><span>#LIMITED</span><span>#LEATHER</span></div>
+        <p>Genuine leather. Wrist lock tech. Limited edition.</p>
+        <p><strong>Coming Soon</strong></p>
+        <a href="https://example.com" class="btn">See More</a>
+      </div>
     </div>
   </section>
 
@@ -122,6 +219,14 @@
   <section class="cta" data-aos="fade-up">
     <h2>Only 300 pairs worldwide.</h2>
     <a href="#" class="btn">JOIN THE MOVEMENT</a>
+  </section>
+
+  <section id="waitlist" data-aos="fade-up">
+    <h2>Join the Waitlist</h2>
+    <form action="https://formspree.io/f/mayvkryp" method="POST">
+      <input type="email" name="email" placeholder="Your email" required>
+      <button type="submit" class="btn">Notify Me</button>
+    </form>
   </section>
 
   <footer>
