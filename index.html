@@ -80,37 +80,7 @@
       padding-top: 3rem;
     }
 
-    .hero::before {
-      content: 'GARMR';
-      position: absolute;
-      top: 65%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      font-size: 15vw;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1.5vw;
-      text-transform: uppercase;
-      pointer-events: none;
-      background: url('images/icm_fullxfull_760082756_ciw39ovf2pwgcw4c08kc684b6ce775033_png.png') center/cover;
-      -webkit-background-clip: text;
-      color: transparent;
-      opacity: 0.02;
-      animation: heroZoom 30s infinite alternate linear;
-      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.7), transparent 70%);
-      filter: blur(2px);
-      z-index: 0;
-    }
-
-    @keyframes heroZoom {
-      from { transform: translate(-50%, -50%) scale(1); }
-      to { transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    /* Background text effect removed */
 
     .product-grid {
       display: grid;
@@ -448,7 +418,7 @@
 
   <section class="hero" data-aos="fade-up">
     <div class="hero-content">
-      <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy" data-aos="fade-up">
+      <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
       <h1 class="hero-title">Built for the ruthless. Forged in legacy.</h1>
       <p class="hero-subhead">Where heritage meets combat.</p>
       <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
