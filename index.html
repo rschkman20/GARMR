@@ -154,6 +154,8 @@
       width: 45%;
       max-width: 500px;
       height: auto;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0));
+              mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0));
     }
     .hero-side-left {
       left: 0;
@@ -524,6 +526,7 @@
     .gym-photo {
       position: relative;
       overflow: hidden;
+      padding-bottom: 0;
     }
     .gym-photo::before {
       content: '';
@@ -550,6 +553,10 @@
     }
     .gym-photo.aos-animate img {
       transform: scale(1.05);
+    }
+    .quote-section {
+      padding-top: 1rem;
+      margin-top: 0;
     }
     .quote {
       position: relative;
@@ -657,7 +664,7 @@
     <img src="images/Gym photo.png" alt="Gym photo">
   </section>
 
-  <section data-aos="fade-up">
+  <section class="quote-section" data-aos="fade-up">
     <div class="quote">
       <img src="images/Logo.png" alt="" class="watermark">
       <h2 class="gold-underline">
