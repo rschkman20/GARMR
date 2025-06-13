@@ -76,20 +76,11 @@
       border-bottom: 4px solid var(--gold);
       box-shadow: 0 8px 16px rgba(0,0,0,0.5);
       position: relative;
+      overflow: hidden;
+      padding-top: 3rem;
     }
 
-    .scroll-down {
-      position: absolute;
-      bottom: 1rem;
-      color: var(--gold);
-      font-size: 2rem;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    /* Background text effect removed */
 
     .product-grid {
       display: grid;
@@ -159,12 +150,67 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-    .hero-logo {
-      width: 250px;
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      z-index: 1;
     }
+
+    .hero-logo {
+      width: 500px;
+      position: relative;
+      filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+      font-size: 2.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subhead {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-btn {
+      padding: 0.75rem 2.5rem;
+      background: #000;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      position: relative;
+      align-self: center;
+    }
+    .hero-btn:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 10px rgba(212,175,55,0.7);
+    }
+    .hero-btn .chev {
+      margin-left: 0.5rem;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+    .hero-btn:hover .chev {
+      transform: translateX(3px);
+    }
+
     @media (max-width: 768px) {
       .hero-logo {
-        width: 150px;
+        width: 300px;
       }
     }
 
@@ -186,6 +232,12 @@
       max-width: 500px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       transition: transform 0.4s;
+    }
+    .product-image img.product-logo {
+      width: 140px;
+      max-width: none;
+      margin: 0 auto;
+      display: block;
     }
     .product-image:hover img {
       transform: scale(1.05) rotate(-2deg);
@@ -365,10 +417,12 @@
   </header>
 
   <section class="hero" data-aos="fade-up">
-    <img src="images/Logo.png" alt="GARMR Logo" class="hero-logo" loading="lazy">
-    <h1>Built for the ruthless. Forged in legacy.</h1>
-    <a href="https://example.com" class="btn">SHOP NOW</a>
-    <a href="#product" class="scroll-down">&#8595;</a>
+    <div class="hero-content">
+      <img src="images/Logo With Bottom Text.png" alt="GARMR logo with text" class="hero-logo" loading="lazy" data-aos="fade-up">
+      <h1 class="hero-title">Built for the ruthless. Forged in legacy.</h1>
+      <p class="hero-subhead">Where heritage meets combat.</p>
+      <a href="https://example.com" class="btn hero-btn">SHOP NOW <span class="chev">&#8628;</span></a>
+    </div>
   </section>
 
   <section id="product" class="product-highlight" data-aos="fade-up">
