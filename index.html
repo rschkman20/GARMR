@@ -119,19 +119,6 @@
       margin: 0 0.5rem;
       text-decoration: none;
     }
-    #waitlist input[type="email"] {
-      padding: 0.5rem;
-      max-width: 250px;
-      width: 80%;
-      margin-right: 0.5rem;
-    }
-    #waitlist form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
     .hero-wrapper {
       display: flex;
       justify-content: center;
@@ -412,62 +399,147 @@
 
     /* Waitlist styles */
     #waitlist {
-      background: #000;
-      border-top: 2px solid var(--gold);
-      padding: 4rem 1rem;
-    }
-    #waitlist h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.25rem;
-      letter-spacing: 2px;
       position: relative;
-      margin-bottom: 1.5rem;
-      display: inline-block;
+      background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 60%);
+      padding: 6rem 1.5rem 7rem;
+      text-align: center;
     }
-    #waitlist h2::before {
-      content: "\1F451";
-      position: absolute;
-      top: -1.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.5rem;
+    #waitlist .divider {
+      width: 4rem;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 1s ease;
+    }
+    #waitlist .heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #F5F5F5;
+      font-size: 1.25rem;
+    }
+    #waitlist .subtext {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
       color: var(--gold);
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+    #waitlist .note {
+      font-size: 0.875rem;
+      color: #BFA76E;
+      margin-top: 0.25rem;
     }
     #waitlist form {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 0.5rem;
+      margin-top: 1.5rem;
       flex-wrap: wrap;
     }
     #waitlist input[type="email"] {
-      background: #000;
-      border: 2px solid var(--gold);
+      background: #111;
       color: #fff;
-      padding: 0.75rem;
-      width: 300px;
-      max-width: 100%;
+      border: none;
+      padding: 0 1rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      min-width: 250px;
+      font-weight: 300;
     }
-    #waitlist input::placeholder {
-      color: #ccc;
+    #waitlist input[type="email"]::placeholder {
+      color: #BFA76E;
+      letter-spacing: 0.05em;
+    }
+    #waitlist input[type="email"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(212,175,55,0.6);
+    }
+    #waitlist input.valid {
+      border: 1px solid #3fbf5a;
+    }
+    #waitlist input.invalid {
+      border: 1px solid #e63946;
     }
     #waitlist button {
-      background: var(--gold);
+      background: linear-gradient(90deg, #d4af37, #b8860b);
       color: #000;
-      border: 2px solid var(--gold);
+      border: none;
       padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s ease-in-out;
+      animation: buttonShimmer 10s infinite;
+      position: relative;
     }
     #waitlist button:hover {
-      background: #000;
-      color: var(--gold);
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(212,175,55,0.7);
+    }
+    #waitlist.visible .divider {
+      transform: scaleX(1);
+    }
+    #live-spots {
+      font-size: 0.875rem;
+      color: #ccc;
+      margin-top: 0.5rem;
     }
     #waitlist-feedback {
       margin-top: 1rem;
       color: var(--gold);
       font-weight: bold;
       display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #waitlist .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      opacity: 0.03;
+      filter: blur(2px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    #waitlist::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(120deg, rgba(212,175,55,0.05), rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+      background-size: 200% 100%;
+      animation: shimmer 15s linear infinite;
+      pointer-events: none;
+    }
+    .fade-out {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes buttonShimmer {
+      0%, 100% { box-shadow: 0 0 0 rgba(212,175,55,0); }
+      50% { box-shadow: 0 0 10px rgba(212,175,55,0.6); }
     }
 
     /* Footer styles */
@@ -504,6 +576,9 @@
     @media (max-width: 768px) {
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+      #waitlist {
+        padding: 4rem 1rem 5rem;
       }
       #waitlist form {
         flex-direction: column;
@@ -711,12 +786,19 @@
 
 
   <section id="waitlist" data-aos="fade-up">
-    <h2>Limited Drops. Early Access.</h2>
+    <div class="divider"></div>
+    <img src="images/Logo.png" alt="" class="watermark">
+    <h2 class="heading">EARLY ACCESS · THE GARMR 300 🔐</h2>
+    <p class="subtext">Be first to own the Founders Chain Series.</p>
+    <p class="note">No restocks. No compromises. No second chances.</p>
     <form id="waitlist-form" action="https://formspree.io/f/mayvkryp" method="POST">
-      <input type="email" name="email" placeholder="Your email" required>
-      <button type="submit">Notify Me</button>
+      <label for="email" class="sr-only">Email address</label>
+      <input id="email" type="email" name="email" placeholder="Enter your email" required>
+      <span id="email-valid" style="display:none;margin-left:0.5rem;color:#3fbf5a;font-weight:bold;">✅</span>
+      <button type="submit">Notify Me →</button>
     </form>
-    <div id="waitlist-feedback">You’re in. You’ll hear from us before the rest.</div>
+    <div id="live-spots">241 / 300 founders claimed</div>
+    <div id="waitlist-feedback">✔️ Access Granted. Welcome to GARMR Legacy.<br>Check your inbox for next steps.</div>
   </section>
 
   <footer class="site-footer">
@@ -734,7 +816,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-    const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline');
+    const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline, #waitlist, #waitlist .divider');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -745,8 +827,25 @@
     animatedEls.forEach(el => observer.observe(el));
     const waitlistForm = document.getElementById('waitlist-form');
     const feedback = document.getElementById('waitlist-feedback');
+    const emailValid = document.getElementById('email-valid');
+    const emailInput = waitlistForm.querySelector('input[type="email"]');
+    emailInput.addEventListener('input', () => {
+      if (emailInput.checkValidity()) {
+        emailInput.classList.add('valid');
+        emailInput.classList.remove('invalid');
+        emailValid.style.display = 'inline';
+      } else {
+        emailInput.classList.add('invalid');
+        emailInput.classList.remove('valid');
+        emailValid.style.display = 'none';
+      }
+    });
     waitlistForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!emailInput.checkValidity()) {
+        emailInput.classList.add('invalid');
+        return;
+      }
       const data = new FormData(waitlistForm);
       try {
         await fetch(waitlistForm.action, {
@@ -755,8 +854,11 @@
           headers: { 'Accept': 'application/json' }
         });
       } catch (err) {}
-      waitlistForm.reset();
+      waitlistForm.classList.add('fade-out');
+      emailValid.style.display = 'none';
+      emailInput.classList.remove('valid');
       feedback.style.display = 'block';
+      setTimeout(() => { feedback.style.opacity = '1'; }, 50);
     });
   </script>
 </body>
