@@ -736,7 +736,7 @@
       z-index: 3;
     }
     #product.transition-started .descent-bar {
-      animation: descent 10s ease-in-out forwards;
+      animation: descent 15s ease-in-out forwards;
     }
     @keyframes descent {
       to { transform: translateX(-50%) scaleY(1); }
@@ -747,7 +747,7 @@
       inset: 0;
       background: #0A0A0A;
       opacity: 0;
-      animation: darken 10s forwards;
+      animation: darken 15s forwards;
       z-index: 1;
       pointer-events: none;
     }
@@ -792,16 +792,13 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-    .never-restocked span {
-      opacity: 0;
-      animation: letterFade 1.5s forwards;
-      animation-delay: calc(var(--d) * 0.1s);
-      animation-play-state: paused;
+    #cryptic.show .never-restocked {
+      animation: textFlicker 0.15s linear 15 1s forwards;
     }
-    #cryptic.show .never-restocked span {
-      animation-play-state: running;
+    @keyframes textFlicker {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
     }
-    @keyframes letterFade { to { opacity: 1; } }
     .cryptic-logo {
       width: 60%;
       max-width: 180px;
@@ -860,10 +857,7 @@
       <p class="micro-note">Founders will be notified via email. No second chances.</p>
     </div>
     <div id="cryptic" aria-hidden="true">
-      <div class="never-restocked">
-        <span style="--d:0">N</span><span style="--d:1">e</span><span style="--d:2">v</span><span style="--d:3">e</span><span style="--d:4">r</span>
-        <span style="--d:5">&nbsp;</span><span style="--d:6">R</span><span style="--d:7">e</span><span style="--d:8">s</span><span style="--d:9">t</span><span style="--d:10">o</span><span style="--d:11">c</span><span style="--d:12">k</span><span style="--d:13">e</span><span style="--d:14">d</span>
-      </div>
+      <div class="never-restocked">Never Restocked</div>
       <img src="images/Logo.png" alt="GARMR logo" class="cryptic-logo">
     </div>
     <div class="descent-bar"></div>
@@ -971,9 +965,9 @@
       entries.forEach(entry => {
         if (entry.isIntersecting && !productSection.classList.contains('transition-started')) {
           productSection.classList.add('transition-started');
-          setTimeout(() => { productSection.classList.add('flicker'); }, 10000);
-          setTimeout(() => { productSection.classList.add('disappear'); }, 10500);
-          setTimeout(() => { cryptic.classList.add('show'); }, 11500);
+          setTimeout(() => { productSection.classList.add('flicker'); }, 15000);
+          setTimeout(() => { productSection.classList.add('disappear'); }, 15500);
+          setTimeout(() => { cryptic.classList.add('show'); }, 16500);
         }
       });
     }, { threshold: 0.6 });
