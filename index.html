@@ -718,6 +718,112 @@
       color: #fff;
       text-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
+
+    /* Founders drop cryptic transition */
+    #product {
+      position: relative;
+    }
+    #product .descent-bar {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: #D4AF37;
+      box-shadow: 0 0 10px rgba(212,175,55,0.5);
+      transform: translateX(-50%) scaleY(0);
+      transform-origin: top;
+      z-index: 3;
+    }
+    #product.transition-started .descent-bar {
+      animation: descent 10s ease-in-out forwards;
+    }
+    @keyframes descent {
+      to { transform: translateX(-50%) scaleY(1); }
+    }
+    #product.transition-started::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0A0A0A;
+      opacity: 0;
+      animation: darken 10s forwards;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes darken {
+      0% { opacity: 0; }
+      80% { opacity: 0.25; }
+      100% { opacity: 1; }
+    }
+    #product.flicker .product-image img,
+    #product.flicker .product-info {
+      animation: flicker 0.1s steps(2);
+    }
+    #product.flicker-mid .product-image img,
+    #product.flicker-mid .product-info {
+      animation: flicker 0.15s steps(2);
+    }
+    #product.flicker-strong .product-image img,
+    #product.flicker-strong .product-info {
+      animation: flicker-strong 0.2s steps(2);
+    }
+    @keyframes flicker {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes flicker-strong {
+      0%,100% { opacity: 1; }
+      30%,70% { opacity: 0; }
+    }
+    #product.disappear .product-image,
+    #product.disappear .product-info,
+    #product.disappear .descent-bar {
+      animation: vanish 0.6s forwards;
+    }
+    @keyframes vanish { to { opacity: 0; transform: scale(0.98); } }
+    #product.disappear {
+      background: #0A0A0A;
+    }
+    #cryptic {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0A0A0A;
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    #cryptic.show { animation: reveal 1s forwards; }
+    @keyframes reveal { to { opacity: 1; } }
+    .never-restocked {
+      font-family: 'Cinzel', serif;
+      color: #BFA75E;
+      letter-spacing: 0.2em;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      text-shadow: 0 0 6px rgba(191,167,94,0.4);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    /* Flicker helper classes */
+    .bar-flicker { animation: flicker 0.15s steps(2); }
+    .bar-flicker-strong { animation: flicker-strong 0.25s steps(2); }
+    .text-flicker { animation: flicker 0.15s steps(2); }
+    .text-flicker-strong { animation: flicker-strong 0.25s steps(2); }
+    .cryptic-logo {
+      width: 60%;
+      max-width: 180px;
+      filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+      opacity: 0;
+    }
+    #cryptic.show .cryptic-logo {
+      animation: fadeLogo 0.5s forwards;
+      animation-delay: 1.6s;
+    }
+    @keyframes fadeLogo { to { opacity: 1; } }
   </style>
 </head>
 <body>
@@ -764,6 +870,11 @@
       </div>
       <p class="micro-note">Founders will be notified via email. No second chances.</p>
     </div>
+    <div id="cryptic" aria-hidden="true">
+      <div class="never-restocked">Never Restocked</div>
+      <img src="images/Logo.png" alt="GARMR logo" class="cryptic-logo">
+    </div>
+    <div class="descent-bar"></div>
   </section>
 
   <section id="why" class="why-section" data-aos="fade-up">
@@ -860,6 +971,54 @@
       feedback.style.display = 'block';
       setTimeout(() => { feedback.style.opacity = '1'; }, 50);
     });
+
+    const productSection = document.getElementById('product');
+    const cryptic = document.getElementById('cryptic');
+    const descentBar = productSection.querySelector('.descent-bar');
+    const neverText = cryptic.querySelector('.never-restocked');
+
+    function scheduleFlickers(total, minGap, maxGap, element, baseCls, firstImmediate = false) {
+      const points = [];
+      let time = 0;
+      if (firstImmediate) points.push(0); // start instantly
+      while (time < total) {
+        time += minGap + Math.random() * (maxGap - minGap);
+        if (time < total) points.push(time);
+      }
+      points.push(total); // ensure final strong flicker at end
+      points.forEach((t, idx) => {
+        const strong = idx >= points.length - 2;
+        const cls = strong ? baseCls + '-strong' : baseCls;
+        setTimeout(() => {
+          element.classList.add(cls);
+          setTimeout(() => element.classList.remove(cls), strong ? 250 : 150);
+        }, t);
+      });
+    }
+
+    function startBarFlicker() {
+      const total = 3000;
+      scheduleFlickers(total, 200, 500, descentBar, 'bar-flicker', true);
+      setTimeout(() => {
+        productSection.classList.add('disappear');
+        cryptic.classList.add('show');
+        startTextFlicker();
+      }, total + 250);
+    }
+
+    function startTextFlicker() {
+      scheduleFlickers(5000, 300, 800, neverText, 'text-flicker', true);
+    }
+
+    const productObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !productSection.classList.contains('transition-started')) {
+          productSection.classList.add('transition-started');
+          setTimeout(startBarFlicker, 10000);
+        }
+      });
+    }, { threshold: 0.6 });
+    productObserver.observe(productSection);
   </script>
 </body>
 </html>
