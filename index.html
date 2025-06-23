@@ -808,13 +808,11 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-    #cryptic.show .never-restocked {
-      animation: textFlicker 0.15s linear 15 1s forwards;
-    }
-    @keyframes textFlicker {
-      0%,100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
+    /* Flicker helper classes */
+    .bar-flicker { animation: flicker 0.15s steps(2); }
+    .bar-flicker-strong { animation: flicker-strong 0.25s steps(2); }
+    .text-flicker { animation: flicker 0.15s steps(2); }
+    .text-flicker-strong { animation: flicker-strong 0.25s steps(2); }
     .cryptic-logo {
       width: 60%;
       max-width: 180px;
@@ -977,32 +975,43 @@
     const productSection = document.getElementById('product');
     const cryptic = document.getElementById('cryptic');
     const descentBar = productSection.querySelector('.descent-bar');
-    function runFlickers() {
-      const sequence = [
-        {delay: 0, cls: 'flicker', dur: 100},
-        {delay: 800, cls: 'flicker', dur: 120},
-        {delay: 1500, cls: 'flicker-mid', dur: 150},
-        {delay: 2300, cls: 'flicker-mid', dur: 180},
-        {delay: 3200, cls: 'flicker-strong', dur: 220},
-        {delay: 4100, cls: 'flicker-strong', dur: 260}
-      ];
-      sequence.forEach(step => {
+    const neverText = cryptic.querySelector('.never-restocked');
+
+    function scheduleFlickers(total, minGap, maxGap, element, baseCls) {
+      let time = 0;
+      const points = [];
+      while (time < total) {
+        time += minGap + Math.random() * (maxGap - minGap);
+        points.push(time);
+      }
+      points.forEach((t, idx) => {
+        const strong = idx >= points.length - 2;
+        const cls = strong ? baseCls + '-strong' : baseCls;
         setTimeout(() => {
-          productSection.classList.add(step.cls);
-          setTimeout(() => {
-            productSection.classList.remove(step.cls);
-          }, step.dur);
-        }, step.delay);
+          element.classList.add(cls);
+          setTimeout(() => element.classList.remove(cls), strong ? 250 : 150);
+        }, t);
       });
-      setTimeout(() => { productSection.classList.add('disappear'); }, 5000);
-      setTimeout(() => { cryptic.classList.add('show'); }, 6000);
+    }
+
+    function startBarFlicker() {
+      scheduleFlickers(3000, 200, 500, descentBar, 'bar-flicker');
+      setTimeout(() => {
+        productSection.classList.add('disappear');
+        cryptic.classList.add('show');
+        startTextFlicker();
+      }, 3000);
+    }
+
+    function startTextFlicker() {
+      scheduleFlickers(5000, 300, 800, neverText, 'text-flicker');
     }
 
     const productObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !productSection.classList.contains('transition-started')) {
           productSection.classList.add('transition-started');
-          setTimeout(runFlickers, 10000);
+          setTimeout(startBarFlicker, 10000);
         }
       });
     }, { threshold: 0.6 });
