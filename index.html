@@ -977,13 +977,15 @@
     const descentBar = productSection.querySelector('.descent-bar');
     const neverText = cryptic.querySelector('.never-restocked');
 
-    function scheduleFlickers(total, minGap, maxGap, element, baseCls) {
-      let time = 0;
+    function scheduleFlickers(total, minGap, maxGap, element, baseCls, firstImmediate = false) {
       const points = [];
+      let time = 0;
+      if (firstImmediate) points.push(0); // start instantly
       while (time < total) {
         time += minGap + Math.random() * (maxGap - minGap);
-        points.push(time);
+        if (time < total) points.push(time);
       }
+      points.push(total); // ensure final strong flicker at end
       points.forEach((t, idx) => {
         const strong = idx >= points.length - 2;
         const cls = strong ? baseCls + '-strong' : baseCls;
@@ -995,16 +997,17 @@
     }
 
     function startBarFlicker() {
-      scheduleFlickers(3000, 200, 500, descentBar, 'bar-flicker');
+      const total = 3000;
+      scheduleFlickers(total, 200, 500, descentBar, 'bar-flicker', true);
       setTimeout(() => {
         productSection.classList.add('disappear');
         cryptic.classList.add('show');
         startTextFlicker();
-      }, 3000);
+      }, total + 250);
     }
 
     function startTextFlicker() {
-      scheduleFlickers(5000, 300, 800, neverText, 'text-flicker');
+      scheduleFlickers(5000, 300, 800, neverText, 'text-flicker', true);
     }
 
     const productObserver = new IntersectionObserver((entries) => {
