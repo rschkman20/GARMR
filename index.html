@@ -736,7 +736,7 @@
       z-index: 3;
     }
     #product.transition-started .descent-bar {
-      animation: descent 2.5s ease-in-out forwards;
+      animation: descent 10s ease-in-out forwards;
     }
     @keyframes descent {
       to { transform: translateX(-50%) scaleY(1); }
@@ -747,7 +747,7 @@
       inset: 0;
       background: #0A0A0A;
       opacity: 0;
-      animation: darken 2.5s forwards;
+      animation: darken 10s forwards;
       z-index: 1;
       pointer-events: none;
     }
@@ -971,9 +971,9 @@
       entries.forEach(entry => {
         if (entry.isIntersecting && !productSection.classList.contains('transition-started')) {
           productSection.classList.add('transition-started');
-          setTimeout(() => { productSection.classList.add('flicker'); }, 2500);
-          setTimeout(() => { productSection.classList.add('disappear'); }, 3000);
-          setTimeout(() => { cryptic.classList.add('show'); }, 4000);
+          setTimeout(() => { productSection.classList.add('flicker'); }, 10000);
+          setTimeout(() => { productSection.classList.add('disappear'); }, 10500);
+          setTimeout(() => { cryptic.classList.add('show'); }, 11500);
         }
       });
     }, { threshold: 0.6 });
