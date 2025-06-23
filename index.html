@@ -736,7 +736,7 @@
       z-index: 3;
     }
     #product.transition-started .descent-bar {
-      animation: descent 15s ease-in-out forwards;
+      animation: descent 10s ease-in-out forwards;
     }
     @keyframes descent {
       to { transform: translateX(-50%) scaleY(1); }
@@ -747,18 +747,34 @@
       inset: 0;
       background: #0A0A0A;
       opacity: 0;
-      animation: darken 15s forwards;
+      animation: darken 10s forwards;
       z-index: 1;
       pointer-events: none;
     }
-    @keyframes darken { to { opacity: 1; } }
+    @keyframes darken {
+      0% { opacity: 0; }
+      80% { opacity: 0.25; }
+      100% { opacity: 1; }
+    }
     #product.flicker .product-image img,
     #product.flicker .product-info {
-      animation: flicker 0.15s steps(2) 3;
+      animation: flicker 0.1s steps(2);
+    }
+    #product.flicker-mid .product-image img,
+    #product.flicker-mid .product-info {
+      animation: flicker 0.15s steps(2);
+    }
+    #product.flicker-strong .product-image img,
+    #product.flicker-strong .product-info {
+      animation: flicker-strong 0.2s steps(2);
     }
     @keyframes flicker {
       0%,100% { opacity: 1; }
       50% { opacity: 0; }
+    }
+    @keyframes flicker-strong {
+      0%,100% { opacity: 1; }
+      30%,70% { opacity: 0; }
     }
     #product.disappear .product-image,
     #product.disappear .product-info,
@@ -961,13 +977,32 @@
     const productSection = document.getElementById('product');
     const cryptic = document.getElementById('cryptic');
     const descentBar = productSection.querySelector('.descent-bar');
+    function runFlickers() {
+      const sequence = [
+        {delay: 0, cls: 'flicker', dur: 100},
+        {delay: 800, cls: 'flicker', dur: 120},
+        {delay: 1500, cls: 'flicker-mid', dur: 150},
+        {delay: 2300, cls: 'flicker-mid', dur: 180},
+        {delay: 3200, cls: 'flicker-strong', dur: 220},
+        {delay: 4100, cls: 'flicker-strong', dur: 260}
+      ];
+      sequence.forEach(step => {
+        setTimeout(() => {
+          productSection.classList.add(step.cls);
+          setTimeout(() => {
+            productSection.classList.remove(step.cls);
+          }, step.dur);
+        }, step.delay);
+      });
+      setTimeout(() => { productSection.classList.add('disappear'); }, 5000);
+      setTimeout(() => { cryptic.classList.add('show'); }, 6000);
+    }
+
     const productObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !productSection.classList.contains('transition-started')) {
           productSection.classList.add('transition-started');
-          setTimeout(() => { productSection.classList.add('flicker'); }, 15000);
-          setTimeout(() => { productSection.classList.add('disappear'); }, 15500);
-          setTimeout(() => { cryptic.classList.add('show'); }, 16500);
+          setTimeout(runFlickers, 10000);
         }
       });
     }, { threshold: 0.6 });
