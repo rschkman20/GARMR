@@ -807,6 +807,7 @@
       text-shadow: 0 0 6px rgba(191,167,94,0.4);
       margin-bottom: 1rem;
       text-align: center;
+      opacity: 0; /* hide until flicker starts */
     }
     /* Flicker helper classes */
     .bar-flicker { animation: flicker 0.15s steps(2); }
@@ -1002,7 +1003,7 @@
       setTimeout(() => {
         productSection.classList.add('disappear');
         cryptic.classList.add('show');
-        startTextFlicker();
+        setTimeout(startTextFlicker, 1000); // delay text appearance by 1s
       }, total + 250);
     }
 
