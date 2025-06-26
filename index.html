@@ -1008,7 +1008,9 @@
     }
 
     function startTextFlicker() {
-      scheduleFlickers(5000, 300, 800, neverText, 'text-flicker', true);
+      const duration = 5000;
+      scheduleFlickers(duration, 300, 800, neverText, 'text-flicker', true);
+      setTimeout(() => { neverText.style.opacity = '1'; }, duration + 250);
     }
 
     const productObserver = new IntersectionObserver((entries) => {
