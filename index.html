@@ -597,6 +597,39 @@
       pointer-events: none;
       z-index: 1;
     }
+    .why-garmr__backdrop {
+      position: absolute;
+      inset: -12%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      transform: translateY(0);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .why-garmr__backdrop::before,
+    .why-garmr__backdrop::after {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background-size: 160% 160%;
+      opacity: 0.12;
+      filter: saturate(0.9);
+      will-change: transform;
+    }
+    .why-garmr__backdrop::before {
+      background: radial-gradient(circle at 20% 30%, rgba(200, 166, 82, 0.12), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.18), transparent 60%),
+        linear-gradient(120deg, rgba(8, 8, 8, 0.95), rgba(2, 2, 2, 0.85));
+      animation: backdropDrift 28s linear infinite;
+    }
+    .why-garmr__backdrop::after {
+      background:
+        radial-gradient(35% 45% at 30% 60%, rgba(255, 255, 255, 0.08), transparent 65%),
+        radial-gradient(45% 35% at 70% 30%, rgba(200, 166, 82, 0.15), transparent 70%);
+      mix-blend-mode: screen;
+      animation: backdropDriftReverse 32s linear infinite;
+    }
     .why-garmr__fog {
       position: absolute;
       inset: -30%;
@@ -635,6 +668,19 @@
       align-items: flex-start;
       text-align: left;
     }
+    .why-garmr__container::before {
+      content: '';
+      position: absolute;
+      inset: -25%;
+      background: linear-gradient(45deg, rgba(200, 166, 82, 0), rgba(200, 166, 82, 0.4), rgba(200, 166, 82, 0));
+      opacity: 0;
+      transform: translateX(-40%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+    .why-garmr__container.gradient-sweep-active::before {
+      animation: gradientSweep 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
     .eyebrow {
       font-size: 13px;
       letter-spacing: 0.12em;
@@ -670,22 +716,36 @@
       color: rgba(255, 255, 255, 0.86);
       position: relative;
       display: inline-block;
-      padding-bottom: 6px;
-      background-image: linear-gradient(90deg, rgba(212,175,55,0.65), rgba(212,175,55,0.65));
-      background-size: 0% 2px;
-      background-position: 0 100%;
-      background-repeat: no-repeat;
-      transition: background-size 0.4s ease;
+      padding-bottom: 8px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .creed-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.7), rgba(212, 175, 55, 0.1));
+      transform: scaleX(0.3);
+      transform-origin: left;
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .creed-line.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .creed-line.is-visible::after {
+      transform: scaleX(1);
+      opacity: 0.75;
     }
     @media (hover: hover) {
       .creed-line:hover {
-        background-size: 100% 2px;
+        color: rgba(255, 255, 255, 0.95);
       }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      animation: fadeUp 800ms ease forwards;
     }
     .grid-3 {
       display: grid;
@@ -699,8 +759,12 @@
       min-height: 190px;
       padding: 22px;
       backdrop-filter: blur(2px);
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(212, 175, 55, 0.1);
+      position: relative;
+      background:
+        linear-gradient(90deg, rgba(212, 175, 55, 0.55), rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.55)) border-box,
+        rgba(0, 0, 0, 0.35) padding-box;
+      border: 1px solid transparent;
+      background-clip: padding-box, border-box;
       border-radius: 14px;
       display: flex;
       flex-direction: column;
@@ -716,6 +780,40 @@
       text-transform: uppercase;
       font-variant-caps: all-small-caps;
       color: rgba(255, 255, 255, 0.95);
+      position: relative;
+    }
+    .pillar-microcopy {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(212, 175, 55, 0.75);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pillar-microcopy::before {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      margin-bottom: 6px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.0), rgba(212, 175, 55, 0.7), rgba(212, 175, 55, 0.0));
+      transform: scaleX(0.4);
+      transform-origin: left;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pillar-card:hover .pillar-microcopy,
+    .pillar-card:focus-within .pillar-microcopy {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .pillar-card:hover .pillar-microcopy::before,
+    .pillar-card:focus-within .pillar-microcopy::before {
+      opacity: 0.9;
+      transform: scaleX(1);
     }
     .pillar-card p {
       margin: 0;
@@ -755,22 +853,40 @@
       color: var(--gold);
     }
     .proof-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
+      width: 100%;
+      margin-top: 24px;
       font-variant: all-small-caps;
       font-size: 0.85rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.7);
-      margin-top: 24px;
+    }
+    .proof-strip span {
+      display: block;
     }
     .cta-row {
+      position: relative;
       display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
       margin-top: 24px;
+      padding-bottom: 20px;
+    }
+    .cta-row::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.8), rgba(212, 175, 55, 0.1));
+      opacity: 0;
+      transform: scaleX(0.4);
+      transform-origin: left;
+    }
+    .cta-row.cta-row--shimmer::after {
+      animation: underlineShimmer 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     .btn-primary-outline {
       position: relative;
@@ -808,35 +924,43 @@
       border-color: rgba(212, 175, 55, 0.85);
       box-shadow: inset 0 0 0 9999px rgba(212, 175, 55, 0.06);
     }
-    .btn-link-underline {
-      position: relative;
+    .manifesto-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.9);
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.72);
       text-decoration: none;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      transition: color 0.3s ease;
+      font-size: 0.85rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .btn-link-underline::after {
+    .manifesto-link::after {
       content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -4px;
-      width: 0;
+      width: 24px;
       height: 1px;
       background: rgba(212, 175, 55, 0.6);
-      transition: width 0.4s ease, left 0.4s ease;
+      opacity: 0;
+      transform: scaleX(0.5);
+      transform-origin: left;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .btn-link-underline:hover,
-    .btn-link-underline:focus-visible {
-      color: rgba(255, 255, 255, 1);
+    .manifesto-link.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .btn-link-underline:hover::after,
-    .btn-link-underline:focus-visible::after {
-      width: 100%;
-      left: 0;
+    @media (hover: hover) {
+      .manifesto-link:hover,
+      .manifesto-link:focus-visible {
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .manifesto-link:hover::after,
+      .manifesto-link:focus-visible::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
     }
     .founder-note {
       margin-top: 28px;
@@ -844,6 +968,22 @@
       font-size: 0.9rem;
       letter-spacing: 0.02em;
       max-width: 52ch;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .founder-note p {
+      margin: 0;
+    }
+    .founder-signature {
+      width: 160px;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .founder-note:hover .founder-signature,
+    .founder-note:focus-within .founder-signature {
+      opacity: 0.7;
     }
     .sr-only {
       position: absolute;
@@ -876,6 +1016,43 @@
     @keyframes fadeUp {
       0% { opacity: 0; transform: translateY(16px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes gradientSweep {
+      0% {
+        opacity: 0;
+        transform: translateX(-55%);
+      }
+      45% {
+        opacity: 0.45;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(55%);
+      }
+    }
+    @keyframes underlineShimmer {
+      0% {
+        opacity: 0;
+        transform: scaleX(0.2);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scaleX(0.7);
+      }
+      100% {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+    @keyframes backdropDrift {
+      0% { transform: translate3d(-6%, 4%, 0) scale(1); }
+      50% { transform: translate3d(6%, -4%, 0) scale(1.05); }
+      100% { transform: translate3d(-6%, 4%, 0) scale(1); }
+    }
+    @keyframes backdropDriftReverse {
+      0% { transform: translate3d(5%, -3%, 0) scale(1.02); }
+      50% { transform: translate3d(-5%, 3%, 0) scale(0.98); }
+      100% { transform: translate3d(5%, -3%, 0) scale(1.02); }
     }
     @keyframes fogDrift {
       0% { transform: translate3d(-8%, 2%, 0) scale(1); }
@@ -933,19 +1110,17 @@
         text-align: left;
       }
       .proof-strip {
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
+        text-align: center;
       }
     }
     @media (max-width: 520px) {
       .cta-row {
-        flex-direction: column;
         align-items: stretch;
         gap: 12px;
       }
       .btn-primary-outline,
-      .btn-link-underline {
+      .manifesto-link {
+        align-self: center;
         text-align: center;
       }
     }
@@ -1085,10 +1260,7 @@
     <div class="hero-bg texture"></div>
     <div class="hero-bg vignette"></div>
     <div class="hero-bg gold-glow"></div>
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="/videos/fog-loop.webm" type="video/webm">
-      <source src="/videos/fog-loop.mp4" type="video/mp4">
-    </video>
+    <div class="hero-video" aria-hidden="true"></div>
     <img class="fog fog-left" src="/images/fog-soft.png" alt="">
     <img class="fog fog-right" src="/images/fog-soft.png" alt="">
     <img class="embers" src="/images/embers.png" alt="">
@@ -1106,6 +1278,7 @@
   </section>
 
   <section id="why-garmr" class="why-garmr" role="region" aria-labelledby="why-garmr-heading">
+    <div class="why-garmr__backdrop" aria-hidden="true"></div>
     <div class="why-garmr__fog" aria-hidden="true"></div>
     <div class="why-garmr__embers" aria-hidden="true"></div>
     <div class="why-garmr__container">
@@ -1113,21 +1286,21 @@
       <h2 class="headline-xl" id="why-garmr-heading">Built for those who endure</h2>
       <p class="copy-narrow">GARMR was born from blood and discipline. We design equipment and apparel for people who choose the hard path and keep going. No shortcuts. No noise. Considered materials, precise construction, and a standard that outlasts trends. Not mass-produced. Purpose-made.</p>
       <ul class="why-garmr__creed" role="list" aria-label="Brand creed">
-        <li class="creed-line reveal" data-delay="120" style="animation-delay: 120ms;">Born from blood and discipline</li>
-        <li class="creed-line reveal" data-delay="240" style="animation-delay: 240ms;">Forged for those who endure</li>
-        <li class="creed-line reveal" data-delay="360" style="animation-delay: 360ms;">Every piece is a statement of legacy</li>
+        <li class="creed-line">Born from blood and discipline</li>
+        <li class="creed-line">Forged for those who endure</li>
+        <li class="creed-line">Every piece is a statement of legacy</li>
       </ul>
       <div class="grid-3 why-garmr__pillars">
         <article class="pillar-card" aria-label="Discipline pillar">
-          <h3>Discipline</h3>
+          <h3>Discipline<span class="pillar-microcopy">Stay relentless</span></h3>
           <p>Relentless focus from design to delivery. Fewer pieces done to a higher standard.</p>
         </article>
         <article class="pillar-card" aria-label="Craft pillar">
-          <h3>Craft</h3>
+          <h3>Craft<span class="pillar-microcopy">Respect every stitch</span></h3>
           <p>Material integrity and construction you can feel. Built to be used, not just worn.</p>
         </article>
         <article class="pillar-card" aria-label="Legacy pillar">
-          <h3>Legacy</h3>
+          <h3>Legacy<span class="pillar-microcopy">Leave a mark that lasts</span></h3>
           <p>Products that hold their shape and meaning over time. Style that survives seasons.</p>
         </article>
       </div>
@@ -1147,15 +1320,16 @@
         </div>
       </div>
       <div class="proof-strip">
-        <span>4.8 average rating from 1,240 customers</span>
-        <span>As seen in</span>
-        <span>Community 10,000+ strong</span>
+        <span>4.8 average rating from 1,240 customers · Community 10,000+ strong</span>
       </div>
       <div class="cta-row" role="group" aria-label="Why GARMR calls to action">
         <a class="btn-primary-outline shimmer-border" href="#collection" aria-label="Discover the GARMR collection">Discover the collection</a>
-        <a class="btn-link-underline" href="#story" aria-label="Read the GARMR manifesto">Read the manifesto</a>
+        <a class="manifesto-link" href="#story" aria-label="Read the GARMR manifesto">Read the manifesto</a>
       </div>
-      <p class="founder-note">Made to serve the ones who show up when no one is watching.<br>Founder, GARMR</p>
+      <div class="founder-note">
+        <p>Made to serve the ones who show up when no one is watching.<br>Founder, GARMR</p>
+        <img class="founder-signature" src="images/Signature%20Image.png" alt="Signature of the GARMR founder">
+      </div>
     </div>
   </section>
 
@@ -1244,15 +1418,70 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-    const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline, #waitlist, #waitlist .divider');
+    const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline, #waitlist, #waitlist .divider, .manifesto-link');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          if (entry.target.classList.contains('creed-line')) {
+            entry.target.classList.add('is-visible');
+          } else {
+            entry.target.classList.add('visible');
+          }
         }
       });
     }, { threshold: 0.1 });
     animatedEls.forEach(el => observer.observe(el));
+    const creedLines = document.querySelectorAll('.creed-line');
+    creedLines.forEach((line, index) => {
+      line.style.transitionDelay = `${index * 0.2}s`;
+      observer.observe(line);
+    });
+    const whyContainer = document.querySelector('.why-garmr__container');
+    if (whyContainer) {
+      const triggerSweep = () => {
+        whyContainer.classList.remove('gradient-sweep-active');
+        void whyContainer.offsetWidth;
+        whyContainer.classList.add('gradient-sweep-active');
+      };
+      whyContainer.addEventListener('animationend', (event) => {
+        if (event.animationName === 'gradientSweep') {
+          whyContainer.classList.remove('gradient-sweep-active');
+        }
+      });
+      triggerSweep();
+      setInterval(triggerSweep, 30000);
+    }
+    const ctaRow = document.querySelector('.cta-row');
+    if (ctaRow) {
+      const triggerUnderline = () => {
+        ctaRow.classList.remove('cta-row--shimmer');
+        void ctaRow.offsetWidth;
+        ctaRow.classList.add('cta-row--shimmer');
+      };
+      ctaRow.addEventListener('animationend', (event) => {
+        if (event.animationName === 'underlineShimmer') {
+          ctaRow.classList.remove('cta-row--shimmer');
+        }
+      });
+      triggerUnderline();
+      setInterval(triggerUnderline, 8000);
+    }
+    const parallaxBackdrop = document.querySelector('.why-garmr__backdrop');
+    const whySection = document.getElementById('why-garmr');
+    if (parallaxBackdrop && whySection) {
+      let rafHandle = null;
+      const updateParallax = () => {
+        const rect = whySection.getBoundingClientRect();
+        const translate = rect.top * -0.12;
+        parallaxBackdrop.style.transform = `translateY(${translate}px)`;
+        rafHandle = null;
+      };
+      updateParallax();
+      window.addEventListener('scroll', () => {
+        if (rafHandle !== null) return;
+        rafHandle = requestAnimationFrame(updateParallax);
+      }, { passive: true });
+    }
     const waitlistForm = document.getElementById('waitlist-form');
     const feedback = document.getElementById('waitlist-feedback');
     const emailValid = document.getElementById('email-valid');
