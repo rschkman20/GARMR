@@ -571,44 +571,43 @@
     .why-garmr {
       position: relative;
       overflow: hidden;
-      padding: 96px 0;
-      background: radial-gradient(circle at top, rgba(200, 166, 82, 0.08), transparent 55%),
-        radial-gradient(circle at bottom, rgba(200, 166, 82, 0.06), transparent 60%),
-        #030303;
+      background:
+        radial-gradient(circle at top, rgba(200, 166, 82, 0.05), transparent 55%),
+        linear-gradient(160deg, #020202 0%, #060606 100%);
       color: #f5f5f5;
       isolation: isolate;
     }
     .why-garmr::before {
       content: '';
       position: absolute;
-      inset: -40%;
-      background:
-        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0, rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 8px),
-        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 14px);
-      opacity: 0.15;
-      transform: rotate(2deg);
-      z-index: 0;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 55%);
       pointer-events: none;
+      z-index: 3;
     }
     .why-garmr::after {
       content: '';
       position: absolute;
-      inset: 0;
+      inset: -40%;
+      background:
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 8px),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 14px);
+      opacity: 0.12;
+      transform: rotate(2deg);
       pointer-events: none;
-      background: radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.85) 100%);
-      z-index: 2;
+      z-index: 1;
     }
     .why-garmr__fog {
       position: absolute;
       inset: -30%;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), transparent 55%),
-        radial-gradient(circle at 70% 60%, rgba(200, 166, 82, 0.2), transparent 60%),
-        radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.16), transparent 55%);
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.22), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(200, 166, 82, 0.18), transparent 60%),
+        radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.14), transparent 55%);
       filter: blur(60px);
-      opacity: 0.18;
+      opacity: 0.10;
       animation: fogDrift 22s ease-in-out infinite;
-      z-index: 1;
+      z-index: 2;
       pointer-events: none;
     }
     .why-garmr__embers {
@@ -616,184 +615,209 @@
       inset: 0;
       background-image:
         radial-gradient(2px 2px at 20px 40px, rgba(200, 166, 82, 0.22) 0, rgba(200, 166, 82, 0.22) 50%, transparent 70%),
-        radial-gradient(1.5px 1.5px at 80px 20px, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0.18) 45%, transparent 70%),
-        radial-gradient(1px 1px at 140px 100px, rgba(200, 166, 82, 0.3) 0, rgba(200, 166, 82, 0.3) 45%, transparent 70%);
+        radial-gradient(1.5px 1.5px at 80px 20px, rgba(255, 255, 255, 0.16) 0, rgba(255, 255, 255, 0.16) 45%, transparent 70%),
+        radial-gradient(1px 1px at 140px 100px, rgba(200, 166, 82, 0.28) 0, rgba(200, 166, 82, 0.28) 45%, transparent 70%);
       background-size: 140px 160px, 200px 200px, 180px 220px;
-      opacity: 0.08;
-      z-index: 3;
+      opacity: 0.06;
+      z-index: 2;
       animation: emberRise 36s linear infinite;
       pointer-events: none;
     }
     .why-garmr__container {
       position: relative;
       z-index: 4;
-      width: min(920px, 88vw);
-      margin: 0 auto;
-      display: grid;
-      gap: 24px;
+      max-width: 960px;
+      margin-inline: auto;
+      padding-block: 96px;
+      padding-inline: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       text-align: left;
     }
     .eyebrow {
-      font-size: 0.75rem;
+      font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0 0 12px;
     }
     .headline-xl {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.75rem, 4vw, 3.75rem);
-      line-height: 1.05;
-      margin: 0;
+      font-size: clamp(40px, 6vw, 64px);
+      letter-spacing: 0.01em;
+      line-height: 1.08;
+      margin: 0 0 24px;
     }
     .copy-narrow {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
+      margin: 0 0 28px;
+      max-width: clamp(44ch, 52%, 64ch);
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.05rem;
       line-height: 1.6;
-      max-width: 52%;
     }
     .why-garmr__creed {
+      list-style: none;
+      margin: 0 0 40px;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 24px;
     }
     .creed-line {
-      margin: 0;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.86);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 6px;
+      background-image: linear-gradient(90deg, rgba(212,175,55,0.65), rgba(212,175,55,0.65));
+      background-size: 0% 2px;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      transition: background-size 0.4s ease;
+    }
+    @media (hover: hover) {
+      .creed-line:hover {
+        background-size: 100% 2px;
+      }
+    }
+    .reveal {
       opacity: 0;
       transform: translateY(16px);
-      animation: fadeUp 0.8s forwards;
-      transition: background-size 0.3s ease;
-      background-image: linear-gradient(120deg, rgba(200,166,82,0.45), rgba(200,166,82,0.45));
-      background-repeat: no-repeat;
-      background-position: 0 100%;
-      background-size: 0% 1px;
-      padding-bottom: 4px;
-    }
-    .why-garmr__creed .creed-line:nth-of-type(1) {
-      animation-delay: 0.2s;
-    }
-    .why-garmr__creed .creed-line:nth-of-type(2) {
-      animation-delay: 0.4s;
-    }
-    .why-garmr__creed .creed-line:nth-of-type(3) {
-      animation-delay: 0.6s;
-    }
-    .creed-line:hover {
-      background-size: 100% 1px;
+      animation: fadeUp 800ms ease forwards;
     }
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      gap: 28px;
+    }
+    .why-garmr__pillars {
+      width: 100%;
     }
     .pillar-card {
-      padding: 16px;
+      min-height: 190px;
+      padding: 22px;
       backdrop-filter: blur(2px);
-      background: rgba(8, 8, 8, 0.6);
-      border-top: 1px solid transparent;
-      border-image: linear-gradient(90deg, rgba(200,166,82,0.2), rgba(200,166,82,0) 30%);
-      border-image-slice: 1;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.9);
     }
     .pillar-card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 0.04em;
+      margin: 0 0 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-size: 1.125rem;
+      font-variant-caps: all-small-caps;
+      color: rgba(255, 255, 255, 0.95);
     }
     .pillar-card p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.9);
       line-height: 1.5;
-    }
-    .gold-text {
-      color: var(--gold);
+      font-size: 0.98rem;
     }
     .why-garmr__separator {
-      border: none;
-      border-top: 1px solid rgba(200,166,82,0.22);
-      margin: 16px 0 8px;
+      width: 100%;
+      height: 1px;
+      border: 0;
+      background: linear-gradient(90deg, rgba(212,175,55,0.35), rgba(212,175,55,0.15) 30%, rgba(212,175,55,0.35) 100%);
+      margin: 36px 0;
     }
     .usp-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      align-items: center;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 32px;
+      color: rgba(255, 255, 255, 0.9);
     }
     .usp-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: rgba(255,255,255,0.9);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
       font-size: 0.95rem;
+      letter-spacing: 0.02em;
     }
     .usp-item svg {
       width: 20px;
       height: 20px;
-      opacity: 0.8;
       flex-shrink: 0;
-      fill: rgba(255,255,255,0.8);
+      opacity: 0.9;
+      fill: rgba(212, 175, 55, 0.9);
+    }
+    .gold-text {
+      color: var(--gold);
     }
     .proof-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      font-variant: all-small-caps;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 24px;
     }
     .cta-row {
       display: flex;
-      gap: 16px;
       align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
+      margin-top: 24px;
     }
     .btn-primary-outline {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 28px;
+      padding: 14px 28px;
+      border-radius: 999px;
       text-decoration: none;
-      color: var(--gold);
-      border: 1px solid rgba(200,166,82,0.6);
+      color: rgba(212, 175, 55, 0.95);
+      border: 1px solid rgba(212, 175, 55, 0.65);
       background: transparent;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       overflow: hidden;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .btn-primary-outline::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(200,166,82,0), rgba(200,166,82,0.4), rgba(200,166,82,0));
+      background: linear-gradient(120deg, rgba(212,175,55,0), rgba(212,175,55,0.45), rgba(212,175,55,0));
       transform: translateX(-100%);
-      transition: transform 0.6s ease;
+      transition: transform 2s ease;
+      opacity: 0.9;
     }
-    .btn-primary-outline:hover::before {
+    .btn-primary-outline:hover::before,
+    .btn-primary-outline:focus-visible::before {
       transform: translateX(100%);
     }
-    .btn-primary-outline:hover {
-      color: #111;
-      background: rgba(200,166,82,0.1);
+    .btn-primary-outline:hover,
+    .btn-primary-outline:focus-visible {
+      color: rgba(255, 255, 255, 0.95);
+      border-color: rgba(212, 175, 55, 0.85);
+      box-shadow: inset 0 0 0 9999px rgba(212, 175, 55, 0.06);
     }
     .btn-link-underline {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
-      position: relative;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      transition: color 0.3s ease;
     }
     .btn-link-underline::after {
       content: '';
@@ -802,18 +826,24 @@
       bottom: -4px;
       width: 0;
       height: 1px;
-      background: rgba(200,166,82,0.6);
+      background: rgba(212, 175, 55, 0.6);
       transition: width 0.4s ease, left 0.4s ease;
     }
-    .btn-link-underline:hover::after {
+    .btn-link-underline:hover,
+    .btn-link-underline:focus-visible {
+      color: rgba(255, 255, 255, 1);
+    }
+    .btn-link-underline:hover::after,
+    .btn-link-underline:focus-visible::after {
       width: 100%;
       left: 0;
     }
     .founder-note {
-      margin-top: 32px;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.85rem;
-      letter-spacing: 0.06em;
+      margin-top: 28px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      max-width: 52ch;
     }
     .sr-only {
       position: absolute;
@@ -857,12 +887,13 @@
       100% { transform: translateY(-40px); }
     }
     @media (max-width: 1024px) {
-      .why-garmr {
-        padding: 80px 0;
+      .why-garmr__container {
+        padding-block: 64px;
+        padding-inline: 24px;
       }
       .headline-xl {
-        font-size: clamp(2.2rem, 5vw, 3rem);
-        line-height: 1.2;
+        font-size: clamp(36px, 5.5vw, 52px);
+        line-height: 1.12;
       }
       .copy-narrow {
         max-width: 88%;
@@ -871,45 +902,51 @@
         grid-template-columns: 1fr;
       }
       .usp-row {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
         text-align: center;
       }
       .usp-item {
         justify-content: center;
       }
       .proof-strip {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .cta-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn-primary-outline,
-      .btn-link-underline {
+        justify-content: center;
         text-align: center;
       }
     }
-    @media (max-width: 720px) {
-      .why-garmr {
-        padding: 64px 0;
-      }
+    @media (max-width: 768px) {
       .why-garmr__container {
-        width: 88%;
+        align-items: center;
         text-align: center;
+        width: 88%;
+        padding-inline: 0;
       }
       .copy-narrow {
-        max-width: 100%;
-        margin: 0 auto;
+        margin: 0 auto 28px;
+      }
+      .why-garmr__creed {
+        align-items: center;
+        text-align: center;
       }
       .grid-3 {
         text-align: left;
       }
-      .usp-row {
+      .proof-strip {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+    }
+    @media (max-width: 520px) {
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
         gap: 12px;
       }
-      .cta-row {
-        gap: 12px;
+      .btn-primary-outline,
+      .btn-link-underline {
+        text-align: center;
       }
     }
     .quote-text {
@@ -1068,18 +1105,18 @@
     <img class="hero-model right" src="/images/Model%202%20rev%202.png" alt="GARMR athlete">
   </section>
 
-  <section id="why-garmr" class="why-garmr" aria-label="Why GARMR">
+  <section id="why-garmr" class="why-garmr" role="region" aria-labelledby="why-garmr-heading">
     <div class="why-garmr__fog" aria-hidden="true"></div>
     <div class="why-garmr__embers" aria-hidden="true"></div>
     <div class="why-garmr__container">
       <h6 class="eyebrow" id="why-garmr-eyebrow">WHY GARMR</h6>
-      <h2 class="headline-xl">Built for those who endure</h2>
-      <p class="copy-narrow">GARMR was born from blood and discipline. We design equipment and apparel for people who choose the hard path and keep going. No shortcuts. No noise. Just considered materials, precise construction, and a standard that outlasts trends. This is not mass produced. It is purpose made.</p>
-      <div class="why-garmr__creed" role="list" aria-label="GARMR creed">
-        <p class="creed-line" role="listitem" aria-label="Born from blood and discipline">Born from blood and discipline</p>
-        <p class="creed-line" role="listitem" aria-label="Forged for those who endure">Forged for those who endure</p>
-        <p class="creed-line" role="listitem" aria-label="Every piece is a statement of legacy">Every piece is a statement of legacy</p>
-      </div>
+      <h2 class="headline-xl" id="why-garmr-heading">Built for those who endure</h2>
+      <p class="copy-narrow">GARMR was born from blood and discipline. We design equipment and apparel for people who choose the hard path and keep going. No shortcuts. No noise. Considered materials, precise construction, and a standard that outlasts trends. Not mass-produced. Purpose-made.</p>
+      <ul class="why-garmr__creed" role="list" aria-label="Brand creed">
+        <li class="creed-line reveal" data-delay="120" style="animation-delay: 120ms;">Born from blood and discipline</li>
+        <li class="creed-line reveal" data-delay="240" style="animation-delay: 240ms;">Forged for those who endure</li>
+        <li class="creed-line reveal" data-delay="360" style="animation-delay: 360ms;">Every piece is a statement of legacy</li>
+      </ul>
       <div class="grid-3 why-garmr__pillars">
         <article class="pillar-card" aria-label="Discipline pillar">
           <h3>Discipline</h3>
@@ -1112,7 +1149,7 @@
       <div class="proof-strip">
         <span>4.8 average rating from 1,240 customers</span>
         <span>As seen in</span>
-        <span>Community 10,000 plus strong</span>
+        <span>Community 10,000+ strong</span>
       </div>
       <div class="cta-row" role="group" aria-label="Why GARMR calls to action">
         <a class="btn-primary-outline shimmer-border" href="#collection" aria-label="Discover the GARMR collection">Discover the collection</a>
