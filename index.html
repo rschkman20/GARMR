@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preload" as="image" href="images/Logo.png" fetchpriority="high">
   <link rel="stylesheet" href="hero.css">
   <style>
     :root {
@@ -711,7 +712,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="/"><img src="/images/garmr-logo.svg" alt="GARMR"></a>
+    <a class="brand" href="/" aria-label="GARMR home"><brand-lockup></brand-lockup></a>
     <nav class="nav">
       <a href="#collection">Collection</a>
       <a href="#about">About</a>
@@ -732,24 +733,23 @@
       <source src="/videos/fog-loop.webm" type="video/webm">
       <source src="/videos/fog-loop.mp4" type="video/mp4">
     </video>
-    <img class="fog fog-left" src="/images/fog-soft.png" alt="">
-    <img class="fog fog-right" src="/images/fog-soft.png" alt="">
-    <img class="embers" src="/images/embers.png" alt="">
-    <div class="hero-content">
-      <img class="hero-logo" src="/images/garmr-logo.svg" alt="GARMR emblem">
-      <h1 class="hero-headline">
-        <span>BUILT FOR THE RUTHLESS.</span>
-        <span>FORGED IN LEGACY.</span>
-      </h1>
-      <p class="hero-sub">Where heritage meets combat.</p>
-      <p class="hero-clarifier">Premium combat-inspired apparel for warriors in and out of the ring.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-gold btn-lg" href="#shop">Shop Now</a>
-        <a class="btn btn-outline btn-lg" href="#waitlist">Join Waitlist</a>
+    <img class="fog fog-left" src="/images/fog-soft.png" alt="" loading="lazy" decoding="async" aria-hidden="true">
+    <img class="fog fog-right" src="/images/fog-soft.png" alt="" loading="lazy" decoding="async" aria-hidden="true">
+    <img class="embers" src="/images/embers.png" alt="" loading="lazy" decoding="async" aria-hidden="true">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <img class="hero-emblem" src="images/Logo.png" width="32" height="32" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <brand-lockup class="hero-brand" data-variant="compact"></brand-lockup>
+        <h1 class="hero-headline">BUILT FOR THE RUTHLESS. FORGED IN LEGACY.</h1>
+        <p class="hero-sub">Where heritage meets combat.</p>
+        <p class="hero-support">Premium combat inspired apparel for warriors in and out of the ring.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold btn-lg" href="#shop" aria-label="Shop Now">Shop Now</a>
+          <a class="btn btn-outline btn-lg" href="#waitlist" aria-label="Join Waitlist">Join Waitlist</a>
+        </div>
       </div>
+      <hero-media class="hero-media-block"></hero-media>
     </div>
-    <img class="hero-model left" src="/images/model-left.jpg" alt="GARMR athlete">
-    <img class="hero-model right" src="/images/model-right.jpg" alt="GARMR athlete">
   </section>
 
   <span id="collection" class="section-anchor" aria-hidden="true"></span>
@@ -839,6 +839,7 @@
     </div>
   </footer>
 
+  <script type="module" src="main.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
