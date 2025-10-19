@@ -747,79 +747,151 @@
         color: rgba(255, 255, 255, 0.95);
       }
     }
-    .grid-3 {
+    #pillars-vertical {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(3, minmax(320px, 1fr));
+      gap: 32px;
+      align-items: stretch;
+      margin-block: 48px;
     }
-    .why-garmr__pillars {
-      width: 100%;
-    }
-    .pillar-card {
-      min-height: 190px;
-      padding: 22px;
-      backdrop-filter: blur(2px);
+    .pillar {
       position: relative;
-      background:
-        linear-gradient(90deg, rgba(212, 175, 55, 0.55), rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.55)) border-box,
-        rgba(0, 0, 0, 0.35) padding-box;
-      border: 1px solid transparent;
-      background-clip: padding-box, border-box;
-      border-radius: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
-      color: rgba(255, 255, 255, 0.9);
+      height: 680px;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: #111;
+      background-image: var(--pillar-bg-image, var(--pillar-fallback, linear-gradient(135deg, #151515, #2a2a2a)));
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+      will-change: transform, filter;
+      cursor: pointer;
+      content-visibility: auto;
+      contain-intrinsic-size: 680px 360px;
     }
-    .pillar-card h3 {
-      margin: 0 0 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-variant-caps: all-small-caps;
-      color: rgba(255, 255, 255, 0.95);
-      position: relative;
+    .pillar.discipline {
+      --pillar-fallback: linear-gradient(140deg, #1c1610 0%, #3d2b15 55%, #1b130d 100%);
     }
-    .pillar-microcopy {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(212, 175, 55, 0.75);
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    .pillar.craft {
+      --pillar-fallback: linear-gradient(140deg, #131720 0%, #2c3443 55%, #121622 100%);
     }
-    .pillar-microcopy::before {
+    .pillar.legacy {
+      --pillar-fallback: linear-gradient(140deg, #191220 0%, #3b1f31 55%, #180f21 100%);
+    }
+    .pillar::before {
       content: '';
-      display: block;
-      height: 1px;
-      width: 100%;
-      margin-bottom: 6px;
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.0), rgba(212, 175, 55, 0.7), rgba(212, 175, 55, 0.0));
-      transform: scaleX(0.4);
-      transform-origin: left;
-      opacity: 0;
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.4s ease;
+      pointer-events: none;
     }
-    .pillar-card:hover .pillar-microcopy,
-    .pillar-card:focus-within .pillar-microcopy {
+    .pillar:hover,
+    .pillar:focus-visible,
+    .pillar.is-active {
+      transform: scale(1.03);
+      filter: saturate(1.05);
+    }
+    .pillar:hover::before,
+    .pillar:focus-visible::before,
+    .pillar.is-active::before {
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .pillar:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+    .pillar-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 80%);
+    }
+    .pillar-title {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 6px 0;
+      font-variant-caps: all-small-caps;
+    }
+    .pillar-kicker {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 15px;
+      margin: 0;
+    }
+    .pillar-detail {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .pillar:hover .pillar-detail,
+    .pillar:focus-visible .pillar-detail,
+    .pillar.is-active .pillar-detail {
       opacity: 1;
       transform: translateY(0);
     }
-    .pillar-card:hover .pillar-microcopy::before,
-    .pillar-card:focus-within .pillar-microcopy::before {
-      opacity: 0.9;
-      transform: scaleX(1);
+    .gold-sheen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.08) 50%, transparent 100%);
+      background-size: 100% 220%;
+      animation: goldSweep 25s linear infinite;
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
-    .pillar-card p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.5;
-      font-size: 0.98rem;
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    .reveal.is-animated {
+      animation: fadeUp 0.8s ease forwards;
+    }
+    #pillars-vertical .pillar:nth-child(1).is-animated {
+      animation-delay: 0.15s;
+    }
+    #pillars-vertical .pillar:nth-child(2).is-animated {
+      animation-delay: 0.3s;
+    }
+    #pillars-vertical .pillar:nth-child(3).is-animated {
+      animation-delay: 0.45s;
+    }
+    @keyframes goldSweep {
+      0% { background-position: 0% 110%; }
+      100% { background-position: 0% -110%; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 640px) {
+      .pillar {
+        height: 520px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pillar,
+      .pillar::before,
+      .pillar-detail {
+        transition: none !important;
+      }
+      .gold-sheen::after {
+        animation: none !important;
+      }
+      .reveal,
+      .reveal.is-animated {
+        opacity: 1;
+        transform: none;
+        animation: none !important;
+      }
     }
     .why-garmr__separator {
       width: 100%;
@@ -1075,8 +1147,9 @@
       .copy-narrow {
         max-width: 88%;
       }
-      .grid-3 {
+      #pillars-vertical {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
       .usp-row {
         flex-direction: column;
@@ -1105,9 +1178,6 @@
       .why-garmr__creed {
         align-items: center;
         text-align: center;
-      }
-      .grid-3 {
-        text-align: left;
       }
       .proof-strip {
         text-align: center;
@@ -1290,20 +1360,29 @@
         <li class="creed-line">Forged for those who endure</li>
         <li class="creed-line">Every piece is a statement of legacy</li>
       </ul>
-      <div class="grid-3 why-garmr__pillars">
-        <article class="pillar-card" aria-label="Discipline pillar">
-          <h3>Discipline<span class="pillar-microcopy">Stay relentless</span></h3>
-          <p>Relentless focus from design to delivery. Fewer pieces done to a higher standard.</p>
-        </article>
-        <article class="pillar-card" aria-label="Craft pillar">
-          <h3>Craft<span class="pillar-microcopy">Respect every stitch</span></h3>
-          <p>Material integrity and construction you can feel. Built to be used, not just worn.</p>
-        </article>
-        <article class="pillar-card" aria-label="Legacy pillar">
-          <h3>Legacy<span class="pillar-microcopy">Leave a mark that lasts</span></h3>
-          <p>Products that hold their shape and meaning over time. Style that survives seasons.</p>
-        </article>
-      </div>
+      <section id="pillars-vertical" aria-label="Brand pillars">
+        <div class="pillar discipline gold-sheen reveal" role="button" tabindex="0" aria-label="Discipline" data-bg="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=80">
+          <div class="pillar-content">
+            <h3 class="pillar-title">DISCIPLINE</h3>
+            <p class="pillar-kicker">Relentless focus.</p>
+            <p class="pillar-detail">Relentless focus from design to delivery. Fewer pieces done to a higher standard.</p>
+          </div>
+        </div>
+        <div class="pillar craft gold-sheen reveal" role="button" tabindex="0" aria-label="Craft" data-bg="https://images.unsplash.com/photo-1617957743091-301ba5d01f5b?auto=format&fit=crop&w=1400&q=80">
+          <div class="pillar-content">
+            <h3 class="pillar-title">CRAFT</h3>
+            <p class="pillar-kicker">Built to endure.</p>
+            <p class="pillar-detail">Material integrity and construction you can feel. Built to be used, not just worn.</p>
+          </div>
+        </div>
+        <div class="pillar legacy gold-sheen reveal" role="button" tabindex="0" aria-label="Legacy" data-bg="https://images.unsplash.com/photo-1516822003754-cca485356ecb?auto=format&fit=crop&w=1400&q=80">
+          <div class="pillar-content">
+            <h3 class="pillar-title">LEGACY</h3>
+            <p class="pillar-kicker">Style that survives time.</p>
+            <p class="pillar-detail">Products that hold their shape and meaning over time. Style that survives seasons.</p>
+          </div>
+        </div>
+      </section>
       <hr class="why-garmr__separator">
       <div class="usp-row" role="list" aria-label="GARMR micro value statements">
         <div class="usp-item" role="listitem">
@@ -1481,6 +1560,119 @@
         if (rafHandle !== null) return;
         rafHandle = requestAnimationFrame(updateParallax);
       }, { passive: true });
+    }
+    const pillarPanels = Array.from(document.querySelectorAll('#pillars-vertical .pillar'));
+    if (pillarPanels.length) {
+      const parallaxTargets = new Set();
+      const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let reduceMotion = reduceMotionQuery.matches;
+      const applyBackground = (panel) => {
+        const bg = panel.dataset.bg;
+        if (!bg || panel.dataset.bgApplied) {
+          return;
+        }
+        panel.style.setProperty('--pillar-bg-image', `url('${bg}')`);
+        panel.dataset.bgApplied = 'true';
+      };
+      const setBackgroundPosition = (panel) => {
+        const base = Number(panel.dataset.parallaxBase) || 0;
+        const delta = (window.scrollY - base) * 0.04;
+        const clamped = Math.max(-10, Math.min(10, delta));
+        panel.style.backgroundPosition = `center calc(50% + ${clamped}px)`;
+      };
+      const updateParallaxBase = () => {
+        pillarPanels.forEach(panel => {
+          panel.dataset.parallaxBase = panel.offsetTop;
+        });
+      };
+      let parallaxRaf = null;
+      const updateParallaxPanels = () => {
+        parallaxTargets.forEach(panel => {
+          if (!panel.dataset.bgApplied) {
+            applyBackground(panel);
+          }
+          if (reduceMotion) {
+            panel.style.backgroundPosition = 'center 50%';
+          } else {
+            setBackgroundPosition(panel);
+          }
+        });
+        parallaxRaf = null;
+      };
+      const requestParallaxUpdate = () => {
+        if (parallaxRaf !== null) return;
+        parallaxRaf = requestAnimationFrame(updateParallaxPanels);
+      };
+      const handleMotionPreference = () => {
+        reduceMotion = reduceMotionQuery.matches;
+        requestParallaxUpdate();
+      };
+      if (reduceMotionQuery.addEventListener) {
+        reduceMotionQuery.addEventListener('change', handleMotionPreference);
+      } else if (reduceMotionQuery.addListener) {
+        reduceMotionQuery.addListener(handleMotionPreference);
+      }
+      if ('IntersectionObserver' in window) {
+        const lazyObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const panel = entry.target;
+              panel.classList.add('is-animated');
+              applyBackground(panel);
+              obs.unobserve(panel);
+            }
+          });
+          requestParallaxUpdate();
+        }, { rootMargin: '0px 0px 200px 0px', threshold: 0.15 });
+        pillarPanels.forEach(panel => lazyObserver.observe(panel));
+        const parallaxObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              parallaxTargets.add(entry.target);
+              entry.target.classList.add('is-animated');
+            } else {
+              parallaxTargets.delete(entry.target);
+            }
+          });
+          requestParallaxUpdate();
+        }, { threshold: 0 });
+        pillarPanels.forEach(panel => parallaxObserver.observe(panel));
+      } else {
+        pillarPanels.forEach(panel => {
+          panel.classList.add('is-animated');
+          applyBackground(panel);
+          parallaxTargets.add(panel);
+        });
+      }
+      updateParallaxBase();
+      requestParallaxUpdate();
+      window.addEventListener('load', () => {
+        updateParallaxBase();
+        requestParallaxUpdate();
+      });
+      window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          updateParallaxBase();
+          requestParallaxUpdate();
+        }, 150);
+      });
+      pillarPanels.forEach(panel => {
+        panel.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+            if (event.key === ' ' || event.key === 'Spacebar') event.preventDefault();
+            panel.classList.add('is-active');
+          }
+        });
+        panel.addEventListener('keyup', (event) => {
+          if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+            panel.classList.remove('is-active');
+          }
+        });
+        panel.addEventListener('blur', () => panel.classList.remove('is-active'));
+      });
     }
     const waitlistForm = document.getElementById('waitlist-form');
     const feedback = document.getElementById('waitlist-feedback');
