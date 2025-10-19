@@ -9,7 +9,7 @@ padding:12px 24px;background:rgba(0,0,0,.7);backdrop-filter:saturate(110%) blur(
 border-bottom:1px solid rgba(200,166,82,.12)
 }
 .site-header .brand img{height:140px;display:block;filter:drop-shadow(0 0 4px rgba(0,0,0,.5));margin-top:-71px}
-.nav{display:flex;gap:24px;flex:1;justify-content:center}
+.nav{display:flex;gap:24px;justify-content:center;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
 .nav a{color:#ddd;text-decoration:none;font-weight:500;letter-spacing:.02em;position:relative;padding:6px 0}
 .nav a::after{
 content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
