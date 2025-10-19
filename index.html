@@ -779,6 +779,15 @@
     .pillar.legacy {
       --pillar-fallback: linear-gradient(140deg, #191220 0%, #3b1f31 55%, #180f21 100%);
     }
+    .discipline {
+      background-image: url('/public/images/discipline-vertical.jpg');
+    }
+    .craft {
+      background-image: url('/public/images/craft-vertical.jpg');
+    }
+    .legacy {
+      background-image: url('/public/images/legacy-vertical.jpg');
+    }
     .pillar::before {
       content: '';
       position: absolute;
@@ -1674,6 +1683,11 @@
         panel.addEventListener('blur', () => panel.classList.remove('is-active'));
       });
     }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#pillars-vertical .pillar[data-bg]').forEach((el) => {
+        el.style.backgroundImage = `url('${el.dataset.bg}')`;
+      });
+    });
     const waitlistForm = document.getElementById('waitlist-form');
     const feedback = document.getElementById('waitlist-feedback');
     const emailValid = document.getElementById('email-valid');
