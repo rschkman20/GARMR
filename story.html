@@ -56,14 +56,16 @@
       display: grid;
       place-items: center;
       padding: 0;
+      padding-top: calc(var(--header-h) + 24px);
     }
     .story-hero__media {
       position: absolute;
       inset: 0;
-      background: url('/images/placeholder1.jpg') center/cover no-repeat;
-      aspect-ratio: 21 / 9;
+      overflow: hidden;
+      z-index: -1;
       transform: translateZ(0);
       will-change: transform;
+      pointer-events: none;
     }
     .story-hero__media::after {
       content: '';
@@ -71,8 +73,25 @@
       inset: 0;
       background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
     }
+    #story-hero .hero-media,
+    #story-wolf .wolf-media img {
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .story-hero__media > .hero-media,
+    .wolf-media > img {
+      height: 100%;
+    }
+    .story-hero__media img {
+      width: 100%;
+      object-fit: cover;
+    }
     .story-hero__content {
       position: relative;
+      z-index: 1;
       text-align: center;
       padding: clamp(60px, 12vw, 120px) clamp(1.5rem, 4vw, 6rem);
       animation: heroFadeUp 1.2s ease both;
@@ -123,6 +142,13 @@
       height: 100%;
       display: block;
       object-fit: cover;
+    }
+    .origin-image img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .story-split__media--tall img {
       aspect-ratio: 4 / 5;
@@ -183,6 +209,13 @@
       aspect-ratio: 3 / 2;
       transition: transform 0.8s ease;
     }
+    .forge-gallery img {
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
     .story-forge__gallery figure:hover img {
       transform: scale(1.05);
     }
@@ -209,22 +242,29 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('/images/placeholder7.jpg') center/cover no-repeat;
-      aspect-ratio: 21 / 9;
-      filter: grayscale(0.2) saturate(0.8);
-      opacity: 0.3;
+      background: rgba(10, 10, 10, 0.22);
+      z-index: 0;
     }
     .story-wolf::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(10,10,10,0.92));
+      background: linear-gradient(180deg, rgba(10,10,10,0.25), rgba(10,10,10,0.52));
+      z-index: 1;
+    }
+    .wolf-media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      filter: grayscale(0.15) saturate(0.9);
+      pointer-events: none;
     }
     .story-wolf__inner {
       position: relative;
       max-width: 920px;
       margin: 0 auto;
-      z-index: 1;
+      z-index: 2;
     }
     .story-wolf__inner h2 {
       font-size: clamp(1.9rem, 3.2vw, 2.8rem);
@@ -313,8 +353,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('/images/placeholder8.jpg') center/cover no-repeat;
-      opacity: 0.08;
+      background: linear-gradient(180deg, rgba(10,10,10,0.18), rgba(10,10,10,0.4));
       border-radius: inherit;
       pointer-events: none;
     }
@@ -348,6 +387,20 @@
       font-size: 1.1rem;
       display: block;
       font-weight: 600;
+    }
+    .timeline-item__media {
+      position: relative;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+    .timeline-item img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+      display: block;
     }
     .story-timeline__item.is-visible {
       opacity: 1;
@@ -452,7 +505,6 @@
         direction: ltr;
       }
       .story-split__media img {
-        aspect-ratio: auto;
         max-height: 420px;
       }
     }
@@ -461,7 +513,8 @@
         padding-inline: clamp(1.25rem, 6vw, 2rem);
       }
       #story-hero {
-        padding-block: 60px;
+        padding-top: calc(var(--header-h) + 24px);
+        padding-bottom: 60px;
       }
       .story-hero__content h1 {
         font-size: clamp(2rem, 8vw, 3rem);
@@ -522,7 +575,7 @@
 </head>
 <body class="story-page">
   <header class="site-header">
-    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark" loading="lazy" decoding="async"></a>
     <nav class="nav">
       <a href="collection.html">Collection</a>
       <a href="#about">About</a>
@@ -536,7 +589,9 @@
   </header>
   <main class="story-main">
     <section id="story-hero">
-      <div class="story-hero__media" aria-hidden="true"></div>
+      <div class="story-hero__media">
+        <img class="hero-media" src="/images/story-hero.jpg" alt="GARMR — cinematic industrial hall with fog and gold light" loading="lazy" decoding="async">
+      </div>
       <div class="story-hero__content">
         <h1>Where Heritage Meets Combat</h1>
         <p>From discipline and legacy, GARMR was forged — not created.</p>
@@ -550,8 +605,8 @@
           <p>GARMR was not built in a boardroom. It was forged from repetition — from every round, every scar, every ounce of discipline that defines a fighter.
           We reject the disposable, the mass-produced, the soulless. Every piece we create carries purpose — and the spirit of those who fight with meaning.</p>
         </div>
-        <figure class="story-split__media story-split__media--tall reveal-on-scroll">
-          <img src="/images/placeholder2.jpg" alt="Placeholder image for heritage section" loading="lazy" decoding="async">
+        <figure class="story-split__media story-split__media--tall origin-image reveal-on-scroll">
+          <img src="/images/story-origin-1.jpg" alt="Hands wrapping black handwraps under warm gold light" loading="lazy" decoding="async">
         </figure>
       </div>
     </section>
@@ -559,7 +614,7 @@
     <section id="story-forged" class="story-section story-split story-split--reverse">
       <div class="story-split__inner">
         <figure class="story-split__media story-split__media--wide reveal-on-scroll">
-          <img src="/images/placeholder3.jpg" alt="Placeholder image for forged legacy" loading="lazy" decoding="async">
+          <img src="/images/story-origin-2.jpg" alt="Blacksmith forge glow with a glove silhouette on an anvil" loading="lazy" decoding="async">
         </figure>
         <div class="story-split__text reveal-on-scroll">
           <h2>Forged, Not Made.</h2>
@@ -574,16 +629,19 @@
           <h2>The Forge</h2>
           <p>Every stage of creation is intentional — a choreography of craft that honours the fighters who wear our work.</p>
         </div>
-        <div class="story-forge__gallery" aria-label="Craftsmanship gallery">
-          <figure class="reveal-on-scroll"><img src="/images/placeholder4.jpg" alt="Placeholder image for craftsmanship" loading="lazy" decoding="async"></figure>
-          <figure class="reveal-on-scroll"><img src="/images/placeholder5.jpg" alt="Placeholder image for detail work" loading="lazy" decoding="async"></figure>
-          <figure class="reveal-on-scroll"><img src="/images/placeholder6.jpg" alt="Placeholder image for finished gloves" loading="lazy" decoding="async"></figure>
+        <div class="story-forge__gallery forge-gallery" aria-label="Craftsmanship gallery">
+          <figure class="reveal-on-scroll"><img src="/images/story-forge-1.jpg" alt="Macro leather texture with GARMR sigil emboss" loading="lazy" decoding="async"></figure>
+          <figure class="reveal-on-scroll"><img src="/images/story-forge-2.jpg" alt="Artisan stitching detail on glove seam" loading="lazy" decoding="async"></figure>
+          <figure class="reveal-on-scroll"><img src="/images/story-forge-3.jpg" alt="Finished glove silhouette with soft gold edge light" loading="lazy" decoding="async"></figure>
         </div>
         <p class="story-forge__caption" data-caption>Every stitch is a mark of intent. Every glove a vessel of legacy.</p>
       </div>
     </section>
 
     <section id="story-wolf" class="story-wolf story-section" aria-labelledby="story-wolf-title">
+      <div class="wolf-media">
+        <img src="/images/story-wolf.jpg" alt="Abstract wolf silhouette emerging from fog with faint gold eyes" loading="lazy" decoding="async">
+      </div>
       <div class="story-wolf__inner reveal-on-scroll">
         <h2 id="story-wolf-title">The Wolf Within</h2>
         <p>In Norse myth, Garmr guards the gates between worlds. For us, he guards legacy — a reminder that discipline and chaos are two sides of the same fight.</p>
@@ -595,15 +653,24 @@
       <div class="story-timeline__inner">
         <h2 id="story-timeline-title" class="reveal-on-scroll" style="text-align:center; margin-bottom: clamp(32px, 6vw, 56px);">Legacy in Motion</h2>
         <ul class="story-timeline__list">
-          <li class="story-timeline__item reveal-on-scroll">
+          <li class="story-timeline__item timeline-item reveal-on-scroll">
+            <figure class="timeline-item__media">
+              <img src="/images/story-timeline-1.jpg" alt="GARMR 2023 origins in Sydney gyms" loading="lazy" decoding="async">
+            </figure>
             <span>2023</span>
             <strong>The concept is born in Sydney gyms.</strong>
           </li>
-          <li class="story-timeline__item reveal-on-scroll">
+          <li class="story-timeline__item timeline-item reveal-on-scroll">
+            <figure class="timeline-item__media">
+              <img src="/images/story-timeline-2.jpg" alt="GARMR prototypes tested in 2024" loading="lazy" decoding="async">
+            </figure>
             <span>2024</span>
             <strong>GARMR prototypes tested.</strong>
           </li>
-          <li class="story-timeline__item reveal-on-scroll">
+          <li class="story-timeline__item timeline-item reveal-on-scroll">
+            <figure class="timeline-item__media">
+              <img src="/images/story-timeline-3.jpg" alt="GARMR first collection released in 2025" loading="lazy" decoding="async">
+            </figure>
             <span>2025</span>
             <strong>The first collection: Valyr, Feral Doctrine, Bloomveil, Oathbound.</strong>
           </li>
