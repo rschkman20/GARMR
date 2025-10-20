@@ -42,6 +42,128 @@
       text-align: center;
       scroll-snap-align: start;
     }
+    #journal-preview {
+      background: #0a0a0a;
+      color: #f3f3f3;
+      padding: 60px 1rem;
+      text-align: left;
+    }
+    .journal-preview__inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .journal-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    #journal-preview h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .journal-view-all {
+      font-size: 0.875rem;
+      color: #d7c07a;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .journal-view-all:hover,
+    .journal-card__link:hover .journal-card__cta {
+      text-decoration: underline;
+    }
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 768px) {
+      .journal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 1024px) {
+      .journal-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .journal-card {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 18px;
+      overflow: hidden;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+    .journal-card.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .journal-card__link {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+    .journal-card__media {
+      position: relative;
+      padding-top: 56.25%;
+      overflow: hidden;
+      background: #050505;
+    }
+    .journal-card__media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.6s ease;
+    }
+    .journal-card__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.5rem;
+    }
+    .journal-card__tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #d7c07a;
+    }
+    .journal-card__title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    .journal-card__teaser {
+      margin: 0;
+      color: rgba(243, 243, 243, 0.75);
+      line-height: 1.5;
+    }
+    .journal-card__cta {
+      margin-top: auto;
+      color: #d7c07a;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .journal-card__link:hover .journal-card__media img {
+      transform: scale(1.03);
+      filter: brightness(1.1);
+    }
     .section-anchor {
       position: relative;
       top: -100px;
@@ -1421,6 +1543,56 @@
     </div>
   </section>
 
+  <section id="journal-preview" aria-labelledby="jp-title">
+    <div class="journal-preview__inner">
+      <div class="journal-header">
+        <h2 id="jp-title">Journal</h2>
+        <a class="journal-view-all" href="/journal">View all</a>
+      </div>
+      <div class="journal-grid">
+        <article class="journal-card" data-journal-card>
+          <a class="journal-card__link" href="/journal/inside-the-forge">
+            <div class="journal-card__media">
+              <img src="/public/images/journal/forge-16x9.jpg" alt="Glowing embers reflecting off black leather — metaphor for forging." loading="lazy" decoding="async" width="1920" height="1080">
+            </div>
+            <div class="journal-card__content">
+              <span class="journal-card__tag">Behind the Build</span>
+              <h3 class="journal-card__title">Inside the Forge</h3>
+              <p class="journal-card__teaser">Forged, not made — the myth and method behind our heat.</p>
+              <span class="journal-card__cta">Read more</span>
+            </div>
+          </a>
+        </article>
+        <article class="journal-card" data-journal-card>
+          <a class="journal-card__link" href="/journal/discipline-the-lost-art">
+            <div class="journal-card__media">
+              <img src="/public/images/journal/discipline-16x9.jpg" alt="Lone punching bag under a gold spotlight in a dark gym." loading="lazy" decoding="async" width="1920" height="1080">
+            </div>
+            <div class="journal-card__content">
+              <span class="journal-card__tag">Training Culture</span>
+              <h3 class="journal-card__title">Discipline. The Lost Art</h3>
+              <p class="journal-card__teaser">The quiet work no one sees — why it wins fights and life.</p>
+              <span class="journal-card__cta">Read more</span>
+            </div>
+          </a>
+        </article>
+        <article class="journal-card" data-journal-card>
+          <a class="journal-card__link" href="/journal/the-community-moves">
+            <div class="journal-card__media">
+              <img src="/public/images/journal/community-16x9.jpg" alt="Boxers moving together at dawn through city mist." loading="lazy" decoding="async" width="1920" height="1080">
+            </div>
+            <div class="journal-card__content">
+              <span class="journal-card__tag">Community</span>
+              <h3 class="journal-card__title">The Community Moves</h3>
+              <p class="journal-card__teaser">From sprint clubs to open gyms — strangers into crew.</p>
+              <span class="journal-card__cta">Read more</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <span id="collection" class="section-anchor" aria-hidden="true"></span>
 
   <section id="product" class="product-highlight" data-aos="fade-up">
@@ -1506,6 +1678,21 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
+    const journalCards = document.querySelectorAll('[data-journal-card]');
+    if (journalCards.length) {
+      journalCards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.2}s`;
+      });
+      const journalObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      journalCards.forEach(card => journalObserver.observe(card));
+    }
     const animatedEls = document.querySelectorAll('.fade-in-up, .heading-underline, #waitlist, #waitlist .divider, .manifesto-link');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
