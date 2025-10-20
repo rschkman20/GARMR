@@ -1,5 +1,539 @@
 <!DOCTYPE html>
-<html>
-  <head><title>Collection – GARMR</title></head>
-  <body><h1>Collection page working</h1></body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collection – GARMR</title>
+  <meta name="description" content="Explore GARMR's limited glove collection. Forged for purpose with luxury craft.">
+  <meta property="og:title" content="GARMR Boxing Gloves">
+  <meta property="og:description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="hero.css">
+  <style>
+    :root {
+      --gold: #c8a652;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="4" fill="%23c8a652"/></svg>'), auto;
+    }
+    h1, h2, h3 {
+      font-family: 'DM Serif Display', serif;
+      margin: 0 0 1rem;
+      letter-spacing: 1px;
+    }
+    section {
+      padding: 4rem 1rem;
+      text-align: center;
+      scroll-snap-align: start;
+    }
+    .section-anchor {
+      position: relative;
+      top: -100px;
+      display: block;
+      height: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    .product-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .product-card:hover .overlay {
+      opacity: 1;
+    }
+    footer {
+      background: #000;
+      color: var(--gold);
+      padding: 2rem 0;
+      font-size: 0.875rem;
+    }
+    footer a {
+      color: var(--gold);
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+    .product-highlight {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+      text-align: left;
+    }
+    .product-image {
+      flex: 1;
+    }
+    .product-image img {
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      transition: transform 0.4s;
+    }
+    body {
+      background: #0a0a0a;
+      color: #f3f3f3;
+    }
+    .collection-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: calc(var(--header-h) + 24px) 20px 48px;
+      padding-top: calc(var(--header-h) + 24px + env(safe-area-inset-top));
+      background: linear-gradient(180deg, #0a0a0a 0%, #0b0b0b 100%);
+      text-align: left;
+    }
+    .collection-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(215, 192, 122, 0.08), transparent 55%), radial-gradient(circle at 70% 70%, rgba(215, 192, 122, 0.04), transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .collection-hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .collection-hero__title {
+      font-size: clamp(36px, 5vw, 52px);
+      color: #f3f3f3;
+    }
+    .collection-hero__subline {
+      margin: 0;
+      font-size: 1.05rem;
+      max-width: 540px;
+      color: rgba(243, 243, 243, 0.78);
+    }
+    .collection-hero__breadcrumb {
+      margin: 6px 0 0;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d7c07a;
+    }
+    .collection-main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+    .collection-toolbar,
+    #collection-grid {
+      padding: 0;
+      text-align: left;
+    }
+    .collection-toolbar {
+      padding: 40px 0 0;
+    }
+    .collection-toolbar__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .collection-toolbar__group {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #d7c07a;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .collection-toolbar__group label {
+      color: #d7c07a;
+    }
+    .collection-select {
+      appearance: none;
+      background: #111;
+      border: 1px solid rgba(215, 192, 122, 0.4);
+      border-radius: 8px;
+      color: #f3f3f3;
+      padding: 10px 36px 10px 14px;
+      font-size: 0.95rem;
+      min-width: 180px;
+      position: relative;
+      background-image: linear-gradient(45deg, transparent 50%, rgba(215,192,122,0.6) 50%), linear-gradient(135deg, rgba(215,192,122,0.6) 50%, transparent 50%);
+      background-position: calc(100% - 20px) calc(50% - 4px), calc(100% - 14px) calc(50% - 4px);
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+    }
+    .collection-select:focus {
+      outline: 2px solid #d7c07a;
+      outline-offset: 2px;
+    }
+    .collection-select option {
+      background: #0a0a0a;
+      color: #f3f3f3;
+    }
+    .collection-grid__intro {
+      margin: 0 0 44px;
+    }
+    #collection-grid {
+      margin-top: 44px;
+    }
+    .collection-grid__list {
+      display: grid;
+      gap: 16px;
+    }
+    .p-card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+    .p-card__media {
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #0b0b0b;
+    }
+    .p-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.15s ease, filter 0.15s ease;
+      display: block;
+    }
+    @media (hover:hover) {
+      .p-card:hover .p-card__media img {
+        transform: scale(1.02);
+        filter: brightness(1.06);
+      }
+    }
+    .p-card__body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .p-card__tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d7c07a;
+      margin: 0;
+    }
+    .p-card__title {
+      margin: 0;
+      font-size: 1.15rem;
+      color: #f3f3f3;
+    }
+    .p-card__price {
+      margin: 0;
+      font-size: 1rem;
+      color: rgba(243, 243, 243, 0.86);
+    }
+    .p-card__cta {
+      margin-top: 12px;
+      align-self: flex-start;
+    }
+    .is-hidden {
+      display: none !important;
+    }
+    .btn.btn-outline {
+      min-height: 44px;
+    }
+    @media (min-width: 640px) {
+      .collection-toolbar__inner {
+        flex-wrap: nowrap;
+      }
+      .collection-grid__list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .collection-grid__list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+    }
+    @media (max-width: 640px) {
+      .collection-hero {
+        padding: 40px 20px;
+      }
+      .collection-toolbar__inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .collection-toolbar__group {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .collection-select {
+        width: 100%;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Fenrir Mk I",
+          "url": "https://garmr.com/products/fenrir-mk-i.html",
+          "item": {
+            "@type": "Product",
+            "name": "Fenrir Mk I",
+            "offers": {
+              "@type": "Offer",
+              "price": "189",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Fenrir Mk II",
+          "url": "https://garmr.com/products/fenrir-mk-ii.html",
+          "item": {
+            "@type": "Product",
+            "name": "Fenrir Mk II",
+            "offers": {
+              "@type": "Offer",
+              "price": "219",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Fenrir Shadow",
+          "url": "https://garmr.com/products/fenrir-shadow.html",
+          "item": {
+            "@type": "Product",
+            "name": "Fenrir Shadow",
+            "offers": {
+              "@type": "Offer",
+              "price": "199",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Fenrir Heritage",
+          "url": "https://garmr.com/products/fenrir-heritage.html",
+          "item": {
+            "@type": "Product",
+            "name": "Fenrir Heritage",
+            "offers": {
+              "@type": "Offer",
+              "price": "229",
+              "priceCurrency": "USD"
+            }
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <nav class="nav">
+      <a href="collection.html">Collection</a>
+      <a href="#about">About</a>
+      <a href="#story">Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
+      <a class="btn btn-gold" href="collection.html">Shop</a>
+    </div>
+  </header>
+
+  <section class="collection-hero" aria-labelledby="collection-title">
+    <div class="hero-bg texture" aria-hidden="true"></div>
+    <div class="hero-bg vignette" aria-hidden="true"></div>
+    <div class="hero-bg gold-glow" aria-hidden="true"></div>
+    <div class="hero-video" aria-hidden="true"></div>
+    <div class="collection-hero__inner">
+      <h1 id="collection-title" class="collection-hero__title">Collection</h1>
+      <p class="collection-hero__subline">Forged, not made. Limited runs, purpose made.</p>
+      <p class="collection-hero__breadcrumb" aria-label="Breadcrumb">Home / Collection</p>
+    </div>
+  </section>
+
+  <main class="collection-main">
+    <section class="collection-toolbar" aria-label="Filter and sort collection">
+      <div class="collection-toolbar__inner">
+        <div class="collection-toolbar__group">
+          <label for="collection-filter">Filter:</label>
+          <select id="collection-filter" class="collection-select" aria-label="Filter by category">
+            <option value="all">All</option>
+            <option value="gloves">Gloves</option>
+          </select>
+        </div>
+        <div class="collection-toolbar__group">
+          <label for="collection-sort">Sort:</label>
+          <select id="collection-sort" class="collection-select" aria-label="Sort collection">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low→High</option>
+            <option value="high">Price: High→Low</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section id="collection-grid" aria-label="GARMR glove collection">
+      <div class="collection-grid__list">
+        <article class="p-card" data-category="gloves" data-price="189">
+          <a class="p-card__media" href="/products/fenrir-mk-i.html">
+            <img src="/images/glove-1.jpg" alt="Fenrir Mk I boxing gloves in black and gold" loading="lazy" decoding="async">
+          </a>
+          <div class="p-card__body">
+            <p class="p-card__tag">Limited</p>
+            <h3 class="p-card__title">Fenrir Mk I</h3>
+            <p class="p-card__price">$189</p>
+            <a class="btn btn-outline p-card__cta" href="/products/fenrir-mk-i.html">View details</a>
+          </div>
+        </article>
+        <article class="p-card" data-category="gloves" data-price="219">
+          <a class="p-card__media" href="/products/fenrir-mk-ii.html">
+            <img src="/images/glove-2.jpg" alt="Fenrir Mk II boxing gloves with titanium accents" loading="lazy" decoding="async">
+          </a>
+          <div class="p-card__body">
+            <p class="p-card__tag">New</p>
+            <h3 class="p-card__title">Fenrir Mk II</h3>
+            <p class="p-card__price">$219</p>
+            <a class="btn btn-outline p-card__cta" href="/products/fenrir-mk-ii.html">View details</a>
+          </div>
+        </article>
+        <article class="p-card" data-category="gloves" data-price="199">
+          <a class="p-card__media" href="/products/fenrir-shadow.html">
+            <img src="/images/glove-3.jpg" alt="Fenrir Shadow boxing gloves in matte black" loading="lazy" decoding="async">
+          </a>
+          <div class="p-card__body">
+            <p class="p-card__tag">—</p>
+            <h3 class="p-card__title">Fenrir Shadow</h3>
+            <p class="p-card__price">$199</p>
+            <a class="btn btn-outline p-card__cta" href="/products/fenrir-shadow.html">View details</a>
+          </div>
+        </article>
+        <article class="p-card" data-category="gloves" data-price="229">
+          <a class="p-card__media" href="/products/fenrir-heritage.html">
+            <img src="/images/glove-4.jpg" alt="Fenrir Heritage boxing gloves with vintage finish" loading="lazy" decoding="async">
+          </a>
+          <div class="p-card__body">
+            <p class="p-card__tag">—</p>
+            <h3 class="p-card__title">Fenrir Heritage</h3>
+            <p class="p-card__price">$229</p>
+            <a class="btn btn-outline p-card__cta" href="/products/fenrir-heritage.html">View details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
+        <a href="#">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
+  </footer>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filter = document.getElementById('collection-filter'),
+        sort = document.getElementById('collection-sort'),
+        container = document.querySelector('#collection-grid .collection-grid__list'),
+        cards = Array.from(container.children),
+        original = cards.slice();
+      const applyFilter = () => {
+        const value = filter.value;
+        cards.forEach(card => card.classList.toggle('is-hidden', !(value === 'all' || card.dataset.category === value)));
+      };
+      const applySort = () => {
+        const value = sort.value;
+        (value === 'featured' ? original : [...cards].sort((a, b) => value === 'low' ? +a.dataset.price - +b.dataset.price : +b.dataset.price - +a.dataset.price))
+          .forEach(card => container.appendChild(card));
+        applyFilter();
+      };
+      filter.addEventListener('change', applyFilter);
+      sort.addEventListener('change', applySort);
+      applyFilter();
+    });
+  </script>
+  <script>
+    (function() {
+      const hdr = document.querySelector('header.site-header');
+      function setHeaderH() {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+      setHeaderH();
+      window.addEventListener('resize', setHeaderH, { passive: true });
+    })();
+  </script>
+</body>
 </html>

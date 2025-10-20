@@ -1324,14 +1324,14 @@
   <header class="site-header">
     <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
     <nav class="nav">
-      <a href="/collection.html">Collection</a>
+      <a href="collection.html">Collection</a>
       <a href="#about">About</a>
       <a href="#story">Story</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
       <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
-      <a class="btn btn-gold" href="#shop">Shop</a>
+      <a class="btn btn-gold" href="collection.html">Shop</a>
     </div>
   </header>
 
@@ -1348,7 +1348,7 @@
       <p class="hero-sub">Where heritage meets combat.</p>
       <p class="hero-clarifier">Premium combat-inspired apparel for warriors in and out of the ring.</p>
       <div class="hero-ctas">
-        <a class="btn btn-gold btn-lg" href="/collection.html">Shop Now</a>
+        <a class="btn btn-gold btn-lg" href="collection.html">Shop Now</a>
         <a class="btn btn-outline btn-lg" href="#waitlist">Join Waitlist</a>
       </div>
     </div>
@@ -1411,7 +1411,7 @@
         <span>4.8 average rating from 1,240 customers · Community 10,000+ strong</span>
       </div>
       <div class="cta-row" role="group" aria-label="Why GARMR calls to action">
-        <a class="btn-primary-outline shimmer-border" href="/collection.html" aria-label="Discover the GARMR collection">Discover the collection</a>
+        <a class="btn-primary-outline shimmer-border" href="collection.html" aria-label="Discover the GARMR collection">Discover the collection</a>
         <a class="manifesto-link" href="#story" aria-label="Read the GARMR manifesto">Read the manifesto</a>
       </div>
       <div class="founder-note">
@@ -1838,6 +1838,18 @@
       });
     }, { threshold: 0.6 });
     productObserver.observe(productSection);
+  </script>
+  <script>
+    (function() {
+      const hdr = document.querySelector('header.site-header');
+      function setHeaderH() {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+      setHeaderH();
+      window.addEventListener('resize', setHeaderH, { passive: true });
+    })();
   </script>
 </body>
 </html>
