@@ -123,6 +123,8 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
+      padding: calc(var(--header-h) + 24px) 20px 48px;
+      padding-top: calc(var(--header-h) + 24px + env(safe-area-inset-top));
       padding: 64px 20px;
       background: linear-gradient(180deg, #0a0a0a 0%, #0b0b0b 100%);
       text-align: left;
@@ -521,6 +523,18 @@
       sort.addEventListener('change', applySort);
       applyFilter();
     });
+  </script>
+  <script>
+    (function() {
+      const hdr = document.querySelector('header.site-header');
+      function setHeaderH() {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+      setHeaderH();
+      window.addEventListener('resize', setHeaderH, { passive: true });
+    })();
   </script>
 </body>
 </html>
