@@ -240,21 +240,30 @@
       transition: transform 0.2s ease;
     }
     .p-card__media {
+      position: relative;
       display: block;
       overflow: hidden;
-      aspect-ratio: 16 / 9;
-      background: #0b0b0b;
+      aspect-ratio: 1 / 1;
+      background: #000;
+      border-bottom: 1px solid #1f1f1f;
     }
     .p-card__media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.15s ease, filter 0.15s ease;
+      object-fit: contain;
       display: block;
+      transform: none;
+      transition: filter 0.15s ease;
+    }
+    .p-card__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 90% at 50% 10%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.25) 100%);
+      pointer-events: none;
     }
     @media (hover:hover) {
       .p-card:hover .p-card__media img {
-        transform: scale(1.02);
         filter: brightness(1.06);
       }
     }
@@ -263,6 +272,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      min-height: 180px;
     }
     .p-card__tag {
       font-size: 0.72rem;
@@ -444,7 +454,7 @@
       <div class="collection-grid__list">
         <article class="p-card" data-category="gloves" data-price="189" data-new="false" data-handle="valyr">
           <a class="p-card__media" href="/products/valyr.html">
-            <img src="/images/Valyr.png" alt="GARMR: Valyr — cream gloves with calligraphic dancer motifs" loading="lazy" decoding="async" style="aspect-ratio:16/9; width:100%; height:auto; object-fit:cover;">
+            <img src="/images/Valyr.png" alt="GARMR: Valyr — cream gloves with calligraphic dancer motifs" loading="lazy" decoding="async">
           </a>
           <div class="p-card__body">
             <p class="p-card__tag">LIMITED</p>
@@ -455,7 +465,7 @@
         </article>
         <article class="p-card" data-category="gloves" data-price="219" data-new="true" data-handle="feral-doctrine">
           <a class="p-card__media" href="/products/feral-doctrine.html">
-            <img src="/images/Feral%20Doctrine.png" alt="GARMR: Feral Doctrine — graffiti skull and scrawled creed ‘No gods. No chains.’" loading="lazy" decoding="async" style="aspect-ratio:16/9; width:100%; height:auto; object-fit:cover;">
+            <img src="/images/Feral%20Doctrine.png" alt="GARMR: Feral Doctrine — graffiti skull and scrawled creed ‘No gods. No chains.’" loading="lazy" decoding="async">
           </a>
           <div class="p-card__body">
             <p class="p-card__tag">NEW</p>
@@ -466,7 +476,7 @@
         </article>
         <article class="p-card" data-category="gloves" data-price="199" data-new="false" data-handle="bloomveil">
           <a class="p-card__media" href="/products/bloomveil.html">
-            <img src="/images/Bloomveil.png" alt="GARMR: Bloomveil — soft floral embossing on cream leather" loading="lazy" decoding="async" style="aspect-ratio:16/9; width:100%; height:auto; object-fit:cover;">
+            <img src="/images/Bloomveil.png" alt="GARMR: Bloomveil — soft floral embossing on cream leather" loading="lazy" decoding="async">
           </a>
           <div class="p-card__body">
             <p class="p-card__tag">—</p>
@@ -477,7 +487,7 @@
         </article>
         <article class="p-card" data-category="gloves" data-price="229" data-new="false" data-handle="oathbound">
           <a class="p-card__media" href="/products/oathbound.html">
-            <img src="/images/Oathbound.png" alt="GARMR: Oathbound — faint script inscriptions across aged leather" loading="lazy" decoding="async" style="aspect-ratio:16/9; width:100%; height:auto; object-fit:cover;">
+            <img src="/images/Oathbound.png" alt="GARMR: Oathbound — faint script inscriptions across aged leather" loading="lazy" decoding="async">
           </a>
           <div class="p-card__body">
             <p class="p-card__tag">—</p>
