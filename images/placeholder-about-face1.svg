@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="800" viewBox="0 0 640 800" role="img" aria-labelledby="title desc">
+  <title id="title">GARMR face placeholder 01</title>
+  <desc id="desc">A dark portrait style placeholder with a gold diagonal accent and the number 01.</desc>
+  <defs>
+    <linearGradient id="face1-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#151515" />
+      <stop offset="100%" stop-color="#090909" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="800" fill="url(#face1-bg)" />
+  <g opacity="0.3">
+    <path d="M0 560 L640 320 V480 L0 720 Z" fill="#d7c07a" />
+  </g>
+  <rect x="40" y="60" width="560" height="680" rx="48" ry="48" fill="none" stroke="#1f1f1f" stroke-width="4" />
+  <g fill="#d7c07a">
+    <text x="64" y="140" font-family="'Cinzel', 'DM Serif Display', serif" font-size="64" letter-spacing="6" textLength="260">GARMR</text>
+    <text x="64" y="220" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="28" letter-spacing="2">FACE 01</text>
+  </g>
+  <text x="64" y="320" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#f3f3f3" opacity="0.8" letter-spacing="1.4">discipline over spectacle</text>
+  <text x="64" y="366" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#f3f3f3" opacity="0.8" letter-spacing="1.4">legacy in repetition</text>
+  <text x="64" y="412" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#f3f3f3" opacity="0.75" letter-spacing="1.4">purpose in every stitch</text>
+  <text x="64" y="458" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#f3f3f3" opacity="0.75" letter-spacing="1.4">community forged, not found</text>
+</svg>

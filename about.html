@@ -265,76 +265,65 @@
     .about-craft__row--reverse .about-craft__text {
       text-align: left;
     }
-    #about-timeline {
+    #about-faces {
       padding-top: 96px;
       padding-bottom: 96px;
     }
-    .about-timeline {
-      position: relative;
-      padding: 20px 0;
+    .about-faces__header {
+      max-width: 620px;
+      margin: 0 auto 48px;
+      text-align: center;
     }
-    .about-timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      background: var(--gold);
-      transform: translateX(-50%);
-      opacity: 0.6;
+    .about-faces__header p {
+      color: rgba(243, 243, 243, 0.78);
     }
-    .about-timeline__item {
-      position: relative;
+    .about-faces__grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 40px;
-      align-items: center;
-      padding: 32px 0;
+      gap: 24px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .about-timeline__item::before {
+    .face-card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 16px;
+      padding: 28px 24px 32px;
+      display: grid;
+      gap: 18px;
+      position: relative;
+    }
+    .face-card::after {
       content: "";
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--gold);
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 6px rgba(215, 192, 122, 0.15);
+      left: 24px;
+      right: 24px;
+      bottom: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(215, 192, 122, 0.45), transparent);
+      pointer-events: none;
     }
-    .about-timeline__item:nth-child(even) {
-      direction: rtl;
-    }
-    .about-timeline__item:nth-child(even) .about-timeline__content,
-    .about-timeline__item:nth-child(even) .about-timeline__media {
-      direction: ltr;
-    }
-    .about-timeline__content {
-      text-align: right;
-    }
-    .about-timeline__item:nth-child(even) .about-timeline__content {
-      text-align: left;
-    }
-    .about-timeline__content h3 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-    .about-timeline__content p {
+    .face-card figure {
       margin: 0;
-      color: rgba(243, 243, 243, 0.75);
-    }
-    .about-timeline__media {
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
-    .about-timeline__media img {
+    .face-card img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
       display: block;
+    }
+    .face-card h4 {
+      margin: 0;
+      font-family: 'Cinzel', 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .face-card p {
+      margin: 0;
+      color: rgba(243, 243, 243, 0.8);
+      font-size: 0.98rem;
+      line-height: 1.6;
     }
     #about-community {
       padding-top: 96px;
@@ -481,26 +470,8 @@
       .about-creed__content {
         width: 70%;
       }
-    }
-    @media (max-width: 900px) {
-      .about-timeline::before {
-        left: 24px;
-        transform: none;
-      }
-      .about-timeline__item {
-        grid-template-columns: 1fr;
-        padding-left: 48px;
-        gap: 24px;
-      }
-      .about-timeline__item::before {
-        left: 24px;
-        transform: translate(-50%, -50%);
-      }
-      .about-timeline__content {
-        text-align: left;
-      }
-      .about-timeline__item:nth-child(even) {
-        direction: ltr;
+      .about-faces__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
     @media (max-width: 768px) {
@@ -529,6 +500,16 @@
       }
       .about-pillars__grid {
         grid-template-columns: 1fr;
+      }
+      .about-faces__grid {
+        grid-template-columns: 1fr;
+      }
+      .face-card {
+        padding: 24px 20px 32px;
+      }
+      .face-card::after {
+        left: 20px;
+        right: 20px;
       }
       .about-community__gallery figure {
         flex: 1 1 100%;
@@ -656,40 +637,34 @@
       </div>
     </section>
 
-    <section id="about-timeline" aria-labelledby="about-timeline-title">
+    <section id="about-faces" aria-labelledby="about-faces-title">
       <div class="section-inner">
-        <div class="about-pillars__header" data-animate>
-          <h2 id="about-timeline-title">Timeline</h2>
-          <p>The path from concept to collection, forged over years of repetition.</p>
+        <div class="about-faces__header" data-animate>
+          <h2 id="about-faces-title">Faces of GARMR</h2>
+          <p>Three members, three perspectives. Discipline in motion, captured in their own words.</p>
         </div>
-        <div class="about-timeline">
-          <div class="about-timeline__item" data-animate>
-            <div class="about-timeline__content">
-              <h3>2023 — Concept sketches and groundwork.</h3>
-              <p>Initial sketches, material sourcing, and the first prototypes formed under late-night training lights.</p>
-            </div>
-            <figure class="about-timeline__media">
-              <img src="/images/placeholder-about-timeline-1.svg" alt="placeholder timeline image for 2023 groundwork" loading="lazy" decoding="async">
+        <div class="about-faces__grid">
+          <article class="face-card" data-animate>
+            <figure>
+              <img src="/images/placeholder-about-face1.svg" alt="placeholder portrait for GARMR member one" loading="lazy" decoding="async">
             </figure>
-          </div>
-          <div class="about-timeline__item" data-animate>
-            <div class="about-timeline__content">
-              <h3>2024 — Prototypes tested; community sessions.</h3>
-              <p>Beta gloves put through community sessions, every note feeding back into refined patterns and trims.</p>
-            </div>
-            <figure class="about-timeline__media">
-              <img src="/images/placeholder-about-timeline-2.svg" alt="placeholder timeline image for 2024 prototype testing" loading="lazy" decoding="async">
+            <h4>A. Reyes</h4>
+            <p>“Every round is rehearsal for the real thing. GARMR keeps the focus where it belongs.”</p>
+          </article>
+          <article class="face-card" data-animate>
+            <figure>
+              <img src="/images/placeholder-about-face2.svg" alt="placeholder portrait for GARMR member two" loading="lazy" decoding="async">
             </figure>
-          </div>
-          <div class="about-timeline__item" data-animate>
-            <div class="about-timeline__content">
-              <h3>2025 — First collection releases.</h3>
-              <p>The inaugural numbered collection launches with waitlist members and gym partners worldwide.</p>
-            </div>
-            <figure class="about-timeline__media">
-              <img src="/images/placeholder-about-timeline-3.svg" alt="placeholder timeline image for 2025 collection release" loading="lazy" decoding="async">
+            <h4>M. Cho</h4>
+            <p>“We show up before sunrise and stay after the lights cut. The gear has to hold the line.”</p>
+          </article>
+          <article class="face-card" data-animate>
+            <figure>
+              <img src="/images/placeholder-about-face3.svg" alt="placeholder portrait for GARMR member three" loading="lazy" decoding="async">
             </figure>
-          </div>
+            <h4>L. Hart</h4>
+            <p>“Legacy is built in the quiet reps. Every stitch reminds me of why we started.”</p>
+          </article>
         </div>
       </div>
     </section>
