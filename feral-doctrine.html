@@ -33,14 +33,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    }
-    body {
-      margin: 0;
-      background: #0a0a0a;
-      color: #f3f3f3;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-    }
     h1, h2, h3, h4 {
       font-family: 'Cinzel', serif;
       letter-spacing: 0.05em;
@@ -49,7 +41,7 @@
 
     p {
       margin: 0 0 1rem;
-      color: rgba(243, 243, 243, 0.84);
+      color: #f3f3f3;
     }
 
     a {
@@ -94,7 +86,7 @@
     #product-hero .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2));
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
       pointer-events: none;
       z-index: 1;
     }
@@ -102,6 +94,7 @@
     #product-hero .meta {
       position: relative;
       z-index: 2;
+      color: #f3f3f3;
       max-width: 640px;
       padding: 0 20px;
     }
@@ -504,70 +497,6 @@
         transform: none;
         box-shadow: none;
       }
-    a {
-      color: #d7c07a;
-    }
-    a:hover {
-      color: #e6d6a3;
-    }
-    main {
-      background: #0a0a0a;
-    }
-    p {
-      margin: 0 0 1rem;
-      color: rgba(243, 243, 243, 0.84);
-    }
-    .p-wrap {max-width:1180px;margin:0 auto;padding:0 20px;}
-    #product-hero {position:relative;padding-top:calc(var(--header-h) + 24px);padding-bottom:24px;}
-    #product-hero .p-wrap {text-align:center;}
-    .hero-media {aspect-ratio:3/2;width:100%;height:auto;object-fit:cover;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.45);}
-    #product-hero .meta {position:relative;margin-top:20px;}
-    #product-hero .meta h1 {font-size: clamp(2.6rem, 5vw, 3.6rem); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;}
-    #product-hero .meta .sub {font-size:1rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(215,192,122,0.86);margin-bottom:0.75rem;}
-    .price {color:#d7c07a;font-weight:600;margin:.25rem 0 1rem;font-size:1.2rem;letter-spacing:0.08em;}
-    #product-origin h2,
-    #product-craft h2,
-    #product-gallery h2,
-    #product-specs h2,
-    #product-cta h2 {font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; text-align: center;}
-    #product-origin h2 {text-align: left;}
-    #product-origin .two-col > div:first-child {text-align: left;}
-    .btn-row {display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-    .btn-row a {display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.6rem;border-radius:999px;font-weight:600;letter-spacing:0.06em;text-decoration:none;text-transform:uppercase;font-size:0.85rem;}
-    .btn-row .btn-gold {border:1px solid #d7c07a;padding:.8rem 1.2rem;border-radius:999px;color:#0a0a0a;background:#d7c07a;}
-    .btn-row .btn-outline {border:1px solid #d7c07a;padding:.8rem 1.2rem;border-radius:999px;color:#d7c07a;background:transparent;}
-    #product-origin, #product-craft, #product-gallery, #product-specs, #product-cta {padding:56px 0;}
-    #product-origin {background:linear-gradient(180deg, rgba(16,16,16,0.92), rgba(10,10,10,0.98));}
-    #product-craft {background:#0f0f0f;}
-    #product-craft .p-wrap {text-align: center;}
-    #product-craft .feature-grid {margin-top: 28px; text-align: left;}
-    #product-gallery {background:linear-gradient(180deg, rgba(10,10,10,0.98), rgba(16,16,16,0.92));}
-    #product-specs {background:#0f0f0f;}
-    #product-cta {background:#0a0a0a;text-align:center;}
-    .two-col {display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;}
-    .two-col img {width:100%;height:auto;object-fit:cover;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,0.5);}
-    .feature-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .feature {background:#111;border:1px solid #1f1f1f;border-radius:12px;padding:20px;}
-    .feature h3 {font-size:1.15rem;}
-    .feature p {margin:0;color:rgba(243,243,243,0.78);font-size:0.95rem;}
-    .gal {display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    .gal img {aspect-ratio:16/9;width:100%;height:auto;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.45);}
-    table.specs {width:100%;border-collapse:collapse;}
-    table.specs td {padding:12px 8px;border-bottom:1px solid #1f1f1f;}
-    table.specs td:first-child {color:#bfbfbf;width:34%;text-transform:uppercase;letter-spacing:0.08em;font-size:0.8rem;}
-    #product-cta p {margin:0 0 1.2rem;}
-    #product-cta .btn-row {justify-content:center;}
-    #product-cta .btn-row a {min-width:200px;}
-    @media (max-width: 900px) {
-      .feature-grid {grid-template-columns:1fr;}
-    }
-    @media (max-width: 768px) {
-      .two-col {grid-template-columns:1fr;}
-    }
-    @media (max-width: 640px) {
-      #product-hero .meta h1 {font-size:2rem;}
-      .btn-row {flex-direction:column;}
-      .btn-row a {width:100%;}
     }
   </style>
   <script type="application/ld+json">
@@ -635,26 +564,6 @@
           <p data-animate>Raw energy meets discipline. Scribbled defiance, contained by structure. Feral Doctrine is our oath to courage in the chaos.</p>
         </div>
         <div class="origin-media" data-animate>
-      <div class="p-wrap">
-        <img class="hero-media" src="/images/Feral%20Doctrine.png" alt="GARMR Feral Doctrine boxing gloves — graffiti skull and creed" loading="lazy" decoding="async">
-        <div class="meta">
-          <h1>GARMR: Feral Doctrine</h1>
-          <p class="sub">No gods. No chains.</p>
-          <p class="price">$219</p>
-          <div class="btn-row">
-            <a href="/waitlist.html" class="btn-gold">Join Waitlist</a>
-            <a href="/collection.html" class="btn-outline">Explore Collection</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="product-origin">
-      <div class="p-wrap two-col">
-        <div>
-          <h2>The Origin</h2>
-          <p>Raw energy meets discipline. Scribbled defiance, contained by structure. Feral Doctrine is our oath to courage in the chaos.</p>
-        </div>
-        <div>
           <img src="/images/Feral%20Doctrine.png" alt="Feral Doctrine detail view" loading="lazy" decoding="async">
         </div>
       </div>
@@ -673,19 +582,6 @@
             <p>Graffiti-grade clarity that resists fade.</p>
           </div>
           <div class="feature" data-animate>
-    <section id="product-craft">
-      <div class="p-wrap">
-        <h2>The Craft</h2>
-        <div class="feature-grid">
-          <div class="feature">
-            <h3>Reinforced seams</h3>
-            <p>Locked stitching throughout to brace the assault.</p>
-          </div>
-          <div class="feature">
-            <h3>High-res print process</h3>
-            <p>Graffiti-grade clarity that resists fade.</p>
-          </div>
-          <div class="feature">
             <h3>Moisture-resistant lining</h3>
             <p>Interior barrier keeps grip secure under heat.</p>
           </div>
@@ -707,19 +603,6 @@
     <section id="product-specs">
       <div class="p-wrap">
         <h2 data-animate>Specifications</h2>
-    <section id="product-gallery">
-      <div class="p-wrap">
-        <h2>Gallery</h2>
-        <div class="gal">
-          <img src="/images/Feral%20Doctrine.png" alt="Feral Doctrine back panel art" loading="lazy" decoding="async">
-          <img src="/images/Feral%20Doctrine.png" alt="Feral Doctrine strap and sigil" loading="lazy" decoding="async">
-          <img src="/images/Feral%20Doctrine.png" alt="Feral Doctrine overall stance" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </section>
-    <section id="product-specs">
-      <div class="p-wrap">
-        <h2>Specifications</h2>
         <table class="specs">
           <tbody>
             <tr>
@@ -756,11 +639,6 @@
         <h2 data-animate>Take the Oath.</h2>
         <p data-animate>Join the waitlist to access limited runs first.</p>
         <div class="btn-row" data-animate>
-    <section id="product-cta">
-      <div class="p-wrap">
-        <h2>Take the Oath.</h2>
-        <p>Join the waitlist to access limited runs first.</p>
-        <div class="btn-row">
           <a href="/waitlist.html" class="btn-gold">Join Waitlist</a>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
         </div>
@@ -810,12 +688,6 @@
         initAnimations();
       });
 
-      function setHeaderH() {
-        if (!hdr) return;
-        const h = Math.ceil(hdr.getBoundingClientRect().height);
-        document.documentElement.style.setProperty('--header-h', h + 'px');
-      }
-      setHeaderH();
       window.addEventListener('resize', setHeaderH, { passive: true });
     })();
   </script>
