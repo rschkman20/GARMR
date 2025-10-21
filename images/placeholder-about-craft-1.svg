@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title>GARMR craft materials placeholder</title>
+  <desc>Geometric pattern placeholder representing materials and precision craft.</desc>
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M0 0h80v80H0z" fill="#0f0f0f" />
+      <path d="M0 0l80 80M80 0L0 80" stroke="#1e1e1e" stroke-width="2" opacity="0.65" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grid)" />
+  <rect width="1200" height="800" fill="rgba(7,7,7,0.35)" />
+  <g fill="#d7c07a" font-family="'Cinzel', serif" font-size="80" text-anchor="middle" letter-spacing="10">
+    <text x="600" y="360">CRAFT</text>
+    <text x="600" y="460">&amp; MATERIALS</text>
+  </g>
+</svg>
