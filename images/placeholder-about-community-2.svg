@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-labelledby="title desc">
+  <title>GARMR community placeholder two</title>
+  <desc>Square placeholder featuring angular lines for training intensity.</desc>
+  <defs>
+    <linearGradient id="community2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090909" />
+      <stop offset="100%" stop-color="#161616" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="700" fill="url(#community2)" />
+  <g fill="none" stroke="#d7c07a" stroke-width="10" opacity="0.55">
+    <path d="M120 580L580 120" />
+    <path d="M160 620L620 160" />
+    <path d="M80 500L500 80" />
+  </g>
+  <text x="70" y="640" fill="#d7c07a" font-family="'Inter', sans-serif" font-size="48" letter-spacing="6">TRAIN</text>
+</svg>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – GARMR</title>
+  <meta name="description" content="Discover the creed, craft, and community that define GARMR. Forged for those who endure.">
+  <meta property="og:title" content="GARMR Boxing Gloves">
+  <meta property="og:description" content="Premium black and gold leather boxing gloves. Built for the ruthless.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="hero.css">
+  <style>
+    :root {
+      --gold: #d7c07a;
+      --page-bg: #0a0a0a;
+      --page-text: #f3f3f3;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-h);
+    }
+    body.about-page {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--page-bg);
+      color: var(--page-text);
+      line-height: 1.65;
+    }
+    h1, h2, h3 {
+      font-family: 'Cinzel', 'DM Serif Display', serif;
+      letter-spacing: 0.04em;
+      margin: 0 0 0.75rem;
+    }
+    p {
+      margin: 0 0 1.25rem;
+    }
+    a {
+      color: inherit;
+    }
+    section {
+      padding: 80px 0;
+      position: relative;
+    }
+    .section-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section-anchor {
+      position: relative;
+      top: calc(var(--header-h) * -1);
+      display: block;
+      height: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+      will-change: opacity, transform;
+    }
+    [data-animate].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .button-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .button-group .btn {
+      min-height: 44px;
+    }
+    .button-group .btn.btn-lg {
+      padding-inline: 24px;
+    }
+    #about-hero {
+      padding-top: calc(var(--header-h) + 24px);
+      padding-bottom: 96px;
+      position: relative;
+      overflow: hidden;
+      min-height: clamp(520px, 70vw, 640px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      isolation: isolate;
+    }
+    #about-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 10, 0.7) 0%, rgba(10, 10, 10, 0.55) 55%, rgba(10, 10, 10, 0.4) 100%);
+      z-index: -1;
+    }
+    .about-hero__media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+    }
+    .about-hero__media img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      display: block;
+    }
+    .about-hero__content {
+      max-width: 720px;
+      padding: 0 20px;
+    }
+    .about-hero__content h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      text-transform: uppercase;
+    }
+    .about-hero__content p {
+      font-size: 1.1rem;
+      color: rgba(243, 243, 243, 0.85);
+      margin-bottom: 28px;
+    }
+    .about-hero__actions {
+      justify-content: center;
+    }
+    #about-creed {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-creed__content {
+      width: 50%;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .about-creed__content h2 {
+      font-size: clamp(30px, 4vw, 44px);
+    }
+    .about-creed__lines {
+      display: grid;
+      gap: 16px;
+      font-size: 1.1rem;
+    }
+    .about-creed__lines p {
+      position: relative;
+      margin: 0;
+      padding-bottom: 10px;
+    }
+    .about-creed__lines p:first-child::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 72px;
+      height: 1px;
+      background: var(--gold);
+    }
+    #about-origins {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-origins__inner {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+    .about-origins__content {
+      flex: 1;
+    }
+    .about-origins__content p {
+      color: rgba(243, 243, 243, 0.85);
+    }
+    .about-origins__signature {
+      margin-top: 20px;
+      font-style: italic;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+    .about-origins__media {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+    .about-origins__media img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+    }
+    #about-pillars {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-pillars__header {
+      max-width: 600px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+    .about-pillars__grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .pillar-card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      display: grid;
+      gap: 12px;
+    }
+    .pillar-card p {
+      margin: 0;
+      color: rgba(243, 243, 243, 0.78);
+    }
+    #about-craft {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-craft__row {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+    .about-craft__row:last-of-type {
+      margin-bottom: 0;
+    }
+    .about-craft__media {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+    .about-craft__media img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      display: block;
+    }
+    .about-craft__text {
+      flex: 1;
+    }
+    .about-craft__text h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin-bottom: 16px;
+    }
+    .about-craft__list {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+      color: rgba(243, 243, 243, 0.85);
+    }
+    .about-craft__row--reverse {
+      flex-direction: row-reverse;
+    }
+    .about-craft__row--reverse .about-craft__text {
+      text-align: left;
+    }
+    #about-timeline {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    .about-timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--gold);
+      transform: translateX(-50%);
+      opacity: 0.6;
+    }
+    .about-timeline__item {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+      align-items: center;
+      padding: 32px 0;
+    }
+    .about-timeline__item::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 6px rgba(215, 192, 122, 0.15);
+    }
+    .about-timeline__item:nth-child(even) {
+      direction: rtl;
+    }
+    .about-timeline__item:nth-child(even) .about-timeline__content,
+    .about-timeline__item:nth-child(even) .about-timeline__media {
+      direction: ltr;
+    }
+    .about-timeline__content {
+      text-align: right;
+    }
+    .about-timeline__item:nth-child(even) .about-timeline__content {
+      text-align: left;
+    }
+    .about-timeline__content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .about-timeline__content p {
+      margin: 0;
+      color: rgba(243, 243, 243, 0.75);
+    }
+    .about-timeline__media {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .about-timeline__media img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+    #about-community {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-community__inner {
+      display: grid;
+      gap: 32px;
+    }
+    .about-community__text {
+      max-width: 680px;
+    }
+    .about-community__text p {
+      color: rgba(243, 243, 243, 0.82);
+    }
+    .about-community__gallery {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .about-community__gallery figure {
+      flex: 1;
+      min-width: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0;
+    }
+    .about-community__gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+    }
+    #about-testimonials {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-testimonials__grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .testimonial-card {
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 24px;
+      background: #0f0f0f;
+      display: grid;
+      gap: 16px;
+    }
+    .testimonial-card p {
+      margin: 0;
+      color: rgba(243, 243, 243, 0.82);
+    }
+    .testimonial-card cite {
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    #about-faq {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+    .about-faq__items {
+      display: grid;
+      gap: 16px;
+    }
+    details {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      outline: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary::after {
+      content: "+";
+      float: right;
+      transition: transform 0.2s ease;
+      font-weight: 400;
+    }
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    details p {
+      margin: 12px 0 0;
+      color: rgba(243, 243, 243, 0.75);
+    }
+    .about-faq__footer {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: rgba(243, 243, 243, 0.7);
+    }
+    .about-faq__footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    #about-cta {
+      padding-top: 96px;
+      padding-bottom: 100px;
+      text-align: center;
+    }
+    #about-cta h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    #about-cta p {
+      margin-bottom: 32px;
+      color: rgba(243, 243, 243, 0.78);
+    }
+    #about-cta .button-group {
+      justify-content: center;
+    }
+    @media (max-width: 1024px) {
+      .about-pillars__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .about-craft__row {
+        flex-direction: column;
+      }
+      .about-craft__row--reverse {
+        flex-direction: column;
+      }
+      .about-craft__media,
+      .about-craft__text {
+        width: 100%;
+      }
+      .about-origins__inner {
+        flex-direction: column;
+      }
+      .about-origins__content,
+      .about-origins__media {
+        width: 100%;
+      }
+      .about-creed__content {
+        width: 70%;
+      }
+    }
+    @media (max-width: 900px) {
+      .about-timeline::before {
+        left: 24px;
+        transform: none;
+      }
+      .about-timeline__item {
+        grid-template-columns: 1fr;
+        padding-left: 48px;
+        gap: 24px;
+      }
+      .about-timeline__item::before {
+        left: 24px;
+        transform: translate(-50%, -50%);
+      }
+      .about-timeline__content {
+        text-align: left;
+      }
+      .about-timeline__item:nth-child(even) {
+        direction: ltr;
+      }
+    }
+    @media (max-width: 768px) {
+      .about-creed__content {
+        width: 100%;
+      }
+      .about-community__gallery {
+        justify-content: center;
+      }
+      .about-community__gallery figure {
+        flex: 1 1 calc(33.333% - 8px);
+      }
+    }
+    @media (max-width: 640px) {
+      #about-hero {
+        padding-bottom: 72px;
+      }
+      .button-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .button-group .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .about-pillars__grid {
+        grid-template-columns: 1fr;
+      }
+      .about-community__gallery figure {
+        flex: 1 1 100%;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="about-page">
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <nav class="nav">
+      <a href="collection.html">Collection</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="story.html">Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
+      <a class="btn btn-gold" href="collection.html">Shop</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="about-hero">
+      <div class="about-hero__media" aria-hidden="true">
+        <img src="/images/placeholder-about-hero.svg" alt="placeholder hero image for GARMR about page" loading="lazy" decoding="async">
+      </div>
+      <div class="about-hero__content" data-animate>
+        <h1>Forged, Not Made.</h1>
+        <p>GARMR is discipline in material form — designed for those who endure.</p>
+        <div class="button-group about-hero__actions">
+          <a class="btn btn-gold btn-lg" href="#about-creed">Read the Creed</a>
+          <a class="btn btn-outline btn-lg" href="/collection.html">Explore Collection</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-creed" aria-labelledby="about-creed-title">
+      <div class="section-inner">
+        <div class="about-creed__content" data-animate>
+          <h2 id="about-creed-title">The Creed</h2>
+          <div class="about-creed__lines">
+            <p>Discipline over spectacle.</p>
+            <p>Legacy over trend.</p>
+            <p>Purpose over mass-production.</p>
+            <p>Every piece is a statement, not a souvenir.</p>
+            <p>Made for those who choose the harder road.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-origins" aria-labelledby="about-origins-title">
+      <div class="section-inner about-origins__inner">
+        <div class="about-origins__content" data-animate>
+          <h2 id="about-origins-title">Origins</h2>
+          <p>GARMR began in a stripped-down training hall where repetition defined every decision. We built prototypes between rounds, refining each stitch after sparring sessions to ensure they could endure the same punishment we demanded of ourselves.</p>
+          <p>The brand exists to honour the fighters who carve meaning out of discipline. Every drop of sweat and every scar shaped the language of our craft.</p>
+          <p class="about-origins__signature">— R.S.</p>
+        </div>
+        <figure class="about-origins__media" data-animate>
+          <img src="/images/placeholder-about-origins.svg" alt="placeholder editorial image for origins section" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section id="about-pillars" aria-labelledby="about-pillars-title">
+      <div class="section-inner">
+        <div class="about-pillars__header" data-animate>
+          <h2 id="about-pillars-title">Our Pillars</h2>
+          <p>Four anchors shape everything we forge — the non-negotiables behind every release.</p>
+        </div>
+        <div class="about-pillars__grid">
+          <article class="pillar-card" data-animate>
+            <h3>Discipline</h3>
+            <p>We design for repetition, not spectacle.</p>
+          </article>
+          <article class="pillar-card" data-animate>
+            <h3>Craft</h3>
+            <p>Every seam is hand-checked against our own standard of endurance.</p>
+          </article>
+          <article class="pillar-card" data-animate>
+            <h3>Legacy</h3>
+            <p>Pieces are built to outlast trends and to be handed down.</p>
+          </article>
+          <article class="pillar-card" data-animate>
+            <h3>Community</h3>
+            <p>We move with those who show up, train hard, and raise the room.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-craft" aria-labelledby="about-craft-title">
+      <div class="section-inner">
+        <div class="about-craft__row" data-animate>
+          <figure class="about-craft__media">
+            <img src="/images/placeholder-about-craft-1.svg" alt="placeholder studio image of GARMR materials" loading="lazy" decoding="async">
+          </figure>
+          <div class="about-craft__text">
+            <h2 id="about-craft-title">Craft &amp; Materials</h2>
+            <ul class="about-craft__list">
+              <li>Full-grain leathers tempered for flex and longevity.</li>
+              <li>Hand-cut panels for ergonomic fit and controlled break-in.</li>
+              <li>Triple-stitched seams reinforced where stress hits hardest.</li>
+              <li>Finish treatments that resist sweat, abrasion, and travel.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-craft__row about-craft__row--reverse" data-animate>
+          <figure class="about-craft__media">
+            <img src="/images/placeholder-about-craft-2.svg" alt="placeholder image of limited batch production" loading="lazy" decoding="async">
+          </figure>
+          <div class="about-craft__text">
+            <p>Runs stay limited, numbered, and accountable. Every release is logged, tested, and refined with our community so the next drop carries the weight of those who trained before it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-timeline" aria-labelledby="about-timeline-title">
+      <div class="section-inner">
+        <div class="about-pillars__header" data-animate>
+          <h2 id="about-timeline-title">Timeline</h2>
+          <p>The path from concept to collection, forged over years of repetition.</p>
+        </div>
+        <div class="about-timeline">
+          <div class="about-timeline__item" data-animate>
+            <div class="about-timeline__content">
+              <h3>2023 — Concept sketches and groundwork.</h3>
+              <p>Initial sketches, material sourcing, and the first prototypes formed under late-night training lights.</p>
+            </div>
+            <figure class="about-timeline__media">
+              <img src="/images/placeholder-about-timeline-1.svg" alt="placeholder timeline image for 2023 groundwork" loading="lazy" decoding="async">
+            </figure>
+          </div>
+          <div class="about-timeline__item" data-animate>
+            <div class="about-timeline__content">
+              <h3>2024 — Prototypes tested; community sessions.</h3>
+              <p>Beta gloves put through community sessions, every note feeding back into refined patterns and trims.</p>
+            </div>
+            <figure class="about-timeline__media">
+              <img src="/images/placeholder-about-timeline-2.svg" alt="placeholder timeline image for 2024 prototype testing" loading="lazy" decoding="async">
+            </figure>
+          </div>
+          <div class="about-timeline__item" data-animate>
+            <div class="about-timeline__content">
+              <h3>2025 — First collection releases.</h3>
+              <p>The inaugural numbered collection launches with waitlist members and gym partners worldwide.</p>
+            </div>
+            <figure class="about-timeline__media">
+              <img src="/images/placeholder-about-timeline-3.svg" alt="placeholder timeline image for 2025 collection release" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-community" aria-labelledby="about-community-title">
+      <div class="section-inner about-community__inner">
+        <div class="about-community__text" data-animate>
+          <h2 id="about-community-title">Community &amp; Impact</h2>
+          <p>Open mat sessions, film studies, and journal drops keep the circle tight. We invest in the coaches, gyms, and fighters who pour intent into every rep.</p>
+          <p>Our impact is measured in consistency — in the people who keep showing up, pushing harder, and pulling others with them.</p>
+          <div class="button-group">
+            <a class="btn btn-outline" href="/community.html">Join the Movement</a>
+          </div>
+        </div>
+        <div class="about-community__gallery" data-animate>
+          <figure>
+            <img src="/images/placeholder-about-community-1.svg" alt="placeholder community training image one" loading="lazy" decoding="async">
+          </figure>
+          <figure>
+            <img src="/images/placeholder-about-community-2.svg" alt="placeholder community training image two" loading="lazy" decoding="async">
+          </figure>
+          <figure>
+            <img src="/images/placeholder-about-community-3.svg" alt="placeholder community training image three" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-testimonials" aria-labelledby="about-testimonials-title">
+      <div class="section-inner">
+        <div class="about-pillars__header" data-animate>
+          <h2 id="about-testimonials-title">Voices from the Circle</h2>
+          <p>Words from the fighters and coaches who keep us accountable.</p>
+        </div>
+        <div class="about-testimonials__grid">
+          <article class="testimonial-card" data-animate>
+            <p>“GARMR gear holds up to the grind. No frills — just pieces that keep you focused.”</p>
+            <cite>J. Medina, Coach</cite>
+          </article>
+          <article class="testimonial-card" data-animate>
+            <p>“Every drop feels considered. Limited, disciplined, and built for people who actually train.”</p>
+            <cite>K. Doyle, Lightweight</cite>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-faq" aria-labelledby="about-faq-title">
+      <div class="section-inner">
+        <div class="about-pillars__header" data-animate>
+          <h2 id="about-faq-title">FAQ</h2>
+          <p>Quick answers to the essentials. Need more? Reach out anytime.</p>
+        </div>
+        <div class="about-faq__items" data-animate>
+          <details>
+            <summary>How does sizing and fit run?</summary>
+            <p>Our gloves and apparel are tailored for training fit — snug at first, breaking in after a few hard rounds. Refer to each product size chart for exact measurements.</p>
+          </details>
+          <details>
+            <summary>What is your return policy?</summary>
+            <p>Returns are accepted within 30 days on unused items with all tags intact. Initiate a request through your order confirmation.</p>
+          </details>
+          <details>
+            <summary>How do batches and restocks work?</summary>
+            <p>Every release is limited and numbered. Once a batch closes, it does not return — future drops evolve based on community feedback.</p>
+          </details>
+          <details>
+            <summary>How should I care for materials?</summary>
+            <p>Wipe down gear after every session, air dry fully, and condition leather monthly. Avoid direct heat to preserve finish.</p>
+          </details>
+          <details>
+            <summary>Do you offer international shipping?</summary>
+            <p>Yes. Duties are calculated at checkout, and tracking is provided once your order leaves the atelier.</p>
+          </details>
+        </div>
+        <p class="about-faq__footer">Need deeper support? Visit our <a href="/index.html#contact">contact portal</a> for direct assistance.</p>
+      </div>
+    </section>
+
+    <span id="waitlist" class="section-anchor" aria-hidden="true"></span>
+    <span id="contact" class="section-anchor" aria-hidden="true"></span>
+    <section id="about-cta" aria-labelledby="about-cta-title">
+      <div class="section-inner">
+        <h2 id="about-cta-title">Take the Oath.</h2>
+        <p>Commit to the craft. Commit to the legacy. The next drop is reserved for those who move first.</p>
+        <div class="button-group">
+          <a class="btn btn-outline btn-lg" href="/collection.html">Explore Collection</a>
+          <a class="btn btn-gold btn-lg" href="/waitlist.html">Join Waitlist</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
+        <a href="#">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hdr = document.querySelector('header.site-header');
+      const setHeaderHeight = () => {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      };
+      setHeaderHeight();
+      window.addEventListener('resize', setHeaderHeight, { passive: true });
+
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        animatedElements.forEach((el) => observer.observe(el));
+      } else {
+        animatedElements.forEach((el) => el.classList.add('is-visible'));
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" role="img" aria-labelledby="title desc">
+  <title>GARMR community placeholder one</title>
+  <desc>Square placeholder featuring layered rings symbolising community.</desc>
+  <defs>
+    <radialGradient id="community1" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1c160b" />
+      <stop offset="100%" stop-color="#070707" />
+    </radialGradient>
+  </defs>
+  <rect width="700" height="700" fill="#080808" />
+  <rect width="700" height="700" fill="url(#community1)" />
+  <g fill="none" stroke="#d7c07a" stroke-width="12" opacity="0.6">
+    <circle cx="350" cy="350" r="240" />
+    <circle cx="350" cy="350" r="140" />
+  </g>
+  <circle cx="350" cy="350" r="60" fill="#d7c07a" opacity="0.6" />
+</svg>

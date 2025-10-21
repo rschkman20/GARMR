@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title>GARMR origins placeholder</title>
+  <desc>Editorial monochrome portrait style placeholder for the origins section.</desc>
+  <defs>
+    <linearGradient id="origins-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="65%" stop-color="#0c0c0c" />
+      <stop offset="100%" stop-color="#050505" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#origins-bg)" />
+  <g fill="none" stroke="#2a2a2a" stroke-width="4">
+    <path d="M160 160h480v680H160z" />
+    <path d="M220 220h360v560H220z" />
+  </g>
+  <g fill="#d7c07a" font-family="'Cinzel', serif" letter-spacing="6" text-anchor="middle">
+    <text x="400" y="400" font-size="64">GARMR</text>
+    <text x="400" y="480" font-size="42">ORIGINS</text>
+    <text x="400" y="620" font-size="28" fill="#bfa866">FOUNDED IN RITUAL</text>
+  </g>
+</svg>
