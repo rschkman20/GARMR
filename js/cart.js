@@ -2,6 +2,7 @@
   const KEY = 'garmr_cart';
   const $ = (sel,root=document)=>root.querySelector(sel);
   const $$ = (sel,root=document)=>[...root.querySelectorAll(sel)];
+  function on(el, ev, fn){ if(el) el.addEventListener(ev, fn); }
 
   function loadCart(){
     try { return JSON.parse(localStorage.getItem(KEY)) || []; }
@@ -18,6 +19,7 @@
     else { items.push({ id:prod.id, name:prod.name, price:Number(prod.price), img:prod.img, qty:prod.qty||1 }); }
     saveCart(items);
     updateCountBadge();
+    renderMiniCart();
     toast(`${prod.name} added to cart`);
   }
   function updateQty(id, qty){
@@ -121,14 +123,16 @@
       qtyInput.addEventListener('change', ()=>{
         updateQty(id, qtyInput.value);
         renderCartPage();
+        renderMiniCart();
       });
       $('.ci-remove', row).addEventListener('click', ()=>{
         removeItem(id);
         renderCartPage();
+        renderMiniCart();
       });
     });
 
-    $('#clear-cart').addEventListener('click', ()=>{ clearCart(); renderCartPage(); });
+    $('#clear-cart').addEventListener('click', ()=>{ clearCart(); renderCartPage(); renderMiniCart(); });
 
     // Free shipping threshold logic example ($300)
     const sub = getSubtotal(loadCart());
@@ -148,10 +152,78 @@
     });
   }
 
+  function openDrawer(){
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    if(!drawer || !overlay) return;
+    drawer.classList.add('show');
+    overlay.classList.add('show');
+    drawer.setAttribute('aria-hidden','false');
+    overlay.setAttribute('aria-hidden','false');
+    const closeBtn = document.getElementById('close-cart');
+    if(closeBtn) closeBtn.focus();
+    renderMiniCart();
+  }
+  function closeDrawer(){
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    if(!drawer || !overlay) return;
+    const wasOpen = drawer.classList.contains('show');
+    drawer.classList.remove('show');
+    overlay.classList.remove('show');
+    drawer.setAttribute('aria-hidden','true');
+    overlay.setAttribute('aria-hidden','true');
+    if(wasOpen){
+      const trigger = document.getElementById('open-cart');
+      if(trigger) trigger.focus();
+    }
+  }
+  function renderMiniCart(){
+    const wrap = document.getElementById('mini-cart-items');
+    const subEl = document.getElementById('mini-subtotal');
+    if(!wrap || !subEl) return;
+    const items = loadCart();
+    if(items.length===0){
+      wrap.innerHTML = `<p style="opacity:.9">Your cart is empty.</p>`;
+      subEl.textContent = '$0.00';
+      return;
+    }
+    wrap.innerHTML = items.map(i=>`
+      <article class="mini-item" data-id="${i.id}">
+        <img src="${i.img}" alt="${i.name}">
+        <div class="mini-meta">
+          <h4>${i.name}</h4>
+          <div class="price">$${i.price.toFixed(2)}</div>
+          <div class="mini-qty">
+            <label for="mqty-${i.id}" class="sr-only">Quantity</label>
+            <input id="mqty-${i.id}" type="number" min="1" value="${i.qty}">
+            <button class="mini-remove" aria-label="Remove ${i.name}">Remove</button>
+          </div>
+        </div>
+        <div class="mini-line">$${(i.price*i.qty).toFixed(2)}</div>
+      </article>
+    `).join('');
+    subEl.textContent = '$' + getSubtotal(items).toFixed(2);
+
+    $$('.mini-item').forEach(row=>{
+      const id = row.dataset.id;
+      const qty = row.querySelector('#mqty-'+id);
+      const rm  = row.querySelector('.mini-remove');
+      if(qty) qty.addEventListener('change', ()=>{ updateQty(id, qty.value); renderMiniCart(); renderCartPage(); });
+      if(rm)  rm.addEventListener('click', ()=>{ removeItem(id); renderMiniCart(); renderCartPage(); });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', ()=>{
     updateCountBadge();
     bindAddToCart();
     renderCartPage();
+
+    on(document.getElementById('open-cart'), 'click', (e)=>{ e.preventDefault(); openDrawer(); });
+    on(document.getElementById('close-cart'), 'click', ()=> closeDrawer());
+    on(document.getElementById('cart-overlay'), 'click', ()=> closeDrawer());
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDrawer(); });
+    on(document.getElementById('mini-clear'), 'click', ()=>{ clearCart(); renderMiniCart(); renderCartPage(); });
   });
 
 })();

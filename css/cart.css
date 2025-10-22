@@ -28,3 +28,42 @@
 
 .cart-empty{ text-align:center; padding:calc(var(--header-h) + 40px) 20px 100px; }
 .cart-empty h1{ font-family:Cinzel,serif; margin-bottom:14px; }
+
+.cart-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.4);
+  opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:9998;
+}
+.cart-overlay.show{ opacity:1; pointer-events:auto; }
+
+.cart-drawer{
+  position:fixed; top:0; right:0; height:100vh; width:min(420px, 94vw);
+  background:#0e0e0e; border-left:1px solid #1f1f1f; box-shadow:-16px 0 40px rgba(0,0,0,.35);
+  transform:translateX(100%); transition:transform .28s ease; z-index:9999; color:#f3f3f3;
+  display:flex; flex-direction:column;
+}
+.cart-drawer.show{ transform:translateX(0); }
+.cd-header{ display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid #1f1f1f; }
+.cd-header h2{ font-family:Cinzel,serif; margin:0; font-size:1.2rem; letter-spacing:.5px; }
+.cd-close{ background:transparent; border:0; color:#f3f3f3; font-size:1.6rem; line-height:1; cursor:pointer; }
+.cd-body{ padding:14px 16px; overflow:auto; flex:1; display:flex; flex-direction:column; gap:12px; }
+.cd-footer{ border-top:1px solid #1f1f1f; padding:14px 16px; }
+.cd-footer .row{ display:flex; justify-content:space-between; margin-bottom:.4rem; }
+.cd-footer .tiny{ color:#bdbdbd; font-size:.9rem; margin:.2rem 0 .8rem; }
+
+.mini-item{ display:grid; grid-template-columns:72px 1fr auto; gap:12px; align-items:center; padding:10px; background:#0a0a0a; border:1px solid #1f1f1f; border-radius:12px; }
+.mini-item img{ width:72px; height:72px; object-fit:contain; background:#000; border-radius:10px; }
+.mini-meta h4{ margin:0 0 .2rem; font-family:Cinzel,serif; font-size:1rem; }
+.mini-meta .price{ color:#d7c07a; font-size:.98rem; }
+.mini-qty{ display:flex; align-items:center; gap:8px; margin-top:.3rem; }
+.mini-qty input{ width:58px; background:#111; border:1px solid #2a2a2a; color:#f3f3f3; padding:.35rem .45rem; border-radius:8px; }
+.mini-remove{ background:transparent; border:1px solid #2a2a2a; color:#f3f3f3; padding:.35rem .6rem; border-radius:999px; font-size:.9rem; }
+.mini-line{ font-weight:600; }
+
+@media (max-width: 420px){
+  .mini-item{ grid-template-columns:56px 1fr; }
+  .mini-line{ display:none; }
+}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
