@@ -122,3 +122,11 @@ background-size:cover;background-position:center;opacity:.28;filter:contrast(110
 .collection-hero{padding-top:calc(var(--header-h) + 24px);padding-bottom:48px}
 .collection-hero{padding-top:calc(var(--header-h) + 24px + env(safe-area-inset-top))}
 .collection-hero h1{margin-top:0}
+.site-footer{background:#000;color:#c8a652;border-top:1px solid #c8a652;padding:2rem 1rem;font-size:.875rem}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:center;text-align:center}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:1.25rem}
+.footer-links{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap}
+.footer-links a{color:#c8a652;text-decoration:none;text-transform:uppercase;font-weight:700;letter-spacing:.06em}
+.footer-links a:hover{text-decoration:underline}
+.footer-copy{color:#c8a652}
+@media (max-width:768px){.footer-grid{grid-template-columns:1fr}.footer-copy{margin-top:.5rem}}
