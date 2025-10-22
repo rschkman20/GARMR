@@ -660,10 +660,10 @@
     .why-garmr__container {
       position: relative;
       z-index: 4;
-      max-width: 960px;
+      max-width: min(1200px, 92vw);
       margin-inline: auto;
       padding-block: 96px;
-      padding-inline: 24px;
+      padding-inline: clamp(32px, 5vw, 72px);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -750,10 +750,11 @@
     }
     #pillars-vertical {
       display: grid;
-      grid-template-columns: repeat(3, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 32px;
       align-items: stretch;
       margin-block: 48px;
+      width: 100%;
     }
     .pillar {
       position: relative;
@@ -1148,7 +1149,7 @@
     @media (max-width: 1024px) {
       .why-garmr__container {
         padding-block: 64px;
-        padding-inline: 24px;
+        padding-inline: clamp(24px, 5vw, 32px);
       }
       .headline-xl {
         font-size: clamp(36px, 5.5vw, 52px);
