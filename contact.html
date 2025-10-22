@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – GARMR</title>
+  <meta name="description" content="Reach GARMR support, press, or studio. Speak with the House and expect a disciplined reply.">
+  <meta property="og:title" content="Contact – GARMR">
+  <meta property="og:description" content="Reach GARMR support, press, or studio. Speak with the House and expect a disciplined reply.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  <script src="/js/contact.js" defer></script>
+  <style>
+    :root {
+      --gold: #d7c07a;
+      --page-bg: #050505;
+      --page-text: #f3f3f3;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body.contact-page {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--page-text);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.65;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.05em;
+    }
+    a {
+      color: inherit;
+    }
+    main#contact {
+      display: block;
+    }
+    .contact-lede {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      text-align: center;
+      color: rgba(243, 243, 243, 0.78);
+    }
+  </style>
+</head>
+<body class="contact-page">
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <nav class="nav site-nav">
+      <a href="/collection.html">Collection</a>
+      <a href="/about.html">About</a>
+      <a href="/story.html">Story</a>
+      <a href="/contact.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#cart" class="btn cart-link" id="open-cart">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
+      <a class="btn btn-gold" href="/collection.html">Shop</a>
+    </div>
+  </header>
+
+  <main id="contact" class="p-wrap">
+    <section class="contact-hero">
+      <div class="hero-inner">
+        <h1>Speak with the House.</h1>
+        <p class="sub">We answer with discipline — usually within 1–2 working days (AEST).</p>
+        <div class="hero-ctas">
+          <a href="#support-form" class="btn btn-gold">Write to Support</a>
+          <a href="/collection.html" class="btn btn-outline">Explore Collection</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cards">
+      <article class="ccard">
+        <h3>Support</h3>
+        <p>Orders, sizing, returns.</p>
+        <a href="#support-form" class="btn btn-outline">Write to Support</a>
+        <a href="mailto:support@garmr.shop?subject=Support%20Request%20-%20GARMR" class="tiny link">support@garmr.shop</a>
+      </article>
+      <article class="ccard">
+        <h3>Press &amp; Partnerships</h3>
+        <p>Media, features, ambassadors.</p>
+        <a href="mailto:press@garmr.shop?subject=Press%20Enquiry%20-%20GARMR" class="btn btn-outline">Email Press</a>
+      </article>
+      <article class="ccard">
+        <h3>Wholesale / Studio</h3>
+        <p>Limited stockist enquiries.</p>
+        <a href="mailto:studio@garmr.shop?subject=Wholesale%20Enquiry%20-%20GARMR" class="btn btn-outline">Email Studio</a>
+      </article>
+    </section>
+
+    <section id="support-form" class="contact-form">
+      <h2>Support</h2>
+      <p class="contact-lede">Use the form below for orders, sizing, and returns. We’ll route it to the right arm of the House.</p>
+      <form id="contact-form" novalidate>
+        <div class="row halves">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" required autocomplete="email">
+            <p class="err" data-for="email"></p>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+              <option value="">Choose…</option>
+              <option>Order issue</option>
+              <option>Sizing</option>
+              <option>Returns &amp; warranty</option>
+              <option>Payment</option>
+              <option>Other</option>
+            </select>
+            <p class="err" data-for="subject"></p>
+          </div>
+        </div>
+
+        <div class="field conditional" data-show-if="Order issue" hidden>
+          <label for="order">Order number (optional)</label>
+          <input id="order" placeholder="#GARMR-1234">
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" required></textarea>
+          <p class="err" data-for="message"></p>
+        </div>
+
+        <div class="row halves">
+          <div class="field">
+            <label for="file">Attachment (optional)</label>
+            <input id="file" type="file" accept="image/*,.pdf">
+          </div>
+          <div class="field agree">
+            <label><input type="checkbox" id="consent" required> I agree to the privacy policy.</label>
+            <p class="err" data-for="consent"></p>
+          </div>
+        </div>
+
+        <button class="btn btn-gold" type="submit">Send message</button>
+        <p class="tiny muted">We reply within 1–2 working days.</p>
+        <div id="form-state" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="contact-faq">
+      <h2>Quick answers</h2>
+      <details><summary>Sizing &amp; fit</summary><p>Use our size guide; if between sizes, choose the larger. Contact Support for advice.</p></details>
+      <details><summary>Shipping &amp; tracking</summary><p>Standard within Australia 2–6 business days. Tracking sent on dispatch.</p></details>
+      <details><summary>Returns</summary><p>Eligible within 14 days if unused and in original condition. Limited-run rules apply.</p></details>
+      <details><summary>Care</summary><p>Air-dry after sessions. Avoid excess moisture and heat. Use leather balm sparingly.</p></details>
+    </section>
+
+    <section class="contact-cta">
+      <h2>Return to the work.</h2>
+      <div class="row">
+        <a class="btn btn-gold" href="/collection.html">Explore Collection</a>
+        <a class="btn btn-outline" href="/journal.html">Read the Journal</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="/collection.html">Shop</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('header.site-header');
+      const setHeaderHeight = () => {
+        if (!header) return;
+        const h = Math.ceil(header.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      };
+      setHeaderHeight();
+      window.addEventListener('resize', setHeaderHeight, { passive: true });
+    });
+  </script>
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true" tabindex="-1">
+    <header class="cd-header">
+      <h2 id="cart-drawer-title">Your Cart</h2>
+      <button class="cd-close" id="close-cart" aria-label="Close cart">&times;</button>
+    </header>
+    <div class="cd-body" id="mini-cart-items">
+      <!-- JS renders items here -->
+    </div>
+    <footer class="cd-footer">
+      <div class="row"><span>Subtotal</span><span id="mini-subtotal">$0.00</span></div>
+      <p class="tiny">Shipping &amp; taxes calculated at checkout</p>
+      <a href="/cart.html" class="btn-gold btn-checkout" id="mini-checkout">Checkout</a>
+      <button class="btn-outline btn-clear" id="mini-clear">Clear Cart</button>
+    </footer>
+  </aside>
+
+  <script src="/js/cart.js" defer></script>
+</body>
+</html>

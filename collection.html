@@ -149,6 +149,20 @@
       align-items: flex-start;
       gap: 12px;
     }
+    .collection-hero__help {
+      align-self: flex-end;
+      color: #d7c07a;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.2s ease;
+    }
+    .collection-hero__help:hover {
+      border-bottom-color: #d7c07a;
+    }
     .collection-hero__title {
       font-size: clamp(36px, 5vw, 52px);
       color: #f3f3f3;
@@ -410,7 +424,7 @@
       <a href="collection.html" aria-current="page">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html">Story</a>
-      <a href="#contact">Contact</a>
+      <a href="/contact.html">Contact</a>
     </nav>
     <div class="header-cta">
       <a href="#cart" class="btn cart-link" id="open-cart">
@@ -425,11 +439,12 @@
     <div class="hero-bg vignette" aria-hidden="true"></div>
     <div class="hero-bg gold-glow" aria-hidden="true"></div>
     <div class="hero-video" aria-hidden="true"></div>
-    <div class="collection-hero__inner">
-      <h1 id="collection-title" class="collection-hero__title">Collection</h1>
-      <p class="collection-hero__subline">Forged, not made. Limited runs, purpose made.</p>
-      <p class="collection-hero__breadcrumb" aria-label="Breadcrumb">Home / Collection</p>
-    </div>
+      <div class="collection-hero__inner">
+        <h1 id="collection-title" class="collection-hero__title">Collection</h1>
+        <p class="collection-hero__subline">Forged, not made. Limited runs, purpose made.</p>
+        <p class="collection-hero__breadcrumb" aria-label="Breadcrumb">Home / Collection</p>
+        <a class="collection-hero__help" href="/contact.html">Need help?</a>
+      </div>
   </section>
 
   <main class="collection-main">
@@ -535,9 +550,9 @@
     <div class="footer-grid">
       <div class="footer-logo">GARMR</div>
       <nav class="footer-links">
-        <a href="#">Shop</a>
-        <a href="#">Contact</a>
-        <a href="#">Instagram</a>
+        <a href="/collection.html">Shop</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
       </nav>
       <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
     </div>

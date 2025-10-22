@@ -200,6 +200,17 @@
       background: transparent;
     }
 
+    .btn-row .btn-link {
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #d7c07a;
+      text-transform: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
     .btn-row a::after,
     .btn-row button::after {
       content: "";
@@ -215,6 +226,14 @@
     .btn-row a:hover::after,
     .btn-row button:hover::after {
       background: var(--gold);
+    }
+
+    .btn-row .btn-link::after {
+      display: none;
+    }
+
+    .btn-row .btn-link:hover {
+      text-decoration: underline;
     }
 
     #product-origin {
@@ -532,7 +551,7 @@
       <a href="collection.html">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html">Story</a>
-      <a href="#contact">Contact</a>
+      <a href="/contact.html">Contact</a>
     </nav>
     <div class="header-cta">
       <a href="#cart" class="btn cart-link" id="open-cart">
@@ -552,6 +571,7 @@
         <div class="btn-row" data-animate>
           <a class="btn-gold" href="/cart.html">Cart</a>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
+          <a href="/contact.html" class="btn-link">Contact support</a>
         </div>
       </div>
     </section>
@@ -570,6 +590,7 @@
             Add to Cart
           </button>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
+          <a href="/contact.html" class="btn-link">Contact support</a>
         </div>
       </div>
     </section>
@@ -664,6 +685,7 @@
             Add to Cart
           </button>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
+          <a href="/contact.html" class="btn-link">Contact support</a>
         </div>
       </div>
     </section>
@@ -672,9 +694,9 @@
     <div class="footer-grid">
       <div class="footer-logo">GARMR</div>
       <nav class="footer-links">
-        <a href="#">Shop</a>
-        <a href="#">Contact</a>
-        <a href="#">Instagram</a>
+        <a href="/collection.html">Shop</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
       </nav>
       <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
     </div>
