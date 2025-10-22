@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – GARMR</title>
+  <meta name="description" content="Complete your GARMR order with our secure three-step checkout experience.">
+  <meta property="og:title" content="GARMR Checkout">
+  <meta property="og:description" content="Complete your GARMR order in a streamlined three-step checkout.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
+</head>
+<body class="checkout-page">
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <nav class="nav site-nav">
+      <a href="/collection.html">Collection</a>
+      <a href="/about.html">About</a>
+      <a href="/story.html">Story</a>
+      <a href="/index.html#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#cart" class="btn cart-link" id="open-cart">Cart <span id="cart-count" aria-live="polite">0</span></a>
+      <a class="btn btn-gold" href="/collection.html">Shop</a>
+    </div>
+  </header>
+
+  <main id="checkout" class="co-wrap" aria-live="polite">
+    <nav class="co-steps" aria-label="Checkout steps">
+      <a href="/cart.html" class="step">Cart</a>
+      <span class="step current" data-step="1">Shipping</span>
+      <span class="step" data-step="2">Payment</span>
+      <span class="step" data-step="3">Review</span>
+    </nav>
+
+    <div class="co-grid">
+      <section class="co-left">
+        <form id="step-shipping" data-step="1" novalidate>
+          <h1>Shipping</h1>
+          <p class="muted intro">Enter your delivery details to continue.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" autocomplete="email" required>
+              <p class="err" data-for="email"></p>
+            </div>
+            <div class="field">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" type="tel" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="first">First Name</label>
+              <input id="first" required autocomplete="given-name">
+              <p class="err" data-for="first"></p>
+            </div>
+            <div class="field">
+              <label for="last">Last Name</label>
+              <input id="last" required autocomplete="family-name">
+              <p class="err" data-for="last"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="address">Address</label>
+            <input id="address" required autocomplete="address-line1">
+            <p class="err" data-for="address"></p>
+          </div>
+          <div class="field">
+            <label for="address2">Apt, suite, etc. (optional)</label>
+            <input id="address2" autocomplete="address-line2">
+          </div>
+
+          <div class="field-row thirds">
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" required autocomplete="address-level2">
+              <p class="err" data-for="city"></p>
+            </div>
+            <div class="field">
+              <label for="state">State / Region</label>
+              <input id="state" required autocomplete="address-level1">
+              <p class="err" data-for="state"></p>
+            </div>
+            <div class="field">
+              <label for="zip">ZIP / Postcode</label>
+              <input id="zip" required autocomplete="postal-code">
+              <p class="err" data-for="zip"></p>
+            </div>
+          </div>
+
+          <div class="field-row halves">
+            <div class="field">
+              <label for="country">Country</label>
+              <select id="country" required>
+                <option value="AU" selected>Australia</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="EU">European Union</option>
+              </select>
+              <p class="err" data-for="country"></p>
+            </div>
+            <div class="field">
+              <label for="ship-method">Shipping Method</label>
+              <select id="ship-method" required>
+                <option value="std">Standard — $19.00 (Free over $300)</option>
+                <option value="exp">Express — $39.00</option>
+              </select>
+              <p class="err" data-for="ship-method"></p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn-gold" id="to-payment">Continue to Payment</button>
+            <a href="/cart.html" class="btn-outline">Back to cart</a>
+          </div>
+        </form>
+
+        <form id="step-payment" data-step="2" hidden novalidate>
+          <h1>Payment</h1>
+          <p class="muted">Secure payment placeholder. (Integrate Stripe or your gateway here.)</p>
+
+          <div class="field">
+            <label for="cardname">Name on card</label>
+            <input id="cardname" autocomplete="cc-name" required>
+            <p class="err" data-for="cardname"></p>
+          </div>
+          <div class="field-row thirds">
+            <div class="field">
+              <label for="cardnum">Card number</label>
+              <input id="cardnum" inputmode="numeric" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required>
+              <p class="err" data-for="cardnum"></p>
+            </div>
+            <div class="field">
+              <label for="cardexp">Expiry</label>
+              <input id="cardexp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required>
+              <p class="err" data-for="cardexp"></p>
+            </div>
+            <div class="field">
+              <label for="cardcvc">CVC</label>
+              <input id="cardcvc" inputmode="numeric" autocomplete="cc-csc" placeholder="•••" required>
+              <p class="err" data-for="cardcvc"></p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn-gold" id="to-review">Review Order</button>
+            <button type="button" class="btn-outline" id="back-to-shipping">Back</button>
+          </div>
+        </form>
+
+        <section id="step-review" data-step="3" hidden>
+          <h1>Review &amp; Place Order</h1>
+          <div class="review-block">
+            <h3>Shipping</h3>
+            <div id="review-ship" class="muted"></div>
+          </div>
+          <div class="review-block">
+            <h3>Items</h3>
+            <div id="review-items"></div>
+          </div>
+          <div class="actions">
+            <button class="btn-gold" id="place-order">Place Order</button>
+            <button class="btn-outline" id="back-to-payment">Back</button>
+          </div>
+          <p class="tiny muted">By placing your order, you agree to the Terms &amp; Returns policy.</p>
+        </section>
+      </section>
+
+      <aside class="co-right" aria-label="Order summary">
+        <div class="summary">
+          <h2>Order Summary</h2>
+          <div id="sum-items" class="items"></div>
+          <div class="row"><span>Subtotal</span><span id="sum-sub">$0.00</span></div>
+          <div class="row"><span>Discount</span><span id="sum-discount">—</span></div>
+          <div class="row"><span>Shipping</span><span id="sum-ship">$0.00</span></div>
+          <div class="row"><span>Tax</span><span id="sum-tax">—</span></div>
+          <div class="divider"></div>
+          <div class="row total"><span>Total</span><span id="sum-total">$0.00</span></div>
+
+          <div class="code">
+            <label for="promo">Gift card / Discount code</label>
+            <div class="code-row">
+              <input id="promo" placeholder="Enter code" autocomplete="off">
+              <button id="apply-code" class="btn-outline" type="button">Apply</button>
+            </div>
+            <p class="tiny" id="promo-msg"></p>
+          </div>
+
+          <p id="ship-note" class="tiny muted"></p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="/collection.html">Shop</a>
+        <a href="/index.html#contact">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const hdr = document.querySelector('header.site-header');
+      function setHeaderH() {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+      setHeaderH();
+      window.addEventListener('resize', setHeaderH, { passive: true });
+    })();
+  </script>
+
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true" tabindex="-1">
+    <header class="cd-header">
+      <h2 id="cart-drawer-title">Your Cart</h2>
+      <button class="cd-close" id="close-cart" aria-label="Close cart">&times;</button>
+    </header>
+    <div class="cd-body" id="mini-cart-items"></div>
+    <footer class="cd-footer">
+      <div class="row"><span>Subtotal</span><span id="mini-subtotal">$0.00</span></div>
+      <p class="tiny">Shipping &amp; taxes calculated at checkout</p>
+      <a href="/checkout.html" class="btn-gold btn-checkout" id="mini-checkout">Checkout</a>
+      <button class="btn-outline btn-clear" id="mini-clear">Clear Cart</button>
+    </footer>
+  </aside>
+</body>
+</html>

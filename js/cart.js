@@ -107,7 +107,7 @@
           <div class="divider"></div>
           <div class="row total"><span>Total</span><span id="sum-total">${formatUSD(getSubtotal(items))}</span></div>
           <p id="free-ship" class="small"></p>
-          <a class="btn-gold btn-checkout" href="#" id="checkout-btn" role="button">Checkout</a>
+          <a class="btn-gold btn-checkout" href="/checkout.html" id="checkout-btn">Checkout</a>
           <button class="btn-outline btn-clear" id="clear-cart">Clear Cart</button>
           <a class="link-under" href="/collection.html">Continue shopping</a>
         </aside>
@@ -144,12 +144,6 @@
       fs.textContent = `Free shipping over $${target}. You’re $${(target - sub).toFixed(2)} away.`;
     }
 
-    // Checkout placeholder (integrate Stripe/Shopify later)
-    $('#checkout-btn').addEventListener('click', (e)=>{
-      e.preventDefault();
-      alert('Checkout not connected yet. Exporting order to console for now.');
-      console.log('Order:', loadCart(), 'Subtotal:', getSubtotal(loadCart()));
-    });
   }
 
   function openDrawer(){
