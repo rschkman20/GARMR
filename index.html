@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
   <style>
     :root {
       --gold: #c8a652;
@@ -1323,14 +1324,23 @@
 <body>
   <header class="site-header">
     <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
-    <nav class="nav">
+    <nav class="nav site-nav">
       <a href="collection.html">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html">Story</a>
       <a href="#contact">Contact</a>
+      <a href="/cart.html" class="cart-link">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
+      <button class="btn btn-outline add-to-cart" type="button"
+        data-id="valyr"
+        data-name="GARMR: Valyr"
+        data-price="189"
+        data-img="/images/Valyr.png">
+        Add to Cart
+      </button>
       <a class="btn btn-gold" href="collection.html">Shop</a>
     </div>
   </header>
@@ -1349,7 +1359,13 @@
       <p class="hero-clarifier">Premium combat-inspired apparel for warriors in and out of the ring.</p>
       <div class="hero-ctas">
         <a class="btn btn-gold btn-lg" href="collection.html">Shop Now</a>
-        <a class="btn btn-outline btn-lg" href="#waitlist">Join Waitlist</a>
+        <button class="btn btn-outline btn-lg add-to-cart" type="button"
+          data-id="valyr"
+          data-name="GARMR: Valyr"
+          data-price="189"
+          data-img="/images/Valyr.png">
+          Add to Cart
+        </button>
       </div>
     </div>
     <img class="hero-model left" src="/images/Model%201%20rev%201.png" alt="GARMR athlete">
@@ -1851,5 +1867,6 @@
       window.addEventListener('resize', setHeaderH, { passive: true });
     })();
   </script>
+  <script src="/js/cart.js" defer></script>
 </body>
 </html>

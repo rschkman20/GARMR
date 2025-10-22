@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
   <style>
     :root {
       --header-h: 72px;
@@ -168,7 +169,8 @@
       justify-content: center;
     }
 
-    .btn-row a {
+    .btn-row a,
+    .btn-row button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -181,6 +183,9 @@
       font-size: 0.85rem;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      border: none;
+      background: transparent;
     }
 
     .btn-row .btn-gold {
@@ -195,7 +200,8 @@
       background: transparent;
     }
 
-    .btn-row a::after {
+    .btn-row a::after,
+    .btn-row button::after {
       content: "";
       position: absolute;
       left: 18%;
@@ -206,7 +212,8 @@
       transition: background 0.3s ease;
     }
 
-    .btn-row a:hover::after {
+    .btn-row a:hover::after,
+    .btn-row button:hover::after {
       background: var(--gold);
     }
 
@@ -405,7 +412,8 @@
       color: rgba(243, 243, 243, 0.85);
     }
 
-    #product-cta .btn-row a {
+    #product-cta .btn-row a,
+    #product-cta .btn-row button {
       min-width: 200px;
     }
 
@@ -473,7 +481,8 @@
         flex-direction: column;
       }
 
-      .btn-row a {
+      .btn-row a,
+      .btn-row button {
         width: 100%;
       }
 
@@ -519,14 +528,23 @@
 <body>
   <header class="site-header">
     <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
-    <nav class="nav">
+    <nav class="nav site-nav">
       <a href="collection.html">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html">Story</a>
       <a href="#contact">Contact</a>
+      <a href="/cart.html" class="cart-link">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
+      <button class="btn btn-outline add-to-cart" type="button"
+        data-id="oathbound"
+        data-name="GARMR: Oathbound"
+        data-price="229"
+        data-img="/images/Oathbound.png">
+        Add to Cart
+      </button>
       <a class="btn btn-gold" href="collection.html">Shop</a>
     </div>
   </header>
@@ -539,7 +557,13 @@
         <p class="sub" data-animate>Every strike leaves a story.</p>
         <p class="price" data-animate>$229</p>
         <div class="btn-row" data-animate>
-          <a href="/waitlist.html" class="btn-gold">Join Waitlist</a>
+          <button class="btn-gold add-to-cart" type="button"
+            data-id="oathbound"
+            data-name="GARMR: Oathbound"
+            data-price="229"
+            data-img="/images/Oathbound.png">
+            Add to Cart
+          </button>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
         </div>
       </div>
@@ -551,7 +575,13 @@
         <p class="sub" data-animate>Every strike leaves a story.</p>
         <p class="price" data-animate>$229</p>
         <div class="btn-row" data-animate>
-          <a href="/waitlist.html" class="btn-gold">Join Waitlist</a>
+          <button class="btn-gold add-to-cart" type="button"
+            data-id="oathbound"
+            data-name="GARMR: Oathbound"
+            data-price="229"
+            data-img="/images/Oathbound.png">
+            Add to Cart
+          </button>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
         </div>
       </div>
@@ -637,9 +667,15 @@
     <section id="product-cta">
       <div class="p-wrap">
         <h2 data-animate>Take the Oath.</h2>
-        <p data-animate>Join the waitlist to access limited runs first.</p>
+        <p data-animate>Honor your oath — secure the legacy piece.</p>
         <div class="btn-row" data-animate>
-          <a href="/waitlist.html" class="btn-gold">Join Waitlist</a>
+          <button class="btn-gold add-to-cart" type="button"
+            data-id="oathbound"
+            data-name="GARMR: Oathbound"
+            data-price="229"
+            data-img="/images/Oathbound.png">
+            Add to Cart
+          </button>
           <a href="/collection.html" class="btn-outline">Explore Collection</a>
         </div>
       </div>
@@ -691,5 +727,6 @@
       window.addEventListener('resize', setHeaderH, { passive: true });
     })();
   </script>
+  <script src="/js/cart.js" defer></script>
 </body>
 </html>
