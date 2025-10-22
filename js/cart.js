@@ -20,6 +20,7 @@
     saveCart(items);
     updateCountBadge();
     renderMiniCart();
+    openDrawer();
     toast(`${prod.name} added to cart`);
   }
   function updateQty(id, qty){
