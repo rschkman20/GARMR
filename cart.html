@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart – GARMR</title>
+  <meta name="description" content="Review the GARMR items in your cart and prepare for checkout.">
+  <meta property="og:title" content="GARMR Cart">
+  <meta property="og:description" content="Limited-run GARMR gloves. Secure your set before the batch closes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <style>
+    :root {
+      --page-bg: #0a0a0a;
+      --page-text: #f3f3f3;
+    }
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--page-text);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="cart-page">
+  <header class="site-header">
+    <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
+    <nav class="nav site-nav">
+      <a href="collection.html">Collection</a>
+      <a href="about.html">About</a>
+      <a href="story.html">Story</a>
+      <a href="/index.html#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn cart-link" href="/cart.html" aria-current="page">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
+      <a class="btn btn-gold" href="/collection.html">Shop</a>
+    </div>
+  </header>
+
+  <main id="cart-page" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-logo">GARMR</div>
+      <nav class="footer-links">
+        <a href="/collection.html">Shop</a>
+        <a href="/index.html#contact">Contact</a>
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 GARMR - Built for the ruthless.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const hdr = document.querySelector('header.site-header');
+      function setHeaderH() {
+        if (!hdr) return;
+        const h = Math.ceil(hdr.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+      }
+      setHeaderH();
+      window.addEventListener('resize', setHeaderH, { passive: true });
+    })();
+  </script>
+  <script src="/js/cart.js" defer></script>
+</body>
+</html>

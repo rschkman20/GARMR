@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
   <style>
     :root {
       --gold: #c8a652;
@@ -405,14 +406,16 @@
 <body>
   <header class="site-header">
     <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark"></a>
-    <nav class="nav">
+    <nav class="nav site-nav">
       <a href="collection.html" aria-current="page">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html">Story</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-outline" href="collection.html">Join Waitlist</a>
+      <a class="btn cart-link" href="/cart.html">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
       <a class="btn btn-gold" href="collection.html">Shop</a>
     </div>
   </header>
@@ -460,6 +463,13 @@
             <p class="p-card__tag">LIMITED</p>
             <h3 class="p-card__title">GARMR: Valyr</h3>
             <p class="p-card__price">$189</p>
+            <button class="btn btn-gold add-to-cart" type="button"
+              data-id="valyr"
+              data-name="GARMR: Valyr"
+              data-price="189"
+              data-img="/images/Valyr.png">
+              Add to Cart
+            </button>
             <a class="btn btn-outline p-card__cta" href="valyr.html">View details</a>
           </div>
         </article>
@@ -471,6 +481,13 @@
             <p class="p-card__tag">NEW</p>
             <h3 class="p-card__title">GARMR: Feral Doctrine</h3>
             <p class="p-card__price">$219</p>
+            <button class="btn btn-gold add-to-cart" type="button"
+              data-id="feral-doctrine"
+              data-name="GARMR: Feral Doctrine"
+              data-price="219"
+              data-img="/images/Feral%20Doctrine.png">
+              Add to Cart
+            </button>
             <a class="btn btn-outline p-card__cta" href="feral-doctrine.html">View details</a>
           </div>
         </article>
@@ -482,6 +499,13 @@
             <p class="p-card__tag">—</p>
             <h3 class="p-card__title">GARMR: Bloomveil</h3>
             <p class="p-card__price">$199</p>
+            <button class="btn btn-gold add-to-cart" type="button"
+              data-id="bloomveil"
+              data-name="GARMR: Bloomveil"
+              data-price="199"
+              data-img="/images/Bloomveil.png">
+              Add to Cart
+            </button>
             <a class="btn btn-outline p-card__cta" href="bloomveil.html">View details</a>
           </div>
         </article>
@@ -493,6 +517,13 @@
             <p class="p-card__tag">—</p>
             <h3 class="p-card__title">GARMR: Oathbound</h3>
             <p class="p-card__price">$229</p>
+            <button class="btn btn-gold add-to-cart" type="button"
+              data-id="oathbound"
+              data-name="GARMR: Oathbound"
+              data-price="229"
+              data-img="/images/Oathbound.png">
+              Add to Cart
+            </button>
             <a class="btn btn-outline p-card__cta" href="oathbound.html">View details</a>
           </div>
         </article>
@@ -546,5 +577,6 @@
       window.addEventListener('resize', setHeaderH, { passive: true });
     })();
   </script>
+  <script src="/js/cart.js" defer></script>
 </body>
 </html>

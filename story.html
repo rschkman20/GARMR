@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="/css/cart.css">
   <style>
     :root {
       --accent: #d7c07a;
@@ -576,14 +577,16 @@
 <body class="story-page">
   <header class="site-header">
     <a class="brand" href="/"><img src="/images/Brand%20Name.png" alt="GARMR wordmark" loading="lazy" decoding="async"></a>
-    <nav class="nav">
+    <nav class="nav site-nav">
       <a href="collection.html">Collection</a>
       <a href="about.html">About</a>
       <a href="story.html" aria-current="page">Story</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-outline" href="#waitlist">Join Waitlist</a>
+      <a class="btn cart-link" href="/cart.html">
+        Cart <span id="cart-count" aria-live="polite">0</span>
+      </a>
       <a class="btn btn-gold" href="collection.html">Shop</a>
     </div>
   </header>
@@ -685,9 +688,15 @@
     <section id="story-cta" class="story-cta story-section" aria-labelledby="story-cta-title">
       <div class="story-cta__inner reveal-on-scroll">
         <h2 id="story-cta-title">The Legacy Continues</h2>
-        <p>Join the waitlist. Join the legacy.</p>
+        <p>Secure the legacy. Own the drop.</p>
         <div class="story-cta__buttons" role="group" aria-label="Story calls to action">
-          <a class="btn btn-primary" href="/waitlist.html">Join Waitlist</a>
+          <button class="btn btn-primary add-to-cart" type="button"
+            data-id="valyr"
+            data-name="GARMR: Valyr"
+            data-price="189"
+            data-img="/images/Valyr.png">
+            Add to Cart
+          </button>
           <a class="btn btn-secondary" href="/collection.html">Explore Collection</a>
         </div>
       </div>
@@ -757,5 +766,6 @@
       }
     });
   </script>
+  <script src="/js/cart.js" defer></script>
 </body>
 </html>
