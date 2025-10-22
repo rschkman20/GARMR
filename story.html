@@ -584,7 +584,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
-      <a class="btn cart-link" href="/cart.html">
+      <a href="#cart" class="btn cart-link" id="open-cart">
         Cart <span id="cart-count" aria-live="polite">0</span>
       </a>
       <a class="btn btn-gold" href="collection.html">Shop</a>
@@ -766,6 +766,23 @@
       }
     });
   </script>
+  <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true" tabindex="-1">
+    <header class="cd-header">
+      <h2 id="cart-drawer-title">Your Cart</h2>
+      <button class="cd-close" id="close-cart" aria-label="Close cart">&times;</button>
+    </header>
+    <div class="cd-body" id="mini-cart-items">
+      <!-- JS renders items here -->
+    </div>
+    <footer class="cd-footer">
+      <div class="row"><span>Subtotal</span><span id="mini-subtotal">$0.00</span></div>
+      <p class="tiny">Shipping &amp; taxes calculated at checkout</p>
+      <a href="/cart.html" class="btn-gold btn-checkout" id="mini-checkout">Checkout</a>
+      <button class="btn-outline btn-clear" id="mini-clear">Clear Cart</button>
+    </footer>
+  </aside>
+
   <script src="/js/cart.js" defer></script>
 </body>
 </html>
