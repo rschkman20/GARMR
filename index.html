@@ -1262,8 +1262,8 @@
     /* Flicker helper classes */
     .bar-flicker { animation: flicker 0.15s steps(2); }
     .bar-flicker-strong { animation: flicker-strong 0.25s steps(2); }
-    .text-flicker { animation: flicker 0.15s steps(2); }
-    .text-flicker-strong { animation: flicker-strong 0.25s steps(2); }
+    .text-flicker { animation: flicker 0.3s steps(2); }
+    .text-flicker-strong { animation: flicker-strong 0.45s steps(2); }
     .cryptic-logo {
       width: 60%;
       max-width: 180px;
@@ -1768,7 +1768,7 @@
         const cls = strong ? baseCls + '-strong' : baseCls;
         setTimeout(() => {
           element.classList.add(cls);
-          setTimeout(() => element.classList.remove(cls), strong ? 250 : 150);
+          setTimeout(() => element.classList.remove(cls), strong ? 450 : 300);
         }, t);
       });
     }
