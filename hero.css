@@ -55,16 +55,16 @@ text-decoration:none;font-weight:700;letter-spacing:.03em;transition:transform .
 .btn-outline{color:var(--gold);border-color:var(--gold);background:transparent}
 .btn-outline:hover{background:rgba(200,166,82,.12)}
 
-.hero{position:relative;min-height:92vh;overflow:hidden;display:grid;place-items:center;padding:96px 20px 56px}
+.hero{position:relative;min-height:92vh;overflow:hidden;display:grid;place-items:center;padding:96px 20px 56px;transform:translateZ(0)}
 
 .hero-bg.texture{position:absolute;inset:-4px;background:
 radial-gradient(ellipse at 50% 40%,rgba(201,166,82,.08),rgba(0,0,0,0) 55%), url('/images/bg-texture.jpg');
-background-size:cover;background-position:center;opacity:.28;filter:contrast(110%) brightness(80%);z-index:-5}
-.hero-bg.vignette{position:absolute;inset:-4px;z-index:-4;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.75) 85%)}
-.hero-bg.gold-glow{position:absolute;inset:-4px;z-index:-3;background:radial-gradient(ellipse at 50% 45%,rgba(200,166,82,.09),transparent 60%);mix-blend-mode:screen;pointer-events:none}
+background-repeat:no-repeat,no-repeat;background-size:cover,cover;background-position:center,center;opacity:.28;filter:contrast(110%) brightness(80%);z-index:-5}
+.hero-bg.vignette{position:absolute;inset:-4px;z-index:-4;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.75) 85%);background-repeat:no-repeat;background-position:center;background-size:cover}
+.hero-bg.gold-glow{position:absolute;inset:-4px;z-index:-3;background:radial-gradient(ellipse at 50% 45%,rgba(200,166,82,.09),transparent 60%);background-repeat:no-repeat;background-position:center;background-size:cover;mix-blend-mode:screen;pointer-events:none}
 
-.hero-video{position:absolute;inset:0;opacity:.18;mix-blend-mode:screen;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(200,166,82,.12),transparent 55%),radial-gradient(circle at 70% 60%,rgba(255,255,255,.16),transparent 60%),linear-gradient(130deg,rgba(10,10,10,.95),rgba(0,0,0,.85));overflow:hidden}
-.hero-video::before,.hero-video::after{content:"";position:absolute;inset:-40%;background:radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.18),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(200,166,82,.16),transparent 65%);opacity:.7;filter:blur(12px);animation:heroBackdrops 26s linear infinite}
+.hero-video{position:absolute;inset:0;opacity:.18;mix-blend-mode:screen;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(200,166,82,.12),transparent 55%),radial-gradient(circle at 70% 60%,rgba(255,255,255,.16),transparent 60%),linear-gradient(130deg,rgba(10,10,10,.95),rgba(0,0,0,.85));background-repeat:no-repeat,no-repeat,no-repeat;background-position:center,center,center;background-size:cover,cover,cover;overflow:hidden}
+.hero-video::before,.hero-video::after{content:"";position:absolute;inset:-40%;background:radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.18),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(200,166,82,.16),transparent 65%);background-repeat:no-repeat;background-position:center;background-size:cover;opacity:.7;filter:blur(12px);animation:heroBackdrops 26s linear infinite}
 .hero-video::after{animation:heroBackdropsAlt 30s linear infinite;mix-blend-mode:screen;opacity:.5}
 
 .fog{position:absolute;width:60vw;height:60vh;z-index:-2;pointer-events:none;filter:blur(30px);opacity:.4;animation:drift 28s linear infinite}
