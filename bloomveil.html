@@ -282,13 +282,14 @@
       pointer-events: none;
     }
 
-    .origin-media img {
+    .origin-media .zoomable {
       width: min(60vw, 520px);
-      height: auto;
-      object-fit: cover;
       border-radius: 16px;
-      display: block;
       box-shadow: 0 25px 55px rgba(0, 0, 0, 0.65);
+    }
+
+    .origin-media .zoomable img {
+      border-radius: inherit;
     }
 
     #product-craft {
@@ -481,7 +482,7 @@
         inset: 8px;
       }
 
-      .origin-media img {
+      .origin-media .zoomable {
         width: 100%;
         max-width: 420px;
       }
@@ -602,7 +603,9 @@
           <p data-animate>A study in restraint — beauty held in control. Bloomveil celebrates serenity under pressure and the discipline to remain calm.</p>
         </div>
         <div class="origin-media" data-animate>
-          <img src="/images/Bloomveil.png" alt="Bloomveil detail view" loading="lazy" decoding="async">
+          <div class="zoomable">
+            <img src="/images/Bloomveil.png" alt="Bloomveil detail view" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </section>
@@ -753,6 +756,7 @@
     </footer>
   </aside>
 
+  <script src="/js/zoom.js" defer></script>
   <script src="/js/cart.js" defer></script>
 </body>
 </html>

@@ -25,6 +25,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,s
 .journal-card__link{margin-top:6px;color:#d7c07a;text-decoration:none;font-weight:600;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;min-height:44px}
 .journal-card__link:hover{text-decoration:underline}
 
+.zoomable{position:relative;display:block;overflow:hidden;border-radius:16px;cursor:zoom-in;touch-action:none}
+.zoomable img{display:block;width:100%;height:auto;transition:transform .35s ease;transform-origin:center center;will-change:transform}
+.zoomable.is-zoomed{cursor:zoom-out}
+.zoomable.is-zoomed img{transition:transform .08s ease-out}
+
 .site-header{
  position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
  padding:12px 24px;background:rgba(0,0,0,.7);backdrop-filter:saturate(110%) blur(6px);
