@@ -39,6 +39,8 @@
       const scale = parseFloat(wrapper.getAttribute('data-zoom-scale')) || DEFAULT_SCALE;
       let zoomed = false;
 
+      let detachGlobalHandlers = () => {};
+
       const handleMove = (event) => {
         if (!zoomed) {
           return;
@@ -48,14 +50,30 @@
         updateTransform(wrapper, image, point, scale);
       };
 
+      const addGlobalHandlers = () => {
+        const globalPointerMove = (event) => handleMove(event);
+        const globalMouseMove = (event) => handleMove(event);
+
+        window.addEventListener('pointermove', globalPointerMove);
+        window.addEventListener('mousemove', globalMouseMove);
+
+        detachGlobalHandlers = () => {
+          window.removeEventListener('pointermove', globalPointerMove);
+          window.removeEventListener('mousemove', globalMouseMove);
+          detachGlobalHandlers = () => {};
+        };
+      };
+
       wrapper.addEventListener('click', (event) => {
         zoomed = !zoomed;
         wrapper.classList.toggle('is-zoomed', zoomed);
 
         if (zoomed) {
+          addGlobalHandlers();
           const point = normalizeEvent(event);
           updateTransform(wrapper, image, point, scale);
         } else {
+          detachGlobalHandlers();
           image.style.transform = '';
         }
       });
@@ -69,15 +87,15 @@
         }
       }, { passive: false });
 
-      wrapper.addEventListener('pointerleave', () => {
+      wrapper.addEventListener('touchend', (event) => {
         if (!zoomed) {
           image.style.transform = '';
         }
       });
 
-      wrapper.addEventListener('touchend', (event) => {
-        if (!zoomed) {
-          image.style.transform = '';
+      wrapper.addEventListener('transitionend', (event) => {
+        if (event.propertyName === 'transform' && !zoomed) {
+          detachGlobalHandlers();
         }
       });
     });
