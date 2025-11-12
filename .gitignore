@@ -1,0 +1,10 @@
+# originals and working exports (never ship these)
+/originals/**
+*.psd
+*.tif
+*.tiff
+*.ai
+*.sketch
+*.zip
+Thumbs.db
+.DS_Store
