@@ -64,7 +64,7 @@ text-decoration:none;font-weight:700;letter-spacing:.03em;transition:transform .
 .btn-outline{color:var(--gold);border-color:var(--gold);background:transparent}
 .btn-outline:hover{background:rgba(200,166,82,.12)}
 
-.hero{position:relative;min-height:92vh;overflow:hidden;display:grid;place-items:center;padding:96px 20px 56px}
+.hero{position:relative;min-height:92vh;overflow:hidden;display:grid;place-items:center;padding:96px 20px 56px;transform:translateZ(0);will-change:transform}
 
 .hero-bg.texture{position:absolute;inset:-4px;background:
 radial-gradient(ellipse at 50% 40%,rgba(201,166,82,.08),rgba(0,0,0,0) 55%), url('/images/bg-texture.jpg');
@@ -76,9 +76,9 @@ background-size:cover;background-position:center;opacity:.28;filter:contrast(110
 .hero-video::before,.hero-video::after{content:"";position:absolute;inset:-40%;background:radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.18),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(200,166,82,.16),transparent 65%);opacity:.7;filter:blur(12px);animation:heroBackdrops 26s linear infinite}
 .hero-video::after{animation:heroBackdropsAlt 30s linear infinite;mix-blend-mode:screen;opacity:.5}
 
-.fog{position:absolute;width:60vw;height:60vh;z-index:-2;pointer-events:none;filter:blur(30px);opacity:.4;animation:drift 28s linear infinite}
-.fog-left{left:-10vw;bottom:10vh;animation-delay:-7s}
-.fog-right{right:-12vw;top:12vh;animation-delay:-14s}
+.hero .fog{--fog-flip:1;position:absolute;inset:auto 0 0 0;top:0;height:100%;width:60vw;z-index:-2;pointer-events:none;mix-blend-mode:normal;image-rendering:auto;backface-visibility:hidden;filter:blur(30px);opacity:.4;animation:drift 28s linear infinite}
+.hero .fog-left{--fog-flip:1;left:0;right:auto;width:65vw;-webkit-mask-image:linear-gradient(to right,#000 60%,transparent 95%);mask-image:linear-gradient(to right,#000 60%,transparent 95%);animation-delay:-7s}
+.hero .fog-right{--fog-flip:-1;right:0;left:auto;width:65vw;-webkit-mask-image:linear-gradient(to left,#000 60%,transparent 95%);mask-image:linear-gradient(to left,#000 60%,transparent 95%);animation-delay:-14s}
 
 .embers{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;animation:rise 8s linear infinite}
 
@@ -95,7 +95,7 @@ background-size:cover;background-position:center;opacity:.28;filter:contrast(110
 .hero-model.right{right:0;transform:translateX(6%)}
 
 @keyframes shimmer{0%{-webkit-mask-position:150% 0}100%{-webkit-mask-position:-50% 0}}
-@keyframes drift{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+@keyframes drift{0%{transform:translateY(0) scaleX(var(--fog-flip,1))}50%{transform:translateY(-30px) scaleX(var(--fog-flip,1))}100%{transform:translateY(0) scaleX(var(--fog-flip,1))}}
 @keyframes rise{0%{transform:translateY(10%);opacity:0}15%{opacity:.7}100%{transform:translateY(-90%);opacity:0}}
 @keyframes heroBackdrops{0%{transform:translate3d(-8%,6%,0) scale(1)}50%{transform:translate3d(8%,-6%,0) scale(1.06)}100%{transform:translate3d(-8%,6%,0) scale(1)}}
 @keyframes heroBackdropsAlt{0%{transform:translate3d(6%,-5%,0) scale(1.02)}50%{transform:translate3d(-6%,5%,0) scale(.96)}100%{transform:translate3d(6%,-5%,0) scale(1.02)}}
